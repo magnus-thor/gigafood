@@ -1,7 +1,0 @@
-Started GET "/" for 127.0.0.1 at 2017-09-07 11:23:40 +0200
-Processing by Rails::WelcomeController#index as HTML
-  Rendering /Users/craftacademytwo/.rvm/gems/ruby-2.4.0/gems/railties-5.1.3/lib/rails/templates/rails/welcome/index.html.erb
-  Rendered /Users/craftacademytwo/.rvm/gems/ruby-2.4.0/gems/railties-5.1.3/lib/rails/templates/rails/welcome/index.html.erb (21.0ms)
-Completed 200 OK in 772ms (Views: 60.5ms)
-
-
