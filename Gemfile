@@ -16,9 +16,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'activeadmin'
 gem 'devise'
-gem 'cancan' # or cancancan
-gem 'draper'
-gem 'pundit'
 
 group :development, :test do
   gem 'coveralls', require: false
