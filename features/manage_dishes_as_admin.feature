@@ -22,14 +22,13 @@ Feature: As gigafood, create, destroy and update dishes
     And I press "Create Dish"
     Then I should see "Dish was successfully created."
 
-  # Scenario: Update dish
-  #   When I press "Dishes"
-  #   And I press "View"
-  #   And show me the page
-  #   And I fill in "Description" with "Description for Dish 1"
-  #   And I fill in "Price" with "404"
-  #   And I press "Save"
-  #   Then I should see "Dish 4 successfully updated."
+  Scenario: Update dish
+    When I press "Dishes"
+    And I press "Edit" for dish "Dish 2"
+    And I fill in "Description" with "Description for Dish 2"
+    And I fill in "Price" with "404"
+    And I press "Update Dish"
+    Then I should see "Dish was successfully updated."
 
   Scenario: Delete dish
     When I press "Dishes"
