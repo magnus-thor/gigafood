@@ -14,12 +14,14 @@ Feature: As gigafood, create, destroy and update dishes
       | Dish 3       | Description for Dish 3  | 300   |
 
   Scenario: Add a new dish
-    When I press "Create new dish"
-    And I fill in "Dish name" with "Dish 4"
-    And I fill in "Dish description" with "Description for Dish 4"
-    And I fill in "Dish price" with "400"
-    And I press "Create"
-    Then I should see "Dish 4 successfully created."
+    When I press "Dishes"
+
+    When I press "New Dish"
+    And I fill in "Name" with "Dish 4"
+    And I fill in "Description" with "Description for Dish 4"
+    And I fill in "Price" with "400"
+    And I press "Create Dish"
+    Then I should see "Dish was successfully created."
 
   Scenario: Update dish
     When I press "Dishes"
