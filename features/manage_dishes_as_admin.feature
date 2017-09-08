@@ -8,10 +8,10 @@ Feature: As gigafood, create, destroy and update dishes
     And I'm loged in as admin user "admin@example.com"
     Given I go to the dashboard
     And the following dishes exist:
-      | name         | description             | price |
-      | Dish 1       | Description for Dish 1  | 100   |
-      | Dish 2       | Description for Dish 2  | 200   |
-      | Dish 3       | Description for Dish 3  | 300   |
+      | name         | description             | price | min_quantity |
+      | Dish 1       | Description for Dish 1  | 100   |  10          |
+      | Dish 2       | Description for Dish 2  | 200   |  10          |
+      | Dish 3       | Description for Dish 3  | 300   |  10          |
 
   Scenario: Add a new dish
     When I press "Dishes"
@@ -19,6 +19,7 @@ Feature: As gigafood, create, destroy and update dishes
     And I fill in "Name" with "Dish 4"
     And I fill in "Description" with "Description for Dish 4"
     And I fill in "Price" with "400"
+    And I fill in "Min quantity" with "10"
     And I press "Create Dish"
     Then I should see "Dish was successfully created."
 
@@ -27,6 +28,7 @@ Feature: As gigafood, create, destroy and update dishes
     And I press "Edit" for dish "Dish 2"
     And I fill in "Description" with "Description for Dish 2"
     And I fill in "Price" with "404"
+    And I fill in "Min quantity" with "5"
     And I press "Update Dish"
     Then I should see "Dish was successfully updated."
 
