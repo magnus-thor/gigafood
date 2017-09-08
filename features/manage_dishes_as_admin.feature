@@ -4,8 +4,9 @@ Feature: As gigafood, create, destroy and update dishes
   We need to be able to create, update and delete dishes (CRUD-functionality)
 
   Background:
-    Given I go to the dashboard
+    Given an admin exists with email "admin@example.com" and password "password"
     And I'm loged in as admin user "admin@example.com"
+    Given I go to the dashboard
     And the following dishes exist:
       | name         | description             | price |
       | Dish 1       | Description for Dish 1  | 100   |

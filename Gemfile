@@ -18,10 +18,12 @@ gem 'activeadmin'
 gem 'devise'
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'coveralls', require: false
   gem 'rspec-rails'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'cucumber-rails', require: false
+  gem 'launchy'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
