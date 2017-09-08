@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :dish do
-    name "MyString"
-    description "MyText"
+    name "dish name"
+    description "dish features"
     price 1
   end
 end
