@@ -32,7 +32,7 @@ When /^(?:I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
 end
 
 When /^(?:I )press "([^"]*)"$/ do |button|
-  click_button(button)
+  click_link_or_button(button)
 end
 
 Then /^(?:|I )should be on (.+)$/ do |page_name|
@@ -43,4 +43,13 @@ Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, te
   should = negate ? :not_to        : :to
   have   = is_css ? have_css(text) : have_content(text)
   expect(page).send should, have
+end
+
+
+Given(/^an admin exists with email "([^"]*)" and password "([^"]*)"$/) do |email, password|
+  @admin = FactoryGirl.create(:admin_user, email: email, password: password)
+end
+
+And(/^I'm loged in as admin user "([^"]*)"$/) do |email|
+  login_as(@admin, scope: :admin_user)
 end
