@@ -2,7 +2,8 @@ def path_to(page_name)
   case page_name
     when 'the dashboard'
       admin_root_path
-  end
+    when 'the landing page'
+      root_path  end
 end
 
 def ensure_user_created(email)
