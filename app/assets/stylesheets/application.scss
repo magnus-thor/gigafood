@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree
+ *  require_tree
  *= require_self
  */
 
@@ -29,6 +29,11 @@ body {
     font-weight: 400;
     font-style: normal;
     color: #000;
+}
+
+.container {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .menu-item-title {
@@ -62,7 +67,7 @@ body {
     text-align: center;
 }
 
-.gigafood-button {
+.button {
     border: 1px solid black;
     background-color: white;
     padding: 6px;

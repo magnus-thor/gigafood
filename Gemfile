@@ -25,6 +25,8 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'pry-byebug'
+  gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
 end
 
 group :test do
