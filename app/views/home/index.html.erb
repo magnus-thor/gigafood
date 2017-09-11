@@ -4,33 +4,31 @@
   our delivery service is made by cargo bike. All our food and desserts are made without white refined sugar and no
   added gluten.</p>
 <br>
+<%= form_tag(orders_path) do %>
 
-<h2>MAINS</h2>
+  <h2>MAINS</h2>
 
-<% @dishes.each do |dish| %>
-  <div class="clear">
-    <div class="menu-item-form" id="dish_item_<%= dish.id %>">
-      <%= dish.price %> SEK <br>
-      <input class="q_text" type="text" name="" value="" id="dish_<%= dish.id %>" placeholder="0" size="5"
-             maxlength="4" data-minquantity="<%= dish.min_quantity %>" onblur="validateNumberOnBlur(this)"
-             onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
-      <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= dish.id %>')"> - </button>
-      <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= dish.id %>')"> + </button>
+  <% @dishes.each do |dish| %>
+    <div class="clear">
+      <div class="menu-item-form" id="dish_item_<%= dish.id %>">
+        <%= dish.price %> SEK <br>
+        <input class="q_text" type="text" name="dishes[dish_<%= dish.id %>]" value="" id="dish_<%= dish.id %>" placeholder="0" size="5"
+               maxlength="4" data-minquantity="<%= dish.min_quantity %>" onblur="validateNumberOnBlur(this)"
+               onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+        <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= dish.id %>')"> - </button>
+        <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= dish.id %>')"> + </button>
+      </div>
+      <div class="menu-item-title"><%= dish.name %></div>
+      <div><%= dish.description %></div>
     </div>
-    <div class="menu-item-title"><%= dish.name %></div>
-    <div><%= dish.description %></div>
-  </div>
+  <% end %>
+
+
+  <br>
+
+    <div><%= submit_tag 'Next', class: 'button float-right' %></div>
 <% end %>
 
-
-<br>
-
-
-<div class="float-right">
-  <button class="button" type="button" name="button"> Next </button>
-</div>
-<br>
-<br>
 
 <script type="text/javascript" >
     function validateNumber(object)
@@ -49,33 +47,32 @@
 
     function validateNumberOnBlur(object)
     {
-        if (parseInt(object.value) < parseInt(object.dataset.minquantity) && object.value != '')
-        {
-            swal({
-                    title: 'Oops...',
-                    text: 'Minimum order quantity is ' + object.dataset.minquantity + '.',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#2dbc36',
-                    confirmButtonText: 'Yes, please change to ' + object.dataset.minquantity + '.',
-                    cancelButtonText: 'No, please change to 0.',
-                    closeOnConfirm: true,
-                    closeOnCancel: true,
-                },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        object.value = parseInt(object.dataset.minquantity);
-                    } else {
-                        object.value = '';
-                    }
-                });
+      if (parseInt(object.value) < parseInt(object.dataset.minquantity) && object.value != '')
+      {
+        swal({
+          title: 'Oops...',
+          text: 'Minimum order quantity is ' + object.dataset.minquantity + '.',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#2dbc36',
+          confirmButtonText: 'Yes, please change to ' + object.dataset.minquantity + '.',
+          cancelButtonText: 'No, please change to 0.',
+          closeOnConfirm: true,
+          closeOnCancel: true,
+        },
+        function (isConfirm) {
+          if (isConfirm) {
+              object.value = parseInt(object.dataset.minquantity);
+          } else {
+              object.value = '';
+          }
+        });
+      }
 
-        }
-
-        if (object.value == 0)
-        {
-            object.value = '';
-        }
+      if (object.value == 0)
+      {
+          object.value = '';
+      }
 
     }
 
@@ -86,10 +83,10 @@
 
         if ( val > min_val )
         {
-          document.getElementById(dishId).value = val - 1;
+            document.getElementById(dishId).value = val - 1;
         } else if (val == min_val)
         {
-          document.getElementById(dishId).value = '';
+            document.getElementById(dishId).value = '';
         }
     }
 
@@ -100,10 +97,10 @@
 
         if (val == '' || val < min_val - 1 || isNaN(val) )
         {
-          document.getElementById(dishId).value = min_val;
+            document.getElementById(dishId).value = min_val;
         } else if (val < 9999)
         {
-          document.getElementById(dishId).value = val + 1;
+            document.getElementById(dishId).value = val + 1;
         }
     }
 

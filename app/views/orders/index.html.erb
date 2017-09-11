@@ -1,0 +1,19 @@
+<h1>ORDER</h1>
+
+<table>
+  <tr>
+    <th>Dish</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+
+  <% @order.shopping_cart_items.each do |order_item| %>
+    <tr id="<%= "order_row_#{order_item.item.id}" %>">
+      <td><%= order_item.item.name %></td>
+      <td><%= order_item.quantity %></td>
+      <td style="white-space: nowrap;"><%= order_item.quantity * order_item.price %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div>Total price: <%= @order.total%></div>

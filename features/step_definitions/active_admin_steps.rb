@@ -1,11 +1,3 @@
-def path_to(page_name)
-  case page_name
-    when 'the dashboard'
-      admin_root_path
-    when 'the landing page'
-      root_path  end
-end
-
 def ensure_user_created(email)
   user = AdminUser.where(email: email).first_or_create(password: 'password', password_confirmation: 'password')
 
@@ -23,20 +15,12 @@ Given /^an admin user "([^"]*)" exists$/ do |email|
   ensure_user_created(email)
 end
 
-When /^(?:I )go to (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
-
 When /^(?:I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, with: value)
 end
 
 When /^(?:I )press "([^"]*)"$/ do |button|
   click_link_or_button(button)
-end
-
-Then /^(?:|I )should be on (.+)$/ do |page_name|
-  expect(URI.parse(current_url).path).to eq path_to page_name
 end
 
 Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
