@@ -1,19 +1,95 @@
 <h1>ORDER</h1>
 
-<table>
-  <tr>
-    <th>Dish</th>
-    <th>Quantity</th>
-    <th>Price</th>
-  </tr>
-
-  <% @order.shopping_cart_items.each do |order_item| %>
-    <tr id="<%= "order_row_#{order_item.item.id}" %>">
-      <td><%= order_item.item.name %></td>
-      <td><%= order_item.quantity %></td>
-      <td style="white-space: nowrap;"><%= order_item.quantity * order_item.price %></td>
+<div class="float-left order-container">
+  <table>
+    <tr>
+      <th>Dish</th>
+      <th>Quantity</th>
+      <th>Price</th>
     </tr>
-  <% end %>
-</table>
 
-<div>Total price: <%= @order.total%></div>
+    <% @order.shopping_cart_items.each do |order_item| %>
+      <tr id="<%= "order_row_#{order_item.item.id}" %>">
+        <td><%= order_item.item.name %></td>
+        <td><%= order_item.quantity %></td>
+        <td style="white-space: nowrap;"><%= order_item.quantity * order_item.price %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
+  <div>Total price: <%= @order.total%></div>
+</div>
+
+<div class="clear"></div>
+
+<div class="float-left order-container">
+  <h2>Allergies – No Problem!</h2>
+  <p>Please specify any allergies.</p>
+  <textarea rows="6" cols="67">
+  </textarea>
+  <br><br>
+</div>
+
+<div class="float-left order-container">
+  <h2>Delivery</h2>
+  Please specify details for delivery or pick-up. <br>
+  <form action="">
+    <input type="radio" name="delivery" value="pick_up" class="radio_style"> We’d like to pick up the order <br> ourselves at Tegelbacken 4A. <br>
+    <input type="radio" name="delivery" value="deliver" class="radio_style"> We'd like the order to be delivered <br> directly to us by cargo bike.
+  </form>
+  <br>
+  Delivery date: <br>
+  <input type="date" name="delivery[date]" id="delivery_date" value="" placeholder="Date"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="time" name="delivery[time]" id="delivery_time" value="" placeholder="Time"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+
+</div>
+
+<div class="clear">
+  <br>
+</div>
+
+<div class="float-left order-container">
+
+  Delivery address: <br>
+  <input type="text" name="delivery[name]" id="delivery_name" value="" placeholder="Name/Company"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="delivery[address]" id="delivery_address" value="" placeholder="Delivery address"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="delivery[postal_code]" id="delivery_postal_code" value="" placeholder="Postal Code"
+         size="5" maxlength="25" style="width: 100px;">
+  <input type="text" name="delivery[city]" id="delivery_city" value="" placeholder="City"
+         size="5" maxlength="25" style="width: 250px;"> <br>
+  <input type="text" name="delivery[floor]" id="delivery_floor" value="" placeholder="Floor"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="delivery[door_code]" id="delivery_door_code" value="" placeholder="Door Code"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <br>
+  Person to contact when delivery <br>
+  arrives (name and phone): <br>
+  <input type="text" name="delivery[contact_name]" id="delivery_contact_name" value="" placeholder="Name"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="delivery[phone_number]" id="delivery_phone_number" value="" placeholder="Phone number"
+         size="5" maxlength="25" style="width: 374px;"> <br> <br>
+</div>
+<div class="float-left order-container">
+  Payment information <br>
+  <input type="text" name="invoice[name]" id="invoice_name" value="" placeholder="Name"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="invoice[company]" id="invoice_company" value="" placeholder="Company/Organisation"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="invoice[org_nr]" id="invoice_org_nr" value="" placeholder="Organisation Number"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="invoice[address]" id="invoice_address" value="" placeholder="Address"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="invoice[postal_code]" id="invoice_postal_code" value="" placeholder="Postal Code"
+         size="5" maxlength="25" style="width: 100px;">
+  <input type="text" name="invoice[city]" id="invoice_city" value="" placeholder="City"
+         size="5" maxlength="25" style="width: 250px;"> <br>
+  <br>
+  <input type="email" name="invoice[phone]" id="invoice_phone" value="" placeholder="Phone"
+         size="5" maxlength="25" style="width: 374px;"> <br>
+  <input type="text" name="invoice[email]" id="invoice_email" value="" placeholder="Email to send invoice to"
+         size="5" maxlength="25" style="width: 374px;"> <br> <br>
+</div>
