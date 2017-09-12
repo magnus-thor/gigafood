@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20170911111239) do
-=======
-ActiveRecord::Schema.define(version: 20170911114116) do
->>>>>>> 2a6de8c994f9caa8a5e96795da0c9c856dfe8ddf
+ActiveRecord::Schema.define(version: 20170912100957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +44,13 @@ ActiveRecord::Schema.define(version: 20170911114116) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -91,3 +94,5 @@ ActiveRecord::Schema.define(version: 20170911114116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+end
