@@ -1,32 +1,32 @@
-<h1>MENU</h1>
-<p class="center">Our menu is <strong>100% plant-based</strong> and <strong>vegan</strong>.
-  We’re committed to always use organic ingredients as far as possibly possible. Our packaging is 100% compostable and
-  our delivery service is made by cargo bike. All our food and desserts are made without white refined sugar and no
-  added gluten.</p>
+<h1><%= t('main_title_order_form').html_safe %></h1>
+
+<p class="center"><%= t('intro_desc_order_form').html_safe %> </p>
+<p class="center"><%= t('minimum_order_form').html_safe %> </p>
+
 <br>
 <%= form_tag(orders_path) do %>
 
-  <h2>MAINS</h2>
+    <h2>MAINS</h2>
 
-  <% @dishes.each do |dish| %>
-    <div class="clear">
-      <div class="menu-item-form" id="dish_item_<%= dish.id %>">
-        <%= dish.price %> SEK <br>
-        <input class="q_text" type="text" name="dishes[dish_<%= dish.id %>]" value="" id="dish_<%= dish.id %>" placeholder="0" size="5"
-               maxlength="4" data-minquantity="<%= dish.min_quantity %>" onblur="validateNumberOnBlur(this)"
-               onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
-        <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= dish.id %>')"> - </button>
-        <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= dish.id %>')"> + </button>
-      </div>
-      <div class="menu-item-title"><%= dish.name %></div>
-      <div><%= dish.description %></div>
-    </div>
-  <% end %>
+    <% @dishes.each do |dish| %>
+       <div class="clear">
+        <div class="menu-item-form" id="dish_item_<%= dish.id %>">
+          <%= dish.price %> SEK <br>
+           <input class="q_text" type="text" name="dishes[dish_<%= dish.id %>]" value="" id="dish_<%= dish.id %>" placeholder="0" size="5"
+                  maxlength="4" data-minquantity="<%= dish.min_quantity %>" onblur="validateNumberOnBlur(this)"
+                  onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
+           <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= dish.id %>')"> - </button>
+           <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= dish.id %>')"> + </button>
+          </div>
+          <div class="menu-item-title"><%= dish.name %></div>
+          <div><%= dish.description %></div>
+        </div>
+    <% end %>
 
+    <br>
 
-  <br>
+    <div><%= submit_tag t('button.next'), class: 'button float-right' %></div>
 
-    <div><%= submit_tag 'Next', class: 'button float-right' %></div>
 <% end %>
 
 
@@ -73,7 +73,6 @@
       {
           object.value = '';
       }
-
     }
 
     function decreaseNumber(dishId)
