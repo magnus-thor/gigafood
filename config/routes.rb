@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :index, :update] do
     member do
       get 'confirm'
+      post 'generate-invoice', action: :generate_invoice
     end
 
   end

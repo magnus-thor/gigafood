@@ -16,6 +16,12 @@
 # Used by dotenv library to load environment variables.
 .env
 
+## Ignore generated pdf's
+*.pdf
+
+## Ignore attachments stored in filesystem
+public/system/*
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history

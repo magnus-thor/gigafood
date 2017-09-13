@@ -37,6 +37,20 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def generate_invoice
+    helpers = ActionController::Base.helpers
+    @order = Order.find(params[:id])
+    pdf = Prawn::Document.new(page_size: 'A4', page_layout: :portrait)
+    pdf.text t('invoice.header')
+    pdf.move_down(20)
+    pdf.text @order.billing_name
+    pdf.move_down(20)
+    pdf.text "Tax (VAT) #{helpers.humanized_money_with_symbol @order.taxes}"
+    pdf.move_down(20)
+    pdf.text "Total: #{helpers.humanized_money_with_symbol @order.total}"
+
+  end
+
   private
 
   def order_params

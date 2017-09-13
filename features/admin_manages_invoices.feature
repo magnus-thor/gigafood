@@ -32,7 +32,7 @@ Feature: Admin creates invoice
         | Dish 2    | 20       |
       And I click on "Orders"
       And I press "View" for order "Bob Schmob"
-      #And I press "Create Invoice"
+      And I press "Generate Invoice"
       #Then an invoice should be created
       #And the invoice should contain "Bob Schmob"
       #And the invoice should contain "Tax (VAT): 1,250 kr "

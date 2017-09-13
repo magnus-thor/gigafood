@@ -13,6 +13,10 @@ ActiveAdmin.register Order do
     link_to 'Cancel Order', cancel_admin_order_path(resource), method: :put
   end
 
+  action_item :generate_invoice, only: :show do
+    link_to 'Generate Invoice', generate_invoice_order_path, method: :post
+  end
+
   member_action :confirm, method: :put do
     @order = Order.find(params[:id])
     @order.status = 'approved'
