@@ -20,7 +20,7 @@ gem 'acts_as_shopping_cart', github: 'dabit/acts_as_shopping_cart', branch: 'rai
 
 # Attachments
 gem 'paperclip', '~> 5.0.0'
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 2.10', '>= 2.10.27'
 gem 'prawn-rails'
 
 group :development, :test do

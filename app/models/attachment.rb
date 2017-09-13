@@ -8,7 +8,7 @@ class Attachment < ApplicationRecord
                         s3_region: ENV['AWS_REGION'],
                         url: :s3_domain_url,
                         s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com"
-                    },
+                    }
   validates_attachment_presence :file
   validates_attachment_content_type :file,
                                     content_type: ['application/pdf']

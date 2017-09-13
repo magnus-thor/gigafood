@@ -52,10 +52,12 @@ class OrdersController < ApplicationController
       pdf.move_down 50
       pdf.font Rails.root.join('app', 'assets', 'fonts', 'futura.ttf')
       pdf.text t('invoice.header'), size: 40
-      pdf.move_down 55
+      pdf.move_down 30
       pdf.font Rails.root.join('app', 'assets', 'fonts', 'futura.ttf')
-      pdf.text "Tax (VAT) #{helpers.humanized_money_with_symbol @order.taxes}", size: 14
-      pdf.move_down 20
+      pdf.text @order.billing_name, size: 14
+      pdf.move_down 16
+      pdf.text "Tax (VAT): #{helpers.humanized_money_with_symbol @order.taxes}", size: 14
+      pdf.move_down 16
       pdf.text "Total: #{helpers.humanized_money_with_symbol @order.total}", size: 14
     end
 

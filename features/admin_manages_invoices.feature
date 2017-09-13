@@ -33,10 +33,10 @@ Feature: Admin creates invoice
       And I click on "Orders"
       And I press "View" for order "Bob Schmob"
       And I press "Generate Invoice"
-      #Then an invoice should be created
-      #And the invoice should contain "Bob Schmob"
-      #And the invoice should contain "Tax (VAT): 1,250 kr "
-      #And the invoice should contain "Total: 6,260 kr"
+      Then an invoice for the order should be created
+      And the invoice should contain "Bob Schmob"
+      And the invoice should contain "Tax (VAT): 600 kr"
+      And the invoice should contain "Total: 5,600 kr"
 
 
 
