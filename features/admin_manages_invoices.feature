@@ -5,11 +5,7 @@ Feature: Admin creates invoice
 
 
   Background:
-    Given an admin exists with email "admin@example.com" and password "password"
-    And I'm loged in as admin user "admin@example.com"
-    Given I go to the dashboard
-
-    And the following categories exist:
+    Given the following categories exist:
       | name    | description                |
       | Starter | Description for category 1 |
 
@@ -24,11 +20,23 @@ Feature: Admin creates invoice
       | Bob Schmob   | 2017-11-20 12:00 | bob.schmob@example.com |
       | John Smith   | 2017-10-10 12:00 | john.smith@example.com |
 
-    And "Bob Schmob"'s order contains:
-      | dish_name | quantity |
-      | Dish 1    | 10       |
-      | Dish 2    | 20       |
+    And an admin exists with email "admin@example.com" and password "password"
+    And I'm loged in as admin user "admin@example.com"
+    And I go to the dashboard
 
 
     Scenario: Admin generates an invoice
+      Given "Bob Schmob"'s order contains:
+        | dish_name | quantity |
+        | Dish 1    | 10       |
+        | Dish 2    | 20       |
+      And I click on "Orders"
+      Then show me the page
+      And I press "View" for order "Bob Schmob"
+      And I press "Create Invoice"
+
+
+
+
+
 

@@ -35,7 +35,7 @@ Feature: As gigafood, create, destroy and update dishes
     And I fill in "Description" with "Description for Dish 2"
     And I fill in "Price" with "404"
     And I fill in "Min quantity" with "5"
-    #And I select "Starter" from "Category"
+    And I select "Starter" from "Category"
     And I press "Update Dish"
     Then I should see "Dish was successfully updated."
 

@@ -5,7 +5,7 @@ def ensure_user_created(email)
     raise "Could not create user #{email}: #{user.errors.full_messages}"
   end
   user
-  end
+end
 
 When /^I fill in the password field with "([^"]*)"$/ do |password|
   fill_in 'admin_user_password', with: password
@@ -24,8 +24,8 @@ When /^(?:I )press "([^"]*)"$/ do |button|
 end
 
 Then /^(?:I )should( not)? see( the element)? "([^"]*)"$/ do |negate, is_css, text|
-  should = negate ? :not_to        : :to
-  have   = is_css ? have_css(text) : have_content(text)
+  should = negate ? :not_to : :to
+  have = is_css ? have_css(text) : have_content(text)
   expect(page).send should, have
 end
 
