@@ -6,7 +6,7 @@ RSpec.describe Attachment, type: :model do
   end
 
   it { is_expected.to have_db_column :id }
-  it { is_expected.to have_db_column :type }
+  it { is_expected.to have_db_column :file_type }
 
   describe 'Attachment' do
     it { is_expected.to have_attached_file :file}
