@@ -18,6 +18,11 @@ gem 'devise'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'acts_as_shopping_cart', github: 'dabit/acts_as_shopping_cart', branch: 'rails51'
 
+# Attachments
+gem 'paperclip', '~> 5.0.0'
+gem 'aws-sdk'
+gem 'prawn-rails'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
@@ -28,11 +33,14 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'poltergeist'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'dotenv-rails'
+
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'email_spec'
+  gem 'pdf-inspector', require: 'pdf/inspector'
 end
 
 group :development do
