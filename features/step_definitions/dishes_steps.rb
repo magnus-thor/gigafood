@@ -1,6 +1,12 @@
 Given(/^the following dishes exist:$/) do |table|
   table.hashes.each do |dish|
-    FactoryGirl.create(:dish, dish)
+    if dish[:category]
+      category = Category.find_by(name: dish[:category])
+      hash = dish.except!(dish[:category]).merge(category: category)
+      FactoryGirl.create(:dish, hash)
+    else
+      FactoryGirl.create(:dish, dish)
+    end
   end
 end
 

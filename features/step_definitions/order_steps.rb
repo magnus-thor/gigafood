@@ -14,3 +14,13 @@ end
 And(/^I fill in Delivery Date with "([^"]*)"$/) do |date|
   fill_in('order_delivery_date', with: date)
 end
+
+
+And(/^"([^"]*)"'s order contains:$/) do |billing_name, table|
+  order = Order.find_by(billing_name: billing_name)
+  table.hashes.each do |item|
+    dish = Dish.find_by(name: item[:dish_name])
+    order.add(dish, dish.price, item[:quantity].to_i)
+  end
+  binding.pry
+end
