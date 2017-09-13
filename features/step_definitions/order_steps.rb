@@ -24,7 +24,6 @@ Given(/^"([^"]*)"'s order contains:$/) do |billing_name, table|
   end
 end
 
-
 Then(/^the total for the order should be "([^"]*)"$/) do |total|
   @order.reload
   expect(@order.total).to eq Money.new(total.to_f * 100)

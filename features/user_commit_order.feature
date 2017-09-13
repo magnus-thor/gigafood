@@ -6,8 +6,8 @@ Feature: Allow end user to commit order
 
   Background:
     Given the following dishes exist:
-      | name         | description             | price | min_quantity |
-      | Dish 1       | Description for Dish 1  | 100   |  10          |
+      | name   | description            | price | min_quantity |
+      | Dish 1 | Description for Dish 1 | 100   | 10           |
 
   Scenario: User can manipulate quantity with + and - buttons
     When I go to the landing page
@@ -32,5 +32,5 @@ Feature: Allow end user to commit order
     And I fill in "Billing email" with "invoice@hungrycorp.com"
     And I click on "Submit Order"
     Then I should see "Thanks!"
-    Then the tax for the order should be "125"
-    And the total for the order should be "1125"
+    Then the tax for the order should be "120"
+    And the total for the order should be "1120"
