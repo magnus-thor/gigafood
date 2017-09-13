@@ -20,7 +20,7 @@
 *.pdf
 
 ## Also in test env
-/spec/fixtures/tmp/
+/spec/fixtures/tmp/*.pdf
 
 ## Ignore attachments stored in filesystem
 public/system/*
