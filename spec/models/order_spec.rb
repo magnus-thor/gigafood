@@ -23,4 +23,8 @@ RSpec.describe Order, type: :model do
   it { is_expected.to have_db_column :allergies }
   it { is_expected.to have_db_column :boxes }
   it { is_expected.to have_db_column :status }
+
+  describe 'Associations' do
+    it { is_expected.to have_many :attachments }
+  end
 end
