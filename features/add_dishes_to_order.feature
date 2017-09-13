@@ -17,8 +17,7 @@ Feature: Allow end user to select dishes and quantities to order.
     And I click on + for "Dish 2"
     And I click on + for "Dish 2"
     And I click on "Next"
-    Then I should be on order page
-    And I should see "Dish 1"
+    Then I should see "Dish 1"
     And I should see "1000"
     And I should see "Dish 2"
     And I should see "4200"

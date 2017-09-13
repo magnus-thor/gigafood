@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ConfirmationMailer, type: :mailer do
   describe 'confirmation' do
-    let(:order) { FactoryGirl.create(:order, name: 'Volvo AB', status: 'approved', email: 'customer@test.com') }
+    let(:order) { FactoryGirl.create(:order, billing_name: 'Volvo AB', status: 'approved', billing_email: 'customer@test.com') }
     let(:mail) { ConfirmationMailer.confirmation_email(order) }
 
     it 'renders the subject' do
@@ -10,7 +10,7 @@ RSpec.describe ConfirmationMailer, type: :mailer do
     end
 
     it 'renders the receiver email' do
-      expect(mail.to).to eql([order.email])
+      expect(mail.to).to eql([order.billing_email])
     end
 
     it 'renders the sender email' do
@@ -18,7 +18,7 @@ RSpec.describe ConfirmationMailer, type: :mailer do
     end
 
     it 'render the customer name' do
-      expect(mail.body.encoded).to match(order.name)
+      expect(mail.body.encoded).to match(order.billing_name)
     end
   end
 end

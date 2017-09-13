@@ -9,3 +9,4 @@ en:
   button:
     next: "Next"
     back: "Back"
+    submit: "Submit Order"

@@ -1,0 +1,51 @@
+<h1>Thanks!</h1>
+
+<% @order.shopping_cart_items.each do |order_item| %>
+    <div>
+      <p><%= order_item.item.name %></p>
+      <p><%= order_item.item.description %></p>
+    </div>
+<% end %>
+
+<%= form_for @order do |f| %>
+
+    <div class="float-left order-container">
+      <h4>Delivery Information:</h4>
+      <%= f.date_field :delivery_date, placeholder: 'Delivery Address' %>
+
+      <%= f.text_field :delivery_method, placeholder: 'Delivery Method' %>
+    </div>
+    <div class="float-left order-container">
+      <h4>Delivery address:</h4>
+      <%= f.text_field :delivery_name, placeholder: 'Delivery Name' %>
+      <%= f.text_field :delivery_address, placeholder: 'Delivery Address' %>
+      <%= f.text_field :delivery_postal_code, placeholder: 'Delivery Postal Code' %>
+      <%= f.text_field :delivery_city, placeholder: 'Delivery City' %>
+      <%= f.text_field :delivery_floor, placeholder: 'Delivery Floor' %>
+      <%= f.text_field :delivery_door_code, placeholder: 'Deliovery Door Code' %>
+      <%= f.text_field :delivery_contact_name, placeholder: 'Delivery Contact Name' %>
+      <%= f.text_field :delivery_contact_phone_number, placeholder: 'Delivery Contact Phone' %>
+    </div>
+    <div class="float-left order-container">
+      <h4>Billing address:</h4>
+      <%= f.text_field :billing_name, placeholder: 'Billing Name' %>
+      <%= f.text_field :billing_company, placeholder: 'Billing Company' %>
+      <%= f.text_field :billing_org_nr, placeholder: 'Billing Organisation Number' %>
+      <%= f.text_field :billing_address, placeholder: 'Billing Address' %>
+      <%= f.text_field :billing_postal_code, placeholder: 'Billing Postal Code' %>
+      <%= f.text_field :billing_city, placeholder: 'Billing City' %>
+      <%= f.text_field :billing_phone, placeholder: 'Billing Phone Number' %>
+      <%= f.text_field :billing_email, placeholder: 'Billing email' %>
+    </div>
+    <div class="float-left order-container">
+      <h2>Allergies – No Problem!</h2>
+      <h4>Please specify any allergies:</h4>
+      <%= f.text_field :allergies, placeholder: 'Allergies' %>
+    </div>
+    <div class="float-left order-container">
+      <%= f.text_field :boxes, placeholder: 'Boxes' %>
+      <%= f.text_field :status, placeholder: 'Status' %>
+      <%= f.submit t('button.submit'), class: 'button float-right' %>
+    </div>
+
+<% end %>

@@ -5,7 +5,7 @@ def path_to(page_name)
   when 'the landing page'
     root_path
   when 'order page'
-    orders_path
+    order_path
   else
     error
   end

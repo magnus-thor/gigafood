@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ShoppingCartItem, type: :model do
+RSpec.describe OrderItem, type: :model do
   it { is_expected.to have_db_column :owner_id }
   it { is_expected.to have_db_column :owner_type }
   it { is_expected.to have_db_column :quantity }
