@@ -22,5 +22,4 @@ And(/^"([^"]*)"'s order contains:$/) do |billing_name, table|
     dish = Dish.find_by(name: item[:dish_name])
     order.add(dish, dish.price, item[:quantity].to_i)
   end
-  binding.pry
 end
