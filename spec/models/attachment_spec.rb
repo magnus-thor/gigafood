@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Attachment, type: :model do
   it 'should have valid Factory' do
-    expect(FactoryGirl.create(:admin_user)).to be_valid
+    expect(FactoryGirl.create(:attachment)).to be_valid
   end
 
   it { is_expected.to have_db_column :id }

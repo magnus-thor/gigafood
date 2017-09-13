@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :attachment do
     type :invoice
-    attachment { File.new("#{Rails.root}/spec/fixtures/blank.pdf") }
+    file { File.new("#{Rails.root}/spec/fixtures/blank.pdf") }
+    order
   end
 end
