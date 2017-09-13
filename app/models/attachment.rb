@@ -1,6 +1,7 @@
 class Attachment < ApplicationRecord
   has_attached_file :file,
                     storage: :s3,
+                    path: "#{Rails.env}/:id/:filename",
                     s3_credentials: {
                         bucket: ENV['AWS_BUCKET'],
                         access_key_id: ENV['AWS_ACCESS_KEY'],

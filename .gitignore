@@ -19,6 +19,9 @@
 ## Ignore generated pdf's
 *.pdf
 
+## Also in test env
+/spec/fixtures/tmp/
+
 ## Ignore attachments stored in filesystem
 public/system/*
 
