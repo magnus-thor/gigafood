@@ -5,6 +5,7 @@ en:
                           compostable and our delivery service is made by cargo bike. All our food and
                           desserts are made without white refined sugar and no added gluten."
   minimum_order_form:     "Minimum amount per dish to order - 10 servings."
+  minimum_order:          "Minimum order"
 
   button:
     next: "Next"
