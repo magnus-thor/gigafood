@@ -4,9 +4,7 @@ class Order < ApplicationRecord
   STANDARD_PAYMENT_TIME_IN_DAYS = 30
 
   has_many :attachments, dependent: :destroy
-
-  scope :with_pending_posts, -> { joins(:attachments).where('attachments.file_type = "invoice"') }
-
+  
   def tax_pct
     Order::SWEDISH_VAT
   end
