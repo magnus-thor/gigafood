@@ -27,9 +27,15 @@
   <div class="float-left order-container">
     <h4>Delivery Information:</h4>
     <%= f.date_field :delivery_date, placeholder: 'Delivery Date' %>
-    <%= f.text_field :delivery_method, placeholder: 'Delivery Method' %>
+    <br>
+    <%= radio_button_tag(:delivery_method, 'pickup', checked: false, onclick: 'toggleDelivery_address("hide");') %>
+    <%= label_tag(:delivery_method_pickup, 'Pickup', onclick: 'toggleDelivery_address("hide");') %>
+    <%= radio_button_tag(:delivery_method, 'delivery', checked: true, onclick: 'toggleDelivery_address("show");') %>
+    <%= label_tag(:delivery_method_delivery, 'Delivery', onclick: 'toggleDelivery_address("show");') %>
+
+
   </div>
-  <div class="float-left order-container">
+  <div id="delivery_address_fields" class="float-left order-container">
     <h4>Delivery address:</h4>
     <%= f.text_field :delivery_name, placeholder: 'Delivery Name' %>
     <%= f.text_field :delivery_address, placeholder: 'Delivery Address' %>
@@ -57,8 +63,8 @@
     <%= f.text_field :allergies, placeholder: 'Allergies' %>
   </div>
   <div class="float-left order-container">
-    <%= f.text_field :boxes, placeholder: 'Boxes' %>
-    <%= f.text_field :status, placeholder: 'Status' %>
+    <%= f.hidden_field :boxes, placeholder: 'Boxes' %>
+    <%= f.hidden_field :status, placeholder: 'Status' %>
     <%= f.submit t('button.submit'), class: 'button float-right' %>
   </div>
 
