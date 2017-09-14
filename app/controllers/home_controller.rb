@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @dishes = Dish.all
+    @categories = Category.order(:sort_key).all
   end
 end
