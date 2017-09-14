@@ -40,6 +40,8 @@ class OrdersController < ApplicationController
   def generate_invoice
     @order = Order.find(params[:id])
     binding.pry
+
+    @order.set_payment_due_date
     PdfGeneratorService.new(@order).generate_invoice
 
   end

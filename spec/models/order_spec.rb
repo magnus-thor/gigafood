@@ -27,4 +27,16 @@ RSpec.describe Order, type: :model do
   describe 'Associations' do
     it { is_expected.to have_many :attachments }
   end
+
+  describe '#set_payment_due_date' do
+    before { subject.set_payment_due_date }
+    it 'sets date to 30 days' do
+      expect(subject.due_date).to eq Date.today + 30
+    end
+
+    it 'is a TimeWithZone object' do
+      expect(subject.due_date.class).to eq ActiveSupport::TimeWithZone
+    end
+
+  end
 end
