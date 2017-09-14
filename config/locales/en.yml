@@ -6,6 +6,18 @@ en:
                           desserts are made without white refined sugar and no added gluten."
   minimum_order_form:     "Minimum amount per dish to order - 10 servings."
   minimum_order:          "Minimum order"
+  pickup:                 "We’d like to pick up the order<br> ourselves at Tegelbacken 4A"
+  delivery:               "We'd like the order to be delivered <br> directly to us by cargo bike."
+  allergy_header:         "Allergies – No Problem!"
+  allergy:                "Please specify any allergies:"
+  dish:                   "Dish"
+  quantity:               "Quantity"
+  price:                  "Price"
+  total_price:            "Total price"
+  delivery_info:          "Delivery Information"
+  delivery_address:       "Delivery address"
+  billing_addres:         "Billing address"
+  order:                  "ORDER"
 
   button:
     next: "Next"

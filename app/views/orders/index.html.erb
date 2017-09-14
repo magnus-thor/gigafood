@@ -1,13 +1,12 @@
-<h1>ORDER</h1>
+<h1><%= t('order') %></h1>
 
 <div class="float-left order-container">
   <table>
     <tr>
-      <th>Dish</th>
-      <th>Quantity</th>
-      <th>Price</th>
+      <th><%= t('dish') %></th>
+      <th><%= t('quantity') %></th>
+      <th><%= t('price') %></th>
     </tr>
-
     <% @order.shopping_cart_items.each do |order_item| %>
       <tr id="<%= "order_row_#{order_item.item.id}" %>">
         <td><%= order_item.item.name %></td>
@@ -17,54 +16,60 @@
     <% end %>
   </table>
   <br>
-  <div>Total price: <%= @order.total%></div>
+  <div><%= t('total_price') %>: <%= @order.total%></div>
 </div>
 <br>
 
+<div class="clear">&nbsp;</div>
 
 <%= form_for @order do |f| %>
+  <div class="float-left order-container">
+    <h4><%= t('allergy_header') %></h4>
+    <p><%= t('allergy') %>:</p>
+    <%= f.text_area :allergies, placeholder: 'Allergies', cols: 50, rows: 6 %>
+  </div>
 
   <div class="float-left order-container">
-    <h4>Delivery Information:</h4>
-    <%= f.date_field :delivery_date, placeholder: 'Delivery Date' %>
+    <h4><%= t('delivery_info') %>:</h4>
+    <%= f.datetime_field :delivery_date, placeholder: 'Delivery Date', class: 'input-wide' %>
     <br>
     <%= radio_button_tag(:delivery_method, 'pickup', checked: false, onclick: 'toggleDelivery_address("hide");') %>
-    <%= label_tag(:delivery_method_pickup, 'Pickup', onclick: 'toggleDelivery_address("hide");') %>
+    <%= label_tag(:delivery_method_pickup, t('pickup').html_safe, onclick: 'toggleDelivery_address("hide");') %>
+    <br>
     <%= radio_button_tag(:delivery_method, 'delivery', checked: true, onclick: 'toggleDelivery_address("show");') %>
-    <%= label_tag(:delivery_method_delivery, 'Delivery', onclick: 'toggleDelivery_address("show");') %>
-
-
+    <%= label_tag(:delivery_method_delivery, t('delivery').html_safe, onclick: 'toggleDelivery_address("show");') %>
   </div>
+
+  <div class="clear">&nbsp;</div>
+
+  <div class="float-left order-container">
+    <h4><%= t('billing_addres') %>:</h4>
+    <%= f.text_field :billing_name, placeholder: 'Billing Name', class: 'input-wide' %>
+    <%= f.text_field :billing_company, placeholder: 'Billing Company', class: 'input-wide' %>
+    <%= f.text_field :billing_org_nr, placeholder: 'Billing Organisation Number', class: 'input-wide' %>
+    <%= f.text_field :billing_address, placeholder: 'Billing Address', class: 'input-wide' %>
+    <%= f.text_field :billing_postal_code, id: 'Billing_Postal_Code', placeholder: 'Postal Code', class: 'input-small' %>
+    <%= f.text_field :billing_city, placeholder: 'Billing City', class: 'input-medium' %>
+    <%= f.text_field :billing_phone, placeholder: 'Billing Contact Phone', class: 'input-wide' %>
+    <%= f.text_field :billing_email, placeholder: 'Billing email', class: 'input-wide' %>
+  </div>
+
   <div id="delivery_address_fields" class="float-left order-container">
-    <h4>Delivery address:</h4>
-    <%= f.text_field :delivery_name, placeholder: 'Delivery Name' %>
-    <%= f.text_field :delivery_address, placeholder: 'Delivery Address' %>
-    <%= f.text_field :delivery_postal_code, placeholder: 'Delivery Postal Code' %>
-    <%= f.text_field :delivery_city, placeholder: 'Delivery City' %>
-    <%= f.text_field :delivery_floor, placeholder: 'Delivery Floor' %>
-    <%= f.text_field :delivery_door_code, placeholder: 'Delivery Door Code' %>
-    <%= f.text_field :delivery_contact_name, placeholder: 'Delivery Contact Name' %>
-    <%= f.text_field :delivery_contact_phone_number, placeholder: 'Delivery Contact Phone' %>
+    <h4><%= t('delivery_address') %>:</h4>
+    <%= f.text_field :delivery_name, placeholder: 'Delivery Name', class: 'input-wide' %>
+    <%= f.text_field :delivery_address, placeholder: 'Delivery Address', class: 'input-wide' %>
+    <%= f.text_field :delivery_postal_code, id: 'Delivery_Postal_Code', placeholder: 'Postal Code', class: 'input-small' %>
+    <%= f.text_field :delivery_city, placeholder: 'Delivery City', class: 'input-medium' %>
+    <%= f.text_field :delivery_floor, placeholder: 'Delivery Floor', class: 'input-wide' %>
+    <%= f.text_field :delivery_door_code, placeholder: 'Delivery Door Code', class: 'input-wide' %>
+    <%= f.text_field :delivery_contact_name, placeholder: 'Delivery Contact Name', class: 'input-wide' %>
+    <%= f.text_field :delivery_contact_phone_number, placeholder: 'Delivery Contact Phone', class: 'input-wide' %>
   </div>
-  <div class="float-left order-container">
-    <h4>Billing address:</h4>
-    <%= f.text_field :billing_name, placeholder: 'Billing Name' %>
-    <%= f.text_field :billing_company, placeholder: 'Billing Company' %>
-    <%= f.text_field :billing_org_nr, placeholder: 'Billing Organisation Number' %>
-    <%= f.text_field :billing_address, placeholder: 'Billing Address' %>
-    <%= f.text_field :billing_postal_code, placeholder: 'Billing Postal Code' %>
-    <%= f.text_field :billing_city, placeholder: 'Billing City' %>
-    <%= f.text_field :billing_phone, placeholder: 'Billing Contact Phone' %>
-    <%= f.text_field :billing_email, placeholder: 'Billing email' %>
-  </div>
-  <div class="float-left order-container">
-    <h2>Allergies – No Problem!</h2>
-    <h4>Please specify any allergies:</h4>
-    <%= f.text_field :allergies, placeholder: 'Allergies' %>
-  </div>
-  <div class="float-left order-container">
-    <%= f.hidden_field :boxes, placeholder: 'Boxes' %>
-    <%= f.hidden_field :status, placeholder: 'Status' %>
+
+  <div class="clear">&nbsp;</div>
+
+  <div class="float-right order-container">
+    <%= f.hidden_field :status, placeholder: 'Status', value: 'submitted' %>
     <%= f.submit t('button.submit'), class: 'button float-right' %>
   </div>
 
