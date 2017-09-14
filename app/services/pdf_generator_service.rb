@@ -10,20 +10,22 @@ class PdfGeneratorService
     filename = [I18n.t('invoice.header'), @order.id, @order.billing_name].join('-') + '.pdf'
     # Render PDF file
     # TODO: This is WIP. Needs to be extracted to a module
-    binding.pry
     pdf = Prawn::Document.new()
     pdf.define_grid(columns: 5, rows: 8, gutter: 10)
 
     pdf.grid([0, 0], [1, 1]).bounding_box do
       pdf.text I18n.t('invoice.header'), size: 18
-      pdf.text "Invoice No: 0001", :align => :left
-      pdf.text "Date: #{Date.today.to_s}", :align => :left
+      pdf.text "Invoice # 0001", align: :left
+      pdf.text "Date: #{Date.today.to_s}", align: :left
       pdf.move_down 10
 
-      pdf.text "Attn: To whom it may concern "
-      pdf.text "Company Name"
-      pdf.text "Tel No: 1"
-      pdf.text "Fax No: 0`  1"
+      pdf.text "Attn: #{@order.billing_name}"
+      pdf.text @order.billing_company
+      pdf.text @order.billing_address if @order.billing_address
+      pdf.text [@order.billing_postal_code, @order.billing_city].join(' ') if @order.billing_postal_code
+
+      pdf.text "Phone: #{@order.billing_phone}"
+
     end
 
     pdf.grid([0, 3.6], [1, 4]).bounding_box do
@@ -34,13 +36,11 @@ class PdfGeneratorService
 
       # Company address
       pdf.move_down 10
-      pdf.text "Awesomeness Ptd Ltd", :align => :left
-      pdf.text "Address", :align => :left
-      pdf.text "Street 1", :align => :left
-      pdf.text "40300 Shah Alam", :align => :left
-      pdf.text "Selangor", :align => :left
-      pdf.text "Tel No: 42", :align => :left
-      pdf.text "Fax No: 42", :align => :left
+      pdf.text 'FOOD FOR BILLIONS SWEDEN AB', align: :left
+      pdf.text 'Tegelbacken 4A', align: :left
+      pdf.text '111 52 Stockholm', align: :left
+
+      pdf.text 'Phone: + 46 (0)8 120 543 76', align: :left
     end
 
 
@@ -62,22 +62,16 @@ class PdfGeneratorService
     pdf.table items, :header => true, width: 648,
               :column_widths => {0 => 50, 1 => 350, 3 => 100}, :row_colors => ["d2e3ed", "FFFFFF"] do
       style(columns(3)) { |x| x.align = :right }
+      binding.pry
+
       pdf.text "Tax (VAT): #{helpers.humanized_money_with_symbol @order.taxes}", size: 14
       pdf.move_down 16
       pdf.text "Total: #{helpers.humanized_money_with_symbol @order.total}", size: 14
     end
 
+    # Finally render the pdf
 
-    Prawn::Document.generate(filename, pdf_opts) do |pdf|
-      pdf.move_down 50
-      pdf.font Rails.root.join('app', 'assets', 'fonts', 'futura.ttf')
-      pdf.text I18n.t('invoice.header'), size: 40
-      pdf.move_down 30
-      pdf.font Rails.root.join('app', 'assets', 'fonts', 'futura.ttf')
-      pdf.text @order.billing_name, size: 14
-      pdf.move_down 16
-
-    end
+    pdf.render_file filename
 
     # Attach file to @order with file_type :invoice
     # TODO: This is WIP. Needs to be extracted to a module
