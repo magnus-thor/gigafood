@@ -39,10 +39,14 @@ class OrdersController < ApplicationController
 
   def generate_invoice
     @order = Order.find(params[:id])
-    binding.pry
-
     @order.set_payment_due_date
-    PdfGeneratorService.new(@order).generate_invoice
+    begin
+      PdfGeneratorService.new(@order).generate_invoice
+      redirect_back(fallback_location: admin_dashboard_path)
+    rescue => e
+      flash[:error] = e
+      redirect_to admin_dashboard
+    end
 
   end
 

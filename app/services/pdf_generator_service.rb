@@ -5,63 +5,65 @@ class PdfGeneratorService
   end
 
   def generate_invoice
-
     helpers = ActionController::Base.helpers
     filename = [I18n.t('invoice.header'), @order.id, @order.billing_name, rand(20000)].join('-') + '.pdf'
-    # Render PDF file
-    # TODO: This is WIP. Needs to be extracted to a module
-    pdf = Prawn::Document.new()
+
+    # Initial setup of the document
+    pdf = create_and_configure_pdf
+
     pdf.define_grid(columns: 5, rows: 8, gutter: 10)
 
     pdf.grid([0, 0], [1, 1]).bounding_box do
       logo_path = File.expand_path(Rails.root.join('app', 'assets', 'images', 'gigafood_logo.png'))
 
-      # Displays the image in your PDF. Dimensions are optional.
-      pdf.image logo_path, height: 50, position: :left
+      pdf.image logo_path, height: 60, position: :left
 
       # Company address
       pdf.move_down 10
-      pdf.text 'FOOD FOR BILLIONS SWEDEN AB', align: :left
+      pdf.text 'FOOD FOR BILLIONS SWEDEN AB', size: 11, align: :left, style: :bold
+      pdf.move_down 20
+      pdf.text "Buyer contact: #{@order.billing_name}"
+      pdf.move_down 20
+      pdf.text 'Our contact: Rebecka Carlsson '
 
 
     end
 
     pdf.grid([0, 3.6], [1, 4]).bounding_box do
-      pdf.text I18n.t('invoice.header'), size: 18
+      # Display customer details
+      pdf.text I18n.t('invoice.header'), size: 18, style: :bold
       pdf.text "Invoice # #{@order.id}", align: :left
       pdf.text "Date: #{Date.today.to_s}", align: :left
       pdf.move_down 10
-      pdf.text "Attn: #{@order.billing_name}"
       pdf.text @order.billing_company
       pdf.text @order.billing_address if @order.billing_address
       pdf.text [@order.billing_postal_code, @order.billing_city].join(' ') if @order.billing_postal_code
 
       pdf.text "Phone: #{@order.billing_phone}"
+      # Display payment details
+      pdf.move_down 20
+      pdf.text "Due: #{@order.due_date.strftime('%Y-%m-%d')}", style: :bold
+
 
     end
 
     # Add empty row and headers
-    data = [['','','',''], %w(Product Price Qty Subtotal)]
+    data = [['', '', '', ''], %w(Product Price Qty Subtotal)]
     # Add order items
     @order.shopping_cart_items.each do |item|
       data << [item.item.name, helpers.humanized_money_with_symbol(item.item.price), item.quantity, helpers.humanized_money_with_symbol(item.subtotal)]
     end
 
     # Add VAT + Total
-    data << ['', '', '', "Tax (VAT): #{helpers.humanized_money_with_symbol @order.taxes}" ]
-    data << ['', '', '', "Total: #{helpers.humanized_money_with_symbol @order.total}" ]
+    data << ['', '', '', "Total: #{helpers.humanized_money_with_symbol @order.subtotal}"]
+    data << ['', '', '', "Tax (VAT): #{helpers.humanized_money_with_symbol @order.taxes}"]
+    data << ['', '', '', "Total with VAT: #{helpers.humanized_money_with_symbol @order.total}"]
     # Add last epmty row
-    data << ['','','','']
-    # A4 > 595.28 x 841.89
+    data << ['', '', '', '']
 
-    pdf.table(data, width: 520, column_widths: [300, 60 ,30, 130]) do |table|
-      #table.cells.padding = 10
-      #table.cells.borders = []
+    pdf.table(data, width: 520, column_widths: [300, 50, 30, 140]) do |table|
 
-      #row(0).borders = [:bottom]
-      #row(0).border_width = 2
       table.row(0).font_style = :bold
-
 
 
       table.before_rendering_page do |page|
@@ -91,13 +93,30 @@ class PdfGeneratorService
         # Order total row is bold
         page.row(-2).font_style = :bold
       end
-
     end
 
+    create_footer(pdf)
+    pdf.render_file filename
+    add_attachment(filename)
+  end
 
-    #Footer
+  private
 
-    pdf.bounding_box([pdf.bounds.right - 550, pdf.bounds.bottom + 50], width: 800, height: 70) do
+  def create_and_configure_pdf
+    pdf = Prawn::Document.new()
+
+    pdf.font_families.update('Futura' => {
+        bold: Rails.root.join('app/assets/fonts/futura-medium-bt.ttf'),
+        normal: Rails.root.join('app/assets/fonts/futura-light-bt.ttf'),
+    })
+
+    pdf.font 'Futura'
+    pdf.font_size 10
+
+    pdf
+  end
+  def create_footer(pdf)
+    pdf.bounding_box([pdf.bounds.right - 550, pdf.bounds.bottom + 45], width: 800, height: 70) do
       pdf.text 'Food for Billions Sweden AB', align: :left, size: 9, style: :bold
       pdf.text '559040-1435', align: :left, size: 8
       pdf.text 'Tegelbacken 4A', align: :left, size: 8
@@ -107,26 +126,25 @@ class PdfGeneratorService
       pdf.text 'invoice@gigafood.se', align: :left, size: 8
     end
 
-    pdf.bounding_box([pdf.bounds.right - 250, pdf.bounds.bottom + 50], width: 800, height: 70) do
+    pdf.bounding_box([pdf.bounds.right - 250, pdf.bounds.bottom + 45], width: 800, height: 70) do
       pdf.text 'Handelsbanken', align: :left, size: 8
       pdf.text 'Bankgiro: 862-9305', align: :left, size: 8
       pdf.text 'Swish: 1230486472', align: :left, size: 8
+      pdf.move_down 10
+      pdf.text 'Gödkänd för F-skatt', align: :left, size: 8, style: :bold
     end
 
-    # Finally render the pdf
-
-    pdf.render_file filename
-
-    # Attach file to @order with file_type :invoice
-    # TODO: This is WIP. Needs to be extracted to a module
-    generated_file = File.open(Rails.root.join(filename))
-    if @order.attachments.create(file: generated_file, file_type: :invoice)
-      # TODO: Delete the generated file. Disabled while testing
-      # if File.exist?(generated_file)
-      #   File.delete(generated_file)
-      # end
-    end
+    pdf
   end
 
+  def add_attachment(filename)
+    generated_file = File.open(Rails.root.join(filename))
+    if @order.attachments.create(file: generated_file, file_type: :invoice)
+      # Delete the generated file. Disabled while testing
+      if File.exist?(generated_file)
+        File.delete(generated_file)
+      end
+    end
+  end
 
 end

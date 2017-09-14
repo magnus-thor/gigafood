@@ -10,3 +10,20 @@ And(/^the invoice should contain "([^"]*)"$/) do |content|
   pdf = PDF::Inspector::Text.analyze_file(remote_pdf)
   expect(pdf.strings).to include content
 end
+
+Given(/^an Invoice has been generated for "([^"]*)"'s order$/) do |billing_email|
+  steps %Q{
+      Given "#{billing_email}"'s order contains:
+        | dish_name | quantity |
+        | Dish 1    | 10       |
+        | Dish 2    | 20       |
+      And I click on "Orders"
+      And I press "View" for order "Bob Schmob"
+      And I press "Generate Invoice"
+      }
+end
+
+Then(/^I should see the invoice in a new window$/) do
+  switch_to_window windows.last
+  expect(page.response_headers['Content-Type']).to eq 'application/pdf'
+end

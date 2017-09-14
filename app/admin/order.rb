@@ -14,7 +14,11 @@ ActiveAdmin.register Order do
   end
 
   action_item :generate_invoice, only: :show do
-    link_to 'Generate Invoice', generate_invoice_order_path, method: :post
+    link_to 'Generate Invoice', generate_invoice_order_path, method: :put
+  end
+
+  action_item :generate_invoice, only: :show, if: proc { resource.has_invoice? } do
+    link_to 'View Invoice', resource.attachments.where(file_type: 'invoice').first.file.url, target: '_blank', rel: 'nofollow'
   end
 
   member_action :confirm, method: :put do
@@ -32,4 +36,5 @@ ActiveAdmin.register Order do
     ConfirmationMailer.cancelation_email(@order).deliver
     redirect_to resource_path, notice: "Canceled!"
   end
+
 end

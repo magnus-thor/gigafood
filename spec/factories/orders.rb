@@ -18,5 +18,7 @@ FactoryGirl.define do
     billing_city 'Town'
     billing_phone '555 123 45 66'
     billing_email 'invoce@bigcorp.com'
+
+    due_date Date.today + 30
   end
 end

@@ -25,20 +25,29 @@ Feature: Admin creates invoice
     And I go to the dashboard
 
 
-    Scenario: Admin generates an invoice
-      Given "Bob Schmob"'s order contains:
-        | dish_name | quantity |
-        | Dish 1    | 10       |
-        | Dish 2    | 20       |
-      And I click on "Orders"
-      And I press "View" for order "Bob Schmob"
-      And I press "Generate Invoice"
-      Then an invoice for the order should be created
-      And the invoice should contain "Bob Schmob"
-      And the invoice should contain "Tax (VAT): 600 kr"
-      And the invoice should contain "Total: 5,600 kr"
+  Scenario: Admin generates an invoice
+    Given "Bob Schmob"'s order contains:
+      | dish_name | quantity |
+      | Dish 1    | 10       |
+      | Dish 2    | 20       |
+    And I click on "Orders"
+    And I press "View" for order "Bob Schmob"
+    And I press "Generate Invoice"
+    Then an invoice for the order should be created
+    And the invoice should contain "Buyer contact: Bob Schmob"
+    And the invoice should contain "Tax (VAT): 600 kr"
+    And the invoice should contain "Total with VAT: 5,600 kr"
 
-
+  @javascript
+  Scenario: Admin views order
+    Given an Invoice has been generated for "Bob Schmob"'s order
+    And I press "View Invoice"
+    Then I should see the invoice in a new window
+  
+  Scenario: Admin can't click on View Invoice if the invoice has not been generated
+    Given I click on "Orders"
+    And I press "View" for order "Bob Schmob"
+    Then I should not see "View Invoice"
 
 
 
