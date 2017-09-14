@@ -13,3 +13,14 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+var toggleDelivery_address = function (showOrHide) {
+  var fields = $('#delivery_address_fields');
+  console.log(fields);
+  if (showOrHide === 'hide') {
+    fields.hide();
+  } else {
+    fields.show();
+  }
+};
