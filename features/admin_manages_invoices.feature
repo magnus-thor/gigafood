@@ -49,7 +49,12 @@ Feature: Admin creates invoice
     And I press "View" for order "Bob Schmob"
     Then I should not see "View Invoice"
 
-
+  Scenario: Admin tries to generate invoice for order without items
+    Given "Bob Schmob"'s order contains no items
+    And I click on "Orders"
+    And I press "View" for order "Bob Schmob"
+    And I press "Generate Invoice"
+    Then I should see "The order contains no items. There's nothing to invoice..."
 
 
 

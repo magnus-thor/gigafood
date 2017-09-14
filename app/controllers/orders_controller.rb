@@ -44,8 +44,8 @@ class OrdersController < ApplicationController
       PdfGeneratorService.new(@order).generate_invoice
       redirect_back(fallback_location: admin_dashboard_path)
     rescue => e
-      flash[:error] = e
-      redirect_to admin_dashboard
+      flash[:error] = e.message
+      redirect_to admin_dashboard_path
     end
 
   end

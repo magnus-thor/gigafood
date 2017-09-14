@@ -12,3 +12,4 @@ en:
     submit: "Submit Order"
   invoice:
     header: 'Invoice'
+    error: "The order contains no items. There\'s nothing to invoice..."

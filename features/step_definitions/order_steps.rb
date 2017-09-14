@@ -40,3 +40,8 @@ Then(/^the tax for the order should be "([^"]*)"$/) do |tax|
   @order.reload
   expect(@order.taxes).to eq Money.new(tax.to_f * 100)
 end
+
+Given(/^"([^"]*)"'s order contains no items$/) do |billing_name|
+  @order = Order.find_by(billing_name: billing_name)
+  @order.clear if @order.shopping_cart_items
+end

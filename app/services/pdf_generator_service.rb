@@ -2,6 +2,7 @@ class PdfGeneratorService
 
   def initialize(order)
     @order = order
+    raise StandardError.new(I18n.t('invoice.error')) if @order.shopping_cart_items.empty?
   end
 
   def generate_invoice
@@ -115,6 +116,7 @@ class PdfGeneratorService
 
     pdf
   end
+
   def create_footer(pdf)
     pdf.bounding_box([pdf.bounds.right - 550, pdf.bounds.bottom + 45], width: 800, height: 70) do
       pdf.text 'Food for Billions Sweden AB', align: :left, size: 9, style: :bold

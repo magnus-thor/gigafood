@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-
   subject { create(:order) }
 
   it { is_expected.to have_db_column :id }
@@ -44,7 +43,10 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#has_invoice?' do
+    let(:item) { create(:dish)}
+
     before do
+      subject.add(item, item.price, 1)
       PdfGeneratorService.new(subject).generate_invoice
     end
 
