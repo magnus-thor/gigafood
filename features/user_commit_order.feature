@@ -32,5 +32,9 @@ Feature: Allow end user to commit order
     And I fill in "Billing email" with "invoice@hungrycorp.com"
     And I click on "Submit Order"
     Then I should see "Thanks!"
-    Then the tax for the order should be "120"
+    And the tax for the order should be "120"
     And the total for the order should be "1120"
+    When I go to the landing page
+    And I click on "Next"
+    Then I should not see "Dish 1"
+
