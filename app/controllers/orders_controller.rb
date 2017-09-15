@@ -52,7 +52,6 @@ class OrdersController < ApplicationController
   def generate_menu
     @order = Order.find(params[:id])
     begin
-      binding.pry
       PdfGeneratorService.new(@order).generate_menu
       redirect_back(fallback_location: admin_dashboard_path)
     rescue => e

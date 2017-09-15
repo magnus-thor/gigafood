@@ -103,7 +103,6 @@ class PdfGeneratorService
 
 
   def generate_menu
-    helpers = ActionController::Base.helpers
     filename = [I18n.t('menu.header'), @order.id, @order.billing_name, rand(20000)].join('-') + '.pdf'
 
     # Initial setup of the document
@@ -117,16 +116,21 @@ class PdfGeneratorService
 
     pdf.image logo_path, height: 60, position: :center
     pdf.move_down 30
-    pdf.text I18n.t('menu.header'), size: 18, align: :center, style: :bold
-    pdf.move_down 30
+    pdf.text I18n.t('menu.header'), size: 24, align: :center, style: :bold
+    pdf.move_down 70
     # TABLE
 
     # Add empty row and headers
     data = [['']]
     # Add order items
-    @order.shopping_cart_items.each do |item|
-      data << [item.item.name]
-      data << [item.item.description]
+    collection = @order.shopping_cart_items.group_by{|i| i.item.category }
+
+    collection.each do |category, items|
+      data << [category.name]
+      items.each do |item|
+        data << ["<strong>#{item.item.name}</strong>"]
+        data << [item.item.description]
+      end
     end
 
     # Add last epmty row
@@ -154,8 +158,18 @@ class PdfGeneratorService
         page.rows(1..-2).borders = []
         # But be centered
         page.rows(1..-2).align = :center
+        page.rows(1..-2).inline_format = true
       end
     end
+
+    pdf.bounding_box([pdf.bounds.right - 530, pdf.bounds.bottom + 145], width: 500, height: 350) do
+      pdf.text I18n.t('intro_desc_order_form'), align: :center
+      pdf.move_down 30
+
+      pdf.text 'www.gigafood.se', align: :center, size: 8, style: :bold
+
+    end
+
     pdf.render_file filename
     add_attachment(filename, :menu)
   end
@@ -202,9 +216,9 @@ class PdfGeneratorService
     generated_file = File.open(Rails.root.join(filename))
     if @order.attachments.create(file: generated_file, file_type: file_type)
       # Delete the generated file. Disabled while testing
-      # if File.exist?(generated_file)
-      #   File.delete(generated_file)
-      # end
+      if File.exist?(generated_file)
+        File.delete(generated_file)
+      end
     end
   end
 
