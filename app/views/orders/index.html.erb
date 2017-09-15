@@ -11,12 +11,14 @@
       <tr id="<%= "order_row_#{order_item.item.id}" %>">
         <td><%= order_item.item.name %></td>
         <td><%= order_item.quantity %></td>
-        <td style="white-space: nowrap;"><%= order_item.quantity * order_item.price %></td>
+        <td style="white-space: nowrap;"><%= humanized_money_with_symbol(order_item.quantity * order_item.price) %></td>
       </tr>
     <% end %>
   </table>
   <br>
-  <div><%= t('total_price') %>: <%= @order.total%></div>
+  <div><%= t('total_tax') %> <%= humanized_money_with_symbol @order.taxes %></div>
+  <div><strong><%= t('total_price') %> <%= humanized_money_with_symbol @order.total %></strong></div>
+
 </div>
 <br>
 

@@ -39,3 +39,4 @@ Feature: List orders
     Then "kari.lee@example.com" should receive an email
     And "kari.lee@example.com" should see "Cancelation from Gigafood" in the subject
     And "kari.lee@example.com" should see "Regretfully, your order has been canceled!" in the email
+

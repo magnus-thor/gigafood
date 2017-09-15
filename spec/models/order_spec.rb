@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
+  subject { create(:order) }
+
   it { is_expected.to have_db_column :id }
   it { is_expected.to have_db_column :delivery_date }
   it { is_expected.to have_db_column :delivery_method }
@@ -23,4 +25,34 @@ RSpec.describe Order, type: :model do
   it { is_expected.to have_db_column :allergies }
   it { is_expected.to have_db_column :boxes }
   it { is_expected.to have_db_column :status }
+
+  describe 'Associations' do
+    it { is_expected.to have_many :attachments }
+  end
+
+  describe '#set_payment_due_date' do
+    before { subject.set_payment_due_date }
+    it 'sets date to 30 days' do
+      expect(subject.due_date).to eq Date.today + 30
+    end
+
+    it 'is a TimeWithZone object' do
+      expect(subject.due_date.class).to eq ActiveSupport::TimeWithZone
+    end
+
+  end
+
+  describe '#has_invoice?' do
+    let(:item) { create(:dish)}
+
+    before do
+      subject.add(item, item.price, 1)
+      PdfGeneratorService.new(subject).generate_invoice
+    end
+
+    it 'returns true if invoice exists' do
+      expect(subject.has_invoice?).to eq true
+    end
+
+  end
 end

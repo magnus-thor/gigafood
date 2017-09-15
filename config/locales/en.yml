@@ -13,13 +13,16 @@ en:
   dish:                   "Dish"
   quantity:               "Quantity"
   price:                  "Price"
-  total_price:            "Total price"
+  total_price:            "Total price: "
+  total_tax:              "Tax (VAT): "
   delivery_info:          "Delivery Information"
   delivery_address:       "Delivery address"
   billing_addres:         "Billing address"
-  order:                  "ORDER"
-
+  order:                  "ORDER" 
   button:
     next: "Next"
     back: "Back"
     submit: "Submit Order"
+  invoice:
+    header: 'Invoice'
+    error: "The order contains no items. There\'s nothing to invoice..."

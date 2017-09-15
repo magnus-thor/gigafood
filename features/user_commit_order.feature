@@ -6,15 +6,14 @@ Feature: Allow end user to commit order
 
   Background:
     Given the following dishes exist:
-      | name         | description             | price | min_quantity |
-      | Dish 1       | Description for Dish 1  | 100   |  10          |
+      | name   | description            | price | min_quantity |
+      | Dish 1 | Description for Dish 1 | 100   | 10           |
 
   Scenario: User can manipulate quantity with + and - buttons
     When I go to the landing page
     And I click on + for "Dish 1"
     And I click on "Next"
     And I fill in Delivery Date with "2017-11-10 12:00"
-
     And I fill in "Delivery Name" with "Hungry corp Inc"
     And I fill in "Delivery Address" with "Street 42"
     And I fill in "Delivery_Postal_Code" with "123 45"
@@ -33,3 +32,5 @@ Feature: Allow end user to commit order
     And I fill in "Billing email" with "invoice@hungrycorp.com"
     And I click on "Submit Order"
     Then I should see "Thanks!"
+    Then the tax for the order should be "120"
+    And the total for the order should be "1120"

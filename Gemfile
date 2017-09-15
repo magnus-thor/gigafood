@@ -16,7 +16,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'activeadmin'
 gem 'devise'
 gem 'rails-i18n', '~> 5.0.0'
-gem 'acts_as_shopping_cart'
+gem 'acts_as_shopping_cart', github: 'dabit/acts_as_shopping_cart', branch: 'rails51'
+
+# Attachments
+gem 'paperclip', '~> 5.0.0'
+gem 'aws-sdk', '~> 2.10', '>= 2.10.27'
+gem 'prawn-rails'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -28,11 +33,14 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'poltergeist'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'dotenv-rails'
+
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'email_spec'
+  gem 'pdf-inspector', require: 'pdf/inspector'
 end
 
 group :development do
@@ -43,4 +51,3 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'home/index'
   root 'home#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -9,8 +8,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :index, :update] do
     member do
       get 'confirm'
+      put 'generate-invoice', action: :generate_invoice
     end
-
   end
-
  end
