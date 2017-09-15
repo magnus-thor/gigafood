@@ -48,7 +48,17 @@ class OrdersController < ApplicationController
       flash[:error] = e.message
       redirect_to admin_dashboard_path
     end
+  end
 
+  def generate_menu
+    @order = Order.find(params[:id])
+    begin
+      PdfGeneratorService.new(@order).generate_menu
+      redirect_back(fallback_location: admin_dashboard_path)
+    rescue => e
+      flash[:error] = e.message
+      redirect_to admin_dashboard_path
+    end
   end
 
   private
