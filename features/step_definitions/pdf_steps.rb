@@ -33,7 +33,7 @@ Given(/^an Menu has been generated for "([^"]*)"'s order$/) do |billing_email|
       }
 end
 
-Then(/^I should see the invoice in a new window$/) do
+Then(/^I should see a pdf in a new window$/) do
   switch_to_window windows.last
   expect(page.response_headers['Content-Type']).to eq 'application/pdf'
 end

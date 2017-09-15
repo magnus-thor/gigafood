@@ -30,14 +30,14 @@ Feature: Admin generates a menu for a specific order
     And I click on "Orders"
     And I press "View" for order "Bob Schmob"
 
-    Scenario: Admin generates order specific menu
-      Given I press "Generate Menu"
-      Then a menu for the order should be created
-      And the pdf should contain "Starters"
-      And the pdf should contain "Mains"
-      And the pdf should contain "Starter"
-      And the pdf should contain "Main dish"
-
+  Scenario: Admin generates order specific menu
+    Given I press "Generate Menu"
+    Then a menu for the order should be created
+    Then I should not see "Generate Menu"
+    And the pdf should contain "Starters"
+    And the pdf should contain "Mains"
+    And the pdf should contain "Starter"
+    And the pdf should contain "Main dish"
 
   Scenario: Admin can't click on View Invoice if the invoice has not been generated
     Then I should not see "View Menu"
@@ -45,5 +45,6 @@ Feature: Admin generates a menu for a specific order
   @javascript
   Scenario: Admin views order
     Given an Menu has been generated for "Bob Schmob"'s order
-    And I press "View Invoice"
-    Then I should see the invoice in a new window
+    And I press "View Menu"
+    Then I should see a pdf in a new window
+
