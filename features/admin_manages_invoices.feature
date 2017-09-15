@@ -42,7 +42,7 @@ Feature: Admin creates invoice
   Scenario: Admin views order
     Given an Invoice has been generated for "Bob Schmob"'s order
     And I press "View Invoice"
-    Then I should see the invoice in a new window
+    Then I should see a pdf in a new window
   
   Scenario: Admin can't click on View Invoice if the invoice has not been generated
     Given I click on "Orders"
@@ -51,8 +51,10 @@ Feature: Admin creates invoice
 
   Scenario: Admin tries to generate invoice for order without items
     Given "Bob Schmob"'s order contains no items
+    And I go to the dashboard
     And I click on "Orders"
     And I press "View" for order "Bob Schmob"
+    Then I should not see "View Invoice"
     And I press "Generate Invoice"
     Then I should see "The order contains no items. There's nothing to invoice..."
 
