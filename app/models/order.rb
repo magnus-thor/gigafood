@@ -16,4 +16,8 @@ class Order < ApplicationRecord
   def has_invoice?
     Order.find(self.id).attachments.exists?(file_type: 'invoice')
   end
+
+  def has_menu?
+    Order.find(self.id).attachments.exists?(file_type: 'menu')
+  end
 end

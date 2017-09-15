@@ -27,6 +27,12 @@ Given(/^an Invoice has been generated for "([^"]*)"'s order$/) do |billing_email
       }
 end
 
+Given(/^an Menu has been generated for "([^"]*)"'s order$/) do |billing_email|
+  steps %q{
+      And I press "Generate Menu"
+      }
+end
+
 Then(/^I should see the invoice in a new window$/) do
   switch_to_window windows.last
   expect(page.response_headers['Content-Type']).to eq 'application/pdf'

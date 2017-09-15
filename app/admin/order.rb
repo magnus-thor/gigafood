@@ -21,8 +21,12 @@ ActiveAdmin.register Order do
     link_to 'Generate Menu', generate_menu_order_path, method: :put
   end
 
-  action_item :generate_invoice, only: :show, if: proc { resource.has_invoice? } do
+  action_item :view_invoice, only: :show, if: proc { resource.has_invoice? } do
     link_to 'View Invoice', resource.attachments.where(file_type: 'invoice').first.file.url, target: '_blank', rel: 'nofollow'
+  end
+
+  action_item :view_menu, only: :show, if: proc { resource.has_menu? } do
+    link_to 'View Invoice', resource.attachments.where(file_type: 'menu').first.file.url, target: '_blank', rel: 'nofollow'
   end
 
   member_action :confirm, method: :put do

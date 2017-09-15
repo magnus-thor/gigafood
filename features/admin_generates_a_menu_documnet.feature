@@ -37,3 +37,13 @@ Feature: Admin generates a menu for a specific order
       And the pdf should contain "Mains"
       And the pdf should contain "Starter"
       And the pdf should contain "Main dish"
+
+
+  Scenario: Admin can't click on View Invoice if the invoice has not been generated
+    Then I should not see "View Menu"
+
+  @javascript
+  Scenario: Admin views order
+    Given an Menu has been generated for "Bob Schmob"'s order
+    And I press "View Invoice"
+    Then I should see the invoice in a new window
