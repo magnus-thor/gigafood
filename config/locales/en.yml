@@ -26,3 +26,6 @@ en:
   invoice:
     header: 'Invoice'
     error: "The order contains no items. There\'s nothing to invoice..."
+  menu:
+    header: 'Menu'
+    error: 'The order contains no items. No reason to generate an empty menu'

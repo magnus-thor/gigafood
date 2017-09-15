@@ -2,7 +2,11 @@ Then(/^an invoice for the order should be created$/) do
   expect(@order.attachments.first.file_type).to eq 'invoice'
 end
 
-And(/^the invoice should contain "([^"]*)"$/) do |content|
+Then(/^a menu for the order should be created$/) do
+  expect(@order.attachments.first.file_type).to eq 'menu'
+end
+
+And(/^the pdf should contain "([^"]*)"$/) do |content|
 
   remote_pdf = open(Rails.root.join('spec', 'fixtures', 'tmp', 'tmp.pdf'), 'wb') do |file|
     file << open(@order.attachments.first.file.url).read

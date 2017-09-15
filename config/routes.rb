@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get 'confirm'
       put 'generate-invoice', action: :generate_invoice
+      put 'generate-menu', action: :generate_menu
     end
   end
  end

@@ -17,6 +17,10 @@ ActiveAdmin.register Order do
     link_to 'Generate Invoice', generate_invoice_order_path, method: :put
   end
 
+  action_item :generate_menu, only: :show do
+    link_to 'Generate Menu', generate_menu_order_path, method: :put
+  end
+
   action_item :generate_invoice, only: :show, if: proc { resource.has_invoice? } do
     link_to 'View Invoice', resource.attachments.where(file_type: 'invoice').first.file.url, target: '_blank', rel: 'nofollow'
   end

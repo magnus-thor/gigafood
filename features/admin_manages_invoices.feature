@@ -34,9 +34,9 @@ Feature: Admin creates invoice
     And I press "View" for order "Bob Schmob"
     And I press "Generate Invoice"
     Then an invoice for the order should be created
-    And the invoice should contain "Buyer contact: Bob Schmob"
-    And the invoice should contain "Tax (VAT): 600 kr"
-    And the invoice should contain "Total with VAT: 5,600 kr"
+    And the pdf should contain "Buyer contact: Bob Schmob"
+    And the pdf should contain "Tax (VAT): 600 kr"
+    And the pdf should contain "Total with VAT: 5,600 kr"
 
   @javascript
   Scenario: Admin views order
