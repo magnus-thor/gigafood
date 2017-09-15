@@ -31,7 +31,8 @@ Feature: Allow end user to commit order
     And I fill in "Billing Contact Phone" with "555 123 55 11"
     And I fill in "Billing email" with "invoice@hungrycorp.com"
     And I click on "Submit Order"
-    Then I should see "Thanks!"
+    Then I should see "Thanks for ordering from Gigafood!"
+    And I should see "A confirmation email will be sent to you as soon as your booking is confirmed. Please contact us if you have any questions. We’d love to hear from you!"
     And the tax for the order should be "120"
     And the total for the order should be "1120"
     When I go to the landing page
