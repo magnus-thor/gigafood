@@ -14,13 +14,16 @@
 //= require turbolinks
 //= require_tree .
 
-
-var toggleDelivery_address = function (showOrHide) {
-  var fields = $('#delivery_address_fields');
-  console.log(fields);
-  if (showOrHide === 'hide') {
-    fields.hide();
-  } else {
-    fields.show();
-  }
-};
+$(document).ready(function() {
+    $('input[type=radio][name=delivery_method]').change(function() {
+        var fields = $('#delivery_address_fields');
+        if (this.value == 'delivery') {
+            fields.show();
+            console.log('show');
+        }
+        else if (this.value == 'pickup') {
+            fields.hide();
+            console.log('hide');
+        }
+    });
+});

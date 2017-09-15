@@ -1,6 +1,6 @@
 <h1><%= t('order') %></h1>
 
-<div class="float-left order-container">
+<div class="float-left main-order-container">
   <table>
     <tr>
       <th><%= t('dish') %></th>
@@ -16,9 +16,11 @@
     <% end %>
   </table>
   <br>
-  <div><%= t('total_tax') %> <%= humanized_money_with_symbol @order.taxes %></div>
-  <div><strong><%= t('total_price') %> <%= humanized_money_with_symbol @order.total %></strong></div>
-
+  <span class="float-right">
+    <div><%= t('total_sub') %> <%= humanized_money_with_symbol @order.subtotal %></div>
+    <div><%= t('total_tax') %> <%= humanized_money_with_symbol @order.taxes %></div>
+    <div><strong><%= t('total_price') %> <%= humanized_money_with_symbol @order.total %></strong></div>
+  </span>
 </div>
 <br>
 
@@ -35,11 +37,11 @@
     <h4><%= t('delivery_info') %>:</h4>
     <%= f.datetime_field :delivery_date, placeholder: 'Delivery Date', class: 'input-wide' %>
     <br>
-    <%= radio_button_tag(:delivery_method, 'pickup', checked: false, onclick: 'toggleDelivery_address("hide");') %>
-    <%= label_tag(:delivery_method_pickup, t('pickup').html_safe, onclick: 'toggleDelivery_address("hide");') %>
+    <%= radio_button_tag(:delivery_method, 'pickup') %>
+    <%= label_tag(:delivery_method_pickup, t('pickup').html_safe ) %>
     <br>
-    <%= radio_button_tag(:delivery_method, 'delivery', checked: true, onclick: 'toggleDelivery_address("show");') %>
-    <%= label_tag(:delivery_method_delivery, t('delivery').html_safe, onclick: 'toggleDelivery_address("show");') %>
+    <%= radio_button_tag(:delivery_method, 'delivery') %>
+    <%= label_tag(:delivery_method_delivery, t('delivery').html_safe ) %>
   </div>
 
   <div class="clear">&nbsp;</div>
