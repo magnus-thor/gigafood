@@ -35,6 +35,7 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.find(params[:id])
+    session[:order_id] = nil
   end
 
   def generate_invoice
