@@ -46,8 +46,23 @@ ActiveAdmin.register Order do
     redirect_to resource_path, notice: "Canceled!"
   end
 
-  show do
+  index do
+    selectable_column
+    column :id do |order|
+      link_to 'Order: ' + order.id.to_s, admin_order_path(order)
+    end
+      column :allergies
+      column :delivery_date
+      column :delivery_method
+      column :billing_name
+      column :allergies
+      column :boxes
+      column :status
+      actions
+  end
 
+
+  show do
     h3 'Order Items'
     table_for order.shopping_cart_items do
       column :item
@@ -56,6 +71,7 @@ ActiveAdmin.register Order do
       column :Delete do |order_item|
         link_to 'Delete', admin_order_item_path(order_item), method: :delete, id: "delete_#{order_item.id}"
       end
+
       column :Show do  |order_item|
         link_to 'Show', admin_order_item_path(order_item)
       end
