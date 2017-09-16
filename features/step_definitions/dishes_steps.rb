@@ -34,3 +34,11 @@ end
 Then(/^I should see the button "([^"]*)"$/) do |button_name|
   expect(page).to have_button(button_name)
 end
+
+Then(/^Starter should be displayed before Main$/) do
+  expect(page).to have_content(/Starter(.|\n)+?Main/i)
+end
+
+Then(/^Tomato should be displayed before Corn$/) do
+  expect(page).to have_content(/Tomato(.|\n)+?Corn/i)
+end

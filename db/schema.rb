@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170916065934) do
     t.datetime "updated_at", null: false
     t.integer "min_quantity", default: 10
     t.bigint "category_id"
+    t.integer "sort_key"
     t.index ["category_id"], name: "index_dishes_on_category_id"
   end
 
