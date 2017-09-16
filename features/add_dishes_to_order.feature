@@ -6,10 +6,13 @@ Feature: Allow end user to select dishes and quantities to order.
 
   Background:
     Given the following dishes exist:
-      | name         | description             | price | min_quantity |
-      | Dish 1       | Description for Dish 1  | 100   |  10          |
-      | Dish 2       | Description for Dish 2  | 200   |  20          |
-      | Dish 3       | Description for Dish 3  | 300   |  1           |
+      | name   | description            | price | min_quantity |
+      | Dish 1 | Description for Dish 1 | 100   | 10           |
+      | Dish 2 | Description for Dish 2 | 200   | 20           |
+      | Dish 3 | Description for Dish 3 | 300   | 1            |
+
+    And there are no custom translations
+
 
   Scenario: User can manipulate quantity with + and - buttons
     When I go to the landing page

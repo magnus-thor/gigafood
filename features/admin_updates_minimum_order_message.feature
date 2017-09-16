@@ -1,4 +1,4 @@
-Feature: Admin updates minimum order message
+Feature: Admin adds custom translations
   As a Gigafood
   In order to have the customer to notice order details on servings
   We need to change or remove specs about minimum number of serving
@@ -8,6 +8,8 @@ Feature: Admin updates minimum order message
     Given the following dishes exist:
       | name   | description            | price | min_quantity |
       | Dish 1 | Description for Dish 1 | 100   | 10           |
+
+    And there are no custom translations
 
     And an admin exists with email "admin@example.com" and password "password"
     And I'm loged in as admin user "admin@example.com"
