@@ -20,3 +20,4 @@ World Warden::Test::Helpers
 After { Warden.test_reset! }
 
 Capybara.javascript_driver = :poltergeist
+
