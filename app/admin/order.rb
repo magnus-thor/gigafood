@@ -17,7 +17,7 @@ ActiveAdmin.register Order do
     link_to 'Generate Invoice', generate_invoice_order_path, method: :put
   end
 
-  action_item :generate_menu, only: :show, if: proc { !resource.has_menu? }do
+  action_item :generate_menu, only: :show, if: proc { !resource.has_menu? } do
     link_to 'Generate Menu', generate_menu_order_path, method: :put
   end
 
@@ -51,14 +51,14 @@ ActiveAdmin.register Order do
     column :id do |order|
       link_to 'Order: ' + order.id.to_s, admin_order_path(order)
     end
-      column :allergies
-      column :delivery_date
-      column :delivery_method
-      column :billing_name
-      column :allergies
-      column :boxes
-      column :status
-      actions
+    column :allergies
+    column :delivery_date
+    column :delivery_method
+    column :billing_name
+    column :allergies
+    column :boxes
+    column :status
+    actions
   end
 
 
@@ -72,7 +72,7 @@ ActiveAdmin.register Order do
         link_to 'Delete', admin_order_item_path(order_item), method: :delete, id: "delete_#{order_item.id}"
       end
 
-      column :Show do  |order_item|
+      column :Show do |order_item|
         link_to 'Show', admin_order_item_path(order_item)
       end
     end
