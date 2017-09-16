@@ -4,5 +4,6 @@ FactoryGirl.define do
     description "dish features"
     price 1
     category
+    sort_key 1
   end
 end

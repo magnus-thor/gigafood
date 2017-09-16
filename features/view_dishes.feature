@@ -10,10 +10,10 @@ Feature: List dishes on landing page
       | Starter | Description for category 1 | 1        |
 
     And the following dishes exist:
-      | name   | description            | price | min_quantity | category |
-      | Dish 1 | Description for Dish 1 | 100   | 10           | Starter  |
-      | Dish 2 | Description for Dish 2 | 200   | 10           | Main     |
-      | Dish 3 | Description for Dish 3 | 300   | 20           | Main     |
+      | name        | description            | price | min_quantity | category | sort_key |
+      | Start       | Description for Dish 1 | 100   | 10           | Starter  | 1        |
+      | Corn        | Description for Dish 2 | 200   | 10           | Main     | 2        |
+      | Tomato      | Description for Dish 3 | 300   | 20           | Main     | 1        |
 
   Scenario Outline: View a list of dishes on the screen
     When I go to the landing page
@@ -25,7 +25,13 @@ Feature: List dishes on landing page
     Then I should see "<price>"
 
     Examples:
-      | name         | description             | price | min_quantity |
-      | Dish 1       | Description for Dish 1  | 100   |  10          |
-      | Dish 2       | Description for Dish 2  | 200   |  10          |
-      | Dish 3       | Description for Dish 3  | 300   |  10          |
+      | name        | description            | price |
+      | Start       | Description for Dish 1 | 100   |
+      | Corn        | Description for Dish 2 | 200   |
+      | Tomato      | Description for Dish 3 | 300   |
+
+    Scenario:
+      When I go to the landing page
+      Then Starter should be displayed before Main
+      And Tomato should be displayed before Corn
+
