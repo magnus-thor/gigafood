@@ -5,7 +5,7 @@ en:
                           compostable and our delivery service is made by cargo bike. All our food and
                           desserts are made without white refined sugar and no added gluten."
   minimum_order_form: "Minimum amount per dish to order - 10 servings."
-  minimum_order: "Minimum order"
+  minimum_order: "Minimum order of %{min_count} portions."
   pickup: "We’d like to pick up the order<br> ourselves at Tegelbacken 4A"
   delivery: "We'd like the order to be delivered <br> directly to us by cargo bike."
   allergy_header: "Allergies – No Problem!"
