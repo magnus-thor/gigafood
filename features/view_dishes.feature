@@ -19,10 +19,10 @@ Feature: List dishes on landing page
     When I go to the landing page
     Then I should see "MAIN"
     Then I should see "STARTER"
-    Then I should see "Minimum order: 20"
     Then I should see "<name>"
     Then I should see "<description>"
     Then I should see "<price>"
+    Then I should see "Minimum order of <min_quantity> portions."
 
     Examples:
       | name         | description             | price | min_quantity |

@@ -18,11 +18,11 @@ Feature: Admin adds custom translations
   Scenario: Admin updates minimum order message
     Given I click on menu item "Translations"
     And I press "New Translation"
-    And I select "minimum_order_form" from "Key"
-    And I fill in "Value" with "You can order whatever amount you want"
+    And I select "minimum_order" from "Key"
+    And I fill in "Value" with "Minimum order for this dish is %{min_count} portions."
     And I press "Create Translation"
     And I go to the landing page
-    Then I should see "You can order whatever amount you want"
+    Then I should see "Minimum order for this dish is 10 portions."
 
 
   Scenario: Admin updates customer confirmation text
