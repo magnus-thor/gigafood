@@ -22,8 +22,8 @@ module I18n
       hsh.keys.each do |key|
         hsh.fetch(key).is_a?(Hash) ?
             get_current_locale_keys(hsh.fetch(key), key, ary) :
-            hsh.keys.each do |another|
-              (parent == current_locale) ? ary << another : ary << "#{parent}.#{another}"
+            hsh.keys.each do |child|
+              (parent == current_locale) ? ary << child : ary << "#{parent}.#{child}"
             end
       end
       ary.uniq
