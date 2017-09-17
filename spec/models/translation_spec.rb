@@ -17,6 +17,6 @@ RSpec.describe Translation, type: :model do
   it { is_expected.to validate_presence_of :locale }
 
 
-
+  it { is_expected.to callback(:reload_i18n_backend).after(:touch) }
 
 end

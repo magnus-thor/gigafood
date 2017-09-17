@@ -26,28 +26,4 @@ ActiveAdmin.register Translation, as: 'Translation' do
       f.actions
     end
   end
-
-  after_create do
-    I18n.backend.reload!
-  end
-
-
-  controller do
-
-    def create
-      super
-    end
-
-    def update
-      super
-      I18n.backend.reload!
-    end
-
-    def destroy
-      super
-      I18n.backend.reload!
-    end
-
-
-  end
 end

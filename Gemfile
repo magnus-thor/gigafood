@@ -32,6 +32,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'rspec-rails'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'shoulda-callback-matchers'
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'pry-byebug'
