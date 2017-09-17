@@ -46,6 +46,13 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
   expect(URI.parse(current_url).path).to eq path_to page_name
 end
 
-Then(/^I select "([^"]*)" from "([^"]*)"$/) do |arg1, arg2|
-  select "Starter", :from => "dish_category_id"
+Then(/^I select "([^"]*)" from "([^"]*)"$/) do |value, selector|
+  select value, from: selector
+end
+
+
+Given(/^I click on menu item "([^"]*)"$/) do |element_value|
+  within '#header' do
+    click_link_or_button element_value
+  end
 end

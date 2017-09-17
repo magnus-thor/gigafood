@@ -24,11 +24,15 @@ gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '~> 2.10', '>= 2.10.27'
 gem 'prawn-rails'
 
+# Active Record Translations
+gem 'i18n-active_record', require: 'i18n/active_record'
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'coveralls', require: false
   gem 'rspec-rails'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'shoulda-callback-matchers'
   gem 'cucumber-rails', require: false
   gem 'launchy'
   gem 'pry-byebug'

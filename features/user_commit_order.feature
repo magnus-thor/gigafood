@@ -9,6 +9,9 @@ Feature: Allow end user to commit order
       | name   | description            | price | min_quantity |
       | Dish 1 | Description for Dish 1 | 100   | 10           |
 
+    And there are no custom translations
+
+
   Scenario: User can manipulate quantity with + and - buttons
     When I go to the landing page
     And I click on + for "Dish 1"

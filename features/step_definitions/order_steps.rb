@@ -45,3 +45,28 @@ Given(/^"([^"]*)"'s order contains no items$/) do |billing_name|
   @order = Order.find_by(billing_name: billing_name)
   @order.clear if @order.shopping_cart_items
 end
+
+
+And(/^I fill in all relevant fields and submit the order$/) do
+  steps %q{
+      And I fill in Delivery Date with "2017-11-10 12:00"
+      And I fill in "Delivery Name" with "Hungry corp Inc"
+      And I fill in "Delivery Address" with "Street 42"
+      And I fill in "Delivery_Postal_Code" with "123 45"
+      And I fill in "Delivery City" with "Town"
+      And I fill in "Delivery Floor" with "3"
+      And I fill in "Delivery Door Code" with "1111"
+      And I fill in "Delivery Contact Name" with "John Doe"
+      And I fill in "Delivery Contact Phone" with "555 123 45 67"
+      And I fill in "Billing Name" with "John Doe"
+      And I fill in "Billing Company" with "Hungry corp Inc"
+      And I fill in "Billing Organisation Number" with "19210713-1444"
+      And I fill in "Billing Address" with "Street 42"
+      And I fill in "Billing_Postal_Code" with "123 45"
+      And I fill in "Billing City" with "Town"
+      And I fill in "Billing Contact Phone" with "555 123 55 11"
+      And I fill in "Billing email" with "invoice@hungrycorp.com"
+      And I click on "Submit Order"
+
+  }
+end
