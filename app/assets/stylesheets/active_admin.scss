@@ -2,3 +2,27 @@
 @import "active_admin/base";
 $skinlogo:none;
 @import "active_admin_flat_skin";
+@import "responsive_active_admin";
+@import "font-awesome";
+
+.flashes {
+  width: 84.1%;
+  float: right;
+}
+
+body.logged_in .flashes .flash {
+  background-image: none;
+  border-bottom: none;
+  font-weight: normal;
+  color: white;
+
+  &.flash_notice {
+    background: $skinActiveColor;
+  }
+  &.flash_error {
+    background: #FF6C60;   /* background same to delete button in this theme */
+  }
+  &.flash_alert {
+    background: #BDB446;
+  }
+}

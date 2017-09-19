@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-
+  menu priority: 6
   permit_params :delivery_date, :delivery_method, :delivery_name, :delivery_address, :delivery_postal_code, :delivery_city,
                 :delivery_floor, :delivery_door_code, :delivery_contact_name, :delivery_contact_phone_number, :billing_name,
                 :billing_company, :billing_org_nr, :billing_address, :billing_postal_code, :billing_city, :billing_phone,
@@ -43,7 +43,7 @@ ActiveAdmin.register Order do
     @order.status = 'canceled'
     @order.save
     ConfirmationMailer.cancelation_email(@order).deliver
-    redirect_to resource_path, notice: "Canceled!"
+    redirect_to resource_path, notice: 'Canceled!'
   end
 
   index do
@@ -68,11 +68,11 @@ ActiveAdmin.register Order do
       column :item
       column :price
       column :quantity
-      column :Delete do |order_item|
+      column :delete do |order_item|
         link_to 'Delete', admin_order_item_path(order_item), method: :delete, id: "delete_#{order_item.id}"
       end
 
-      column :Show do |order_item|
+      column :show do |order_item|
         link_to 'Show', admin_order_item_path(order_item)
       end
     end

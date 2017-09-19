@@ -1,5 +1,5 @@
 ActiveAdmin.register Translation, as: 'Translation' do
-  menu label: 'Translations'
+  menu parent: 'Admin', priority: 3, label: 'Translations'
   permit_params :locale, :key, :value, :interpolations, :is_proc
 
   index do
