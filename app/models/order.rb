@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   acts_as_shopping_cart_using :order_item
 
+  SWEDISH_VAT = 12
+  STANDARD_PAYMENT_TIME_IN_DAYS = 30
   DEFAULT_ATTRIBUTES = [:status, :delivery_date, :delivery_method, :billing_company, :billing_org_nr,
                         :billing_address, :billing_postal_code, :billing_city, :billing_phone, :billing_email]
   DELIVERY_ATTRIBUTES = [:delivery_name, :delivery_name, :delivery_address, :delivery_postal_code, :delivery_city,
@@ -9,16 +11,13 @@ class Order < ApplicationRecord
   validates_presence_of *DEFAULT_ATTRIBUTES, if: :submitted?
   validates_presence_of *DELIVERY_ATTRIBUTES, if: :delivery?
 
-  SWEDISH_VAT = 12
-  STANDARD_PAYMENT_TIME_IN_DAYS = 30
 
   def submitted?
-    puts status
     status == 'submitted'
   end
 
   def delivery?
-    false
+    delivery_method == 'delivery'
   end
 
   has_many :attachments, dependent: :destroy
