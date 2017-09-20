@@ -11,6 +11,7 @@ class Order < ApplicationRecord
   validates_presence_of *DEFAULT_ATTRIBUTES, if: :submitted?
   validates_presence_of *DELIVERY_ATTRIBUTES, if: :delivery?
 
+  has_many :attachments, dependent: :destroy
 
   def submitted?
     status == 'submitted'
@@ -19,8 +20,6 @@ class Order < ApplicationRecord
   def delivery?
     delivery_method == 'delivery'
   end
-
-  has_many :attachments, dependent: :destroy
 
   def tax_pct
     Order::SWEDISH_VAT

@@ -29,10 +29,11 @@ class OrdersController < ApplicationController
 
   def update
     @order = get_order
+
     if @order.update(order_params)
       redirect_to confirm_order_path
     else
-      flash[:alert] = 'Error then saving order!'
+      flash[:alert] = 'Error when saving order!'
       redirect_to orders_path
     end
   end
