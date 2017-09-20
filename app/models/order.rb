@@ -3,7 +3,7 @@ class Order < ApplicationRecord
 
   SWEDISH_VAT = 12
   STANDARD_PAYMENT_TIME_IN_DAYS = 30
-  DEFAULT_ATTRIBUTES = [:status, :delivery_date, :delivery_method, :billing_company, :billing_org_nr,
+  DEFAULT_ATTRIBUTES = [:status, :delivery_date, :billing_company, :billing_org_nr,
                         :billing_address, :billing_postal_code, :billing_city, :billing_phone, :billing_email]
   DELIVERY_ATTRIBUTES = [:delivery_name, :delivery_name, :delivery_address, :delivery_postal_code, :delivery_city,
                          :delivery_contact_name, :delivery_contact_phone_number]

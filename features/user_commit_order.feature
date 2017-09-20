@@ -39,4 +39,3 @@ Feature: Allow end user to commit order
     When I go to the landing page
     And I click on "Next"
     Then I should not see "Dish 1"
-
