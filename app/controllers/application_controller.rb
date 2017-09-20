@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     else
       order = Order.create
       session[:order_id] = order.id
+      order.update(status: 'temporary')
     end
     order
   end
