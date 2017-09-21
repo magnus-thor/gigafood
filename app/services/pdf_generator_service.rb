@@ -40,6 +40,8 @@ class PdfGeneratorService
       pdf.text @order.billing_address if @order.billing_address
       pdf.text [@order.billing_postal_code, @order.billing_city].join(' ') if @order.billing_postal_code
 
+      pdf.text "Org.nr: #{@order.billing_org_nr}"
+
       pdf.text "Phone: #{@order.billing_phone}"
       # Display payment details
       pdf.move_down 20
