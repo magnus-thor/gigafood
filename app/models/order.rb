@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   acts_as_shopping_cart_using :order_item
 
   SWEDISH_VAT = 12
-  STANDARD_PAYMENT_TIME_IN_DAYS = 30
+  STANDARD_PAYMENT_TIME_IN_DAYS = 10
   DEFAULT_ATTRIBUTES = [:status, :delivery_date, :billing_company, :billing_org_nr,
                         :billing_address, :billing_postal_code, :billing_city, :billing_phone, :billing_email]
   DELIVERY_ATTRIBUTES = [:delivery_name, :delivery_name, :delivery_address, :delivery_postal_code, :delivery_city,

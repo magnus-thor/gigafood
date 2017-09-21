@@ -18,7 +18,7 @@ Feature: Admin adds custom translations
   Scenario: Admin updates minimum order message
     Given I click on menu item "Translations"
     And I press "New Translation"
-    And I select "minimum_order" from "Key"
+    And I select "menu.dish_min_quantity" from "Key"
     And I fill in "Value" with "Minimum order for this dish is %{min_count} portions."
     And I press "Create Translation"
     And I go to the landing page
@@ -28,12 +28,12 @@ Feature: Admin adds custom translations
   Scenario: Admin updates customer confirmation text
     Given I click on menu item "Translations"
     And I press "New Translation"
-    And I select "thank_you_title" from "Key"
+    And I select "confirm.main_header" from "Key"
     And I fill in "Value" with "Awesome dude!"
     And I press "Create Translation"
     And I click on menu item "Translations"
     And I press "New Translation"
-    And I select "thank_you_message" from "Key"
+    And I select "confirm.message_body" from "Key"
     And I fill in "Value" with "We will take a look and get back to you"
     And I press "Create Translation"
     And I go to the landing page

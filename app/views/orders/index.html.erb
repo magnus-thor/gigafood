@@ -1,11 +1,11 @@
-<h1><%= t('order') %></h1>
+<h1><%= t('order.main_header') %></h1>
 
 <div class="float-left main-order-container">
   <table width="100%">
     <tr>
-      <th><%= t('dish') %></th>
-      <th style="width: 130px; text-align: center;"><%= t('quantity') %></th>
-      <th style="text-align: center;"><%= t('price') %></th>
+      <th><%= t('lable.dish') %></th>
+      <th><%= t('label.quantity') %></th>
+      <th><%= t('label.price') %></th>
     </tr>
     <% @order.shopping_cart_items.each do |order_item| %>
       <tr id="<%= "order_row_#{order_item.item.id}" %>">
@@ -17,9 +17,9 @@
   </table>
   <br>
   <span class="float-right">
-    <div><%= t('total_sub') %> <%= humanized_money_with_symbol @order.subtotal %></div>
-    <div><%= t('total_tax') %> <%= humanized_money_with_symbol @order.taxes %></div>
-    <div><strong><%= t('total_price') %> <%= humanized_money_with_symbol @order.total %></strong></div>
+    <div><%= t('order.subtotal') %> <%= humanized_money_with_symbol @order.subtotal %></div>
+    <div><%= t('order.tax') %> <%= humanized_money_with_symbol @order.taxes %></div>
+    <div><strong><%= t('order.total') %> <%= humanized_money_with_symbol @order.total %></strong></div>
   </span>
 </div>
 <br>
@@ -28,53 +28,53 @@
 
 <%= form_for @order do |f| %>
   <div class="float-left order-container">
-    <h4><%= t('allergy_header') %></h4>
-    <p><%= t('allergy') %></p>
+    <h4><%= t('order.allergy_header') %></h4>
+    <p><%= t('order.allergy_body') %></p>
     <%= f.text_area :allergies, placeholder: 'Allergies', cols: 50, rows: 6 %>
   </div>
 
   <div class="float-left order-container">
-    <h4><%= t('delivery_info') %></h4>
-    <%= f.datetime_field :delivery_date, placeholder: 'Delivery Date', class: 'input-wide', required: true, min: Date.today+1 %>
+    <h4><%= t('order.delivery_info_header') %>:</h4>
+    <%= f.datetime_field :delivery_date, placeholder: t('delivery_date'), class: 'input-wide' %>
     <br>
     <%= radio_button_tag(:delivery_method, 'pickup') %>
-    <%= label_tag(:delivery_method, t('pickup').html_safe ) %>
+    <%= label_tag(:delivery_method_pickup, t('order.delivery_pickup').html_safe ) %>
     <br>
-    <%= radio_button_tag(:delivery_method, 'delivery', checked: 'true') %>
-    <%= label_tag(:delivery_method, t('delivery').html_safe ) %>
+    <%= radio_button_tag(:delivery_method, 'delivery') %>
+    <%= label_tag(:delivery_method_delivery, t('order.delivery_deliver').html_safe ) %>
   </div>
 
   <div class="clear">&nbsp;</div>
 
   <div class="float-left order-container">
-    <h4><%= t('billing_addres') %></h4>
-    <%= f.text_field :billing_name, placeholder: 'Billing Name', class: 'input-wide', required: true %>
-    <%= f.text_field :billing_company, placeholder: 'Billing Company', class: 'input-wide', required: true %>
-    <%= f.text_field :billing_org_nr, placeholder: 'Billing Organisation Number', class: 'input-wide', required: true %>
-    <%= f.text_field :billing_address, placeholder: 'Billing Address', class: 'input-wide', required: true %>
-    <%= f.text_field :billing_postal_code, id: 'Billing_Postal_Code', placeholder: 'Postal Code', class: 'input-small', required: true %>
-    <%= f.text_field :billing_city, placeholder: 'Billing City', class: 'input-medium', required: true %>
-    <%= f.text_field :billing_phone, placeholder: 'Billing Contact Phone', class: 'input-wide', required: true %>
-    <%= f.text_field :billing_email, placeholder: 'Billing email', class: 'input-wide', required: true %>
+    <h4><%= t('order.delivery_info_header') %>:</h4>
+    <%= f.text_field :billing_name, placeholder: t('order.billing_name'), class: 'input-wide' %>
+    <%= f.text_field :billing_company, placeholder: t('order.billing_company'), class: 'input-wide' %>
+    <%= f.text_field :billing_org_nr, placeholder: t('order.billing_org_number'), class: 'input-wide' %>
+    <%= f.text_field :billing_address, placeholder: t('order.billing_address'), class: 'input-wide' %>
+    <%= f.text_field :billing_postal_code, id: t('order.billing_postal_code'), placeholder: 'Postal Code', class: 'input-small' %>
+    <%= f.text_field :billing_city, placeholder: t('order.billing_city'), class: 'input-medium' %>
+    <%= f.text_field :billing_phone, placeholder: t('order.billing_contact_phone'), class: 'input-wide' %>
+    <%= f.text_field :billing_email, placeholder: t('order.billing_email'), class: 'input-wide' %>
   </div>
 
   <div id="delivery_address_fields" class="float-left order-container">
-    <h4><%= t('delivery_address') %></h4>
-    <%= f.text_field :delivery_name, placeholder: 'Delivery Name', class: 'input-wide' %>
-    <%= f.text_field :delivery_address, placeholder: 'Delivery Address', class: 'input-wide' %>
-    <%= f.text_field :delivery_postal_code, id: 'Delivery_Postal_Code', placeholder: 'Postal Code', class: 'input-small' %>
-    <%= f.text_field :delivery_city, placeholder: 'Delivery City', class: 'input-medium' %>
-    <%= f.text_field :delivery_floor, placeholder: 'Delivery Floor', class: 'input-wide' %>
-    <%= f.text_field :delivery_door_code, placeholder: 'Delivery Door Code', class: 'input-wide' %>
-    <%= f.text_field :delivery_contact_name, placeholder: 'Delivery Contact Name', class: 'input-wide' %>
-    <%= f.text_field :delivery_contact_phone_number, placeholder: 'Delivery Contact Phone', class: 'input-wide' %>
+    <h4><%= t('delivery_header') %>:</h4>
+    <%= f.text_field :delivery_name, placeholder: t('order.delivery_name'), class: 'input-wide' %>
+    <%= f.text_field :delivery_address, placeholder: t('order.delivery_address'), class: 'input-wide' %>
+    <%= f.text_field :delivery_postal_code, id: t('order.delivery_postal_code'), placeholder: 'Postal Code', class: 'input-small' %>
+    <%= f.text_field :delivery_city, placeholder: t('order.delivery_city'), class: 'input-medium' %>
+    <%= f.text_field :delivery_floor, placeholder: t('order.delivery_floor'), class: 'input-wide' %>
+    <%= f.text_field :delivery_door_code, placeholder: t('order.delivery_door_code'), class: 'input-wide' %>
+    <%= f.text_field :delivery_contact_name, placeholder: t('order.delivery_contact_name'), class: 'input-wide' %>
+    <%= f.text_field :delivery_contact_phone_number, placeholder: t('order.delivery_contact_phone'), class: 'input-wide' %>
   </div>
 
   <div class="clear">&nbsp;</div>
 
   <div class="float-right order-container">
     <%= f.hidden_field :status, placeholder: 'Status', value: 'submitted' %>
-    <%= f.submit t('button.submit'), class: 'button float-right' %>
+    <%= f.submit t('order.submit_order_button'), class: 'button float-right' %>
   </div>
 
 <% end %>
