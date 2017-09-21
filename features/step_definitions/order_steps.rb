@@ -70,3 +70,8 @@ And(/^I fill in all relevant fields and submit the order$/) do
 
   }
 end
+
+And(/^I fill in "([^"]*)" with "([^"]*)" to buy 10 dishes$/) do |dish_name, value|
+  dish_id = Dish.find_by(name: dish_name).id
+  fill_in("dish_#{dish_id}", with: value)
+end

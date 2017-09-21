@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
       dish = Dish.find(dish_id)
       if dish_value.to_i > 0
         if @order.add(dish, dish.price, dish_value.to_i)
-          flash[:notice] = "#{dish.name} was successfully added to order!"
+          #flash[:notice] = "#{dish.name} was successfully added to order!"
         else
           flash[:alert] = 'Item not added, try again!'
         end
@@ -29,8 +29,13 @@ class OrdersController < ApplicationController
 
   def update
     @order = get_order
-    @order.update(order_params)
-    redirect_to confirm_order_path
+
+    if @order.update(order_params)
+      redirect_to confirm_order_path
+    else
+      flash[:alert] = 'Error when saving order!'
+      redirect_to orders_path
+    end
   end
 
   def confirm

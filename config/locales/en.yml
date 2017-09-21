@@ -28,6 +28,7 @@ en:
     allergy_header: 'Allergies – No Problem!'
     allergy_body: 'Please specify any allergies:'
     delivery_info_header: 'Delivery Information'
+    delivery_date: 'Delivery Date'
     delivery_pickup: "We'd like to pick up the order ourselves at Tegelbacken 4A"
     delivery_deliver: "We'd like the order to be delivered directly to us by cargo bike."
     billing_header: 'Billing address'
