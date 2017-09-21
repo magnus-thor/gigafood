@@ -83,6 +83,8 @@ RSpec.describe Order, type: :model do
     let(:item) { create(:dish)}
 
     before 'Set order to submitted and add required data' do
+      subject.add(item, item.price, 1)
+
       order_values = {delivery_method: 'delivery', delivery_name: 'Big corp', billing_name: 'Big corp 111',
                       billing_company: 'Big corp 222', billing_org_nr: '19900101-1234', billing_address: 'Street 42',
                       billing_postal_code: '123 45', billing_city: 'Town', billing_phone: '555 123 45 66',
@@ -123,18 +125,17 @@ RSpec.describe Order, type: :model do
       is_expected.to validate_presence_of(:billing_email)
     end
 
-    it 'has a delivery_method' do
-      is_expected.to validate_presence_of(:delivery_method)
-    end
-
-    it 'has a billing_name' do
-      is_expected.to validate_presence_of(:billing_name)
-    end
+    # it 'has a delivery_method' do
+    #   is_expected.to validate_presence_of(:delivery_method)
+    # end
+    #
+    # it 'has a billing_name' do
+    #   is_expected.to validate_presence_of(:billing_name)
+    # end
 
   end
 
 end
-
 
 
 #order_params = {allergies: 'peanuts', delivery_method: 'delivery', delivery_name: 'Big corp',
