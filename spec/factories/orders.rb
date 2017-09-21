@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :order do
     allergies 'peanuts'
-    delivery_method 'pick up'
+    delivery_method 'pickup'
     delivery_name 'Big corp'
     delivery_address 'Street 42'
     delivery_postal_code '123 45'
