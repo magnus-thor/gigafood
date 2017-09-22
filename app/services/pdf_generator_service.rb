@@ -109,38 +109,32 @@ class PdfGeneratorService
 
 
   def generate_menu
-    filename = [I18n.t('menu.header'), @order.id, @order.billing_name, rand(20000)].join('-') + '.pdf'
+    filename = [I18n.t('menu.main_header'), @order.id, @order.billing_name, rand(20000)].join('-') + '.pdf'
 
     # Initial setup of the document
     pdf = create_and_configure_pdf
     pdf.font_size 14
-    pdf.define_grid(columns: 5, rows: 8, gutter: 10)
-
-
     # Display logo on center
     logo_path = File.expand_path(Rails.root.join('app', 'assets', 'images', 'gigafood_logo.png'))
 
     pdf.image logo_path, height: 60, position: :center
-    pdf.move_down 30
-    pdf.text I18n.t('menu.header'), size: 24, align: :center, style: :bold
-    pdf.move_down 70
+    pdf.move_down 20
+    pdf.text I18n.t('menu.main_header'), size: 24, align: :center, style: :bold
+    pdf.move_down 40
     # TABLE
-
-    # Add empty row and headers
-    data = [['']]
+    data = []
     # Add order items
-    collection = @order.shopping_cart_items.group_by{|i| i.item.category }
+    collection = @order.shopping_cart_items
+                     .group_by { |i| i.item.category }
+                     .sort_by { |k, _| k.sort_key }
 
     collection.each do |category, items|
-      data << [category.name]
       items.each do |item|
         data << ["<strong>#{item.item.name}</strong>"]
         data << [item.item.description]
       end
     end
 
-    # Add last epmty row
-    data << ['']
 
     pdf.table(data, width: 520) do |table|
 
@@ -148,32 +142,20 @@ class PdfGeneratorService
 
 
       table.before_rendering_page do |page|
-        # First row has a top border and no bottom border - no side borders
-        page.row(0).border_top_width = 2
-        page.row(0).border_bottom_width = 0
-        page.row(0).border_left_width = 0
-        page.row(0).border_right_width = 0
 
-        # Last row has a bottom border and no top border  - no side borders
-        page.row(-1).border_bottom_width = 2
-        page.row(-1).border_top_width = 0
-        page.row(-1).border_right_width = 0
-        page.row(-1).border_left_width = 0
-
-        # The order details have no borders at all
-        page.rows(1..-2).borders = []
+        # The menu details have no borders at all
+        page.rows(0..-1).borders = []
         # But be centered
-        page.rows(1..-2).align = :center
-        page.rows(1..-2).inline_format = true
+        page.rows(0..-1).align = :center
+        page.rows(0..-1).inline_format = true
       end
     end
 
-    pdf.bounding_box([pdf.bounds.right - 530, pdf.bounds.bottom + 145], width: 500, height: 350) do
-      pdf.text I18n.t('intro_desc_order_form'), align: :center
-      pdf.move_down 30
+    pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 60], width: pdf.bounds.width do
+      pdf.text I18n.t('menu.main_intro_text'), align: :center, size: 10
+      pdf.move_down 10
 
       pdf.text 'www.gigafood.se', align: :center, size: 8, style: :bold
-
     end
 
     pdf.render_file filename

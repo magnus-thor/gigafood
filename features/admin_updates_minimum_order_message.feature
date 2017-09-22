@@ -12,7 +12,7 @@ Feature: Admin adds custom translations
     And there are no custom translations
 
     And an admin exists with email "admin@example.com" and password "password"
-    And I'm loged in as admin user "admin@example.com"
+    And I'm logged in as admin
     And I go to the dashboard
 
   Scenario: Admin updates minimum order message

@@ -5,7 +5,7 @@ Feature: As gigafood, create, destroy and update categories
 
   Background:
     Given an admin exists with email "admin@example.com" and password "password"
-    And I'm loged in as admin user "admin@example.com"
+    And I'm logged in as admin
     Given I go to the dashboard
     And the following categories exist:
       | name           | description                 |

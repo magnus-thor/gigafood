@@ -5,18 +5,19 @@ Feature: As gigafood, create, destroy and update dishes
 
   Background:
     Given an admin exists with email "admin@example.com" and password "password"
-    And I'm loged in as admin user "admin@example.com"
+    And I'm logged in as admin
     Given I go to the dashboard
     And the following categories exist:
-      | name           | description                 |
-      | Starter        | Description for category 1  |
-      | Main           | Description for category 2  |
-      | Dessert        | Description for category 3  |
+      | name    | description                |
+      | Starter | Description for category 1 |
+      | Main    | Description for category 2 |
+      | Dessert | Description for category 3 |
+
     And the following dishes exist:
-      | name         | description             | price | min_quantity |
-      | Dish 1       | Description for Dish 1  | 100   |  10          |
-      | Dish 2       | Description for Dish 2  | 200   |  10          |
-      | Dish 3       | Description for Dish 3  | 300   |  10          |
+      | name   | description            | price | min_quantity |
+      | Dish 1 | Description for Dish 1 | 100   | 10           |
+      | Dish 2 | Description for Dish 2 | 200   | 10           |
+      | Dish 3 | Description for Dish 3 | 300   | 10           |
 
   Scenario: Add a new dish
     When I press "Dishes"

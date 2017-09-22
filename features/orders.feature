@@ -5,7 +5,7 @@ Feature: List orders
 
   Background:
     Given an admin exists with email "admin@example.com" and password "password"
-    And I'm loged in as admin user "admin@example.com"
+    And I'm logged in as admin
     And I go to the dashboard
     And the following orders exist:
     | billing_name             | delivery_date    | billing_email          |

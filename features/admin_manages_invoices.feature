@@ -21,7 +21,7 @@ Feature: Admin creates invoice
       | John Smith   | 2017-10-10 12:00 | john.smith@example.com |
 
     And an admin exists with email "admin@example.com" and password "password"
-    And I'm loged in as admin user "admin@example.com"
+    And I'm logged in as admin
     And I go to the dashboard
 
 

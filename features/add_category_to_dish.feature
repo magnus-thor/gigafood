@@ -4,13 +4,14 @@ Feature: As GigaFood
 
 Background:
   Given an admin exists with email "admin@example.com" and password "password"
-  And I'm loged in as admin user "admin@example.com"
+  And I'm logged in as admin
   Given I go to the dashboard
   And the following categories exist:
     | name           | description                 |
     | Starter        | Description for category 1  |
     | Main           | Description for category 2  |
     | Dessert        | Description for category 3  |
+
   And the following dishes exist:
     | name         | description             | price | min_quantity |
     | Dish 1       | Description for Dish 1  | 100   |  10          |
