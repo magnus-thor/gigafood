@@ -58,9 +58,13 @@ class PdfGeneratorService
     end
 
     # Add VAT + Total
-    data << ['', '', '', "Total: #{helpers.humanized_money_with_symbol @order.subtotal}"]
-    data << ['', '', '', "Tax (VAT): #{helpers.humanized_money_with_symbol @order.taxes}"]
-    data << ['', '', '', "Total with VAT: #{helpers.humanized_money_with_symbol @order.total}"]
+    subtotal = [I18n.t('order.subtotal'), ' ', helpers.humanized_money_with_symbol(@order.subtotal)].join
+    tax = [I18n.t('order.tax'), ' ', helpers.humanized_money_with_symbol(@order.taxes)].join
+    total = [I18n.t('order.total'), ' ', helpers.humanized_money_with_symbol(@order.total)].join
+
+    data << ['', '', '', subtotal]
+    data << ['', '', '', tax]
+    data << ['', '', '', total]
     # Add last epmty row
     data << ['', '', '', '']
 

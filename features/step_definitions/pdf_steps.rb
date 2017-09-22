@@ -7,7 +7,6 @@ Then(/^a menu for the order should be created$/) do
 end
 
 And(/^the pdf should contain "([^"]*)"$/) do |content|
-
   remote_pdf = open(Rails.root.join('spec', 'fixtures', 'tmp', 'tmp.pdf'), 'wb') do |file|
     file << open(@order.attachments.first.file.url).read
   end
