@@ -59,6 +59,7 @@ Feature: Allow end user to commit order
     And I should see "A confirmation email will be sent to you as soon as your booking is confirmed. Please contact us if you have any questions. We’d love to hear from you!"
     And the tax for the order should be "120"
     And the total for the order should be "1120"
+    And the order should have delivery method set to "delivery"
     When I go to the landing page
     And I click on "Next"
     Then I should not see "Dish 1"

@@ -15,15 +15,14 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $('input[type=radio][name=delivery_method]').change(function() {
+    $('input[type=radio][id=order_delivery_method_delivery]').change(function() {
         var fields = $('#delivery_address_fields');
-        if (this.value == 'delivery') {
-            fields.show();
-            console.log('show');
-        }
-        else if (this.value == 'pickup') {
-            fields.hide();
-            console.log('hide');
-        }
+        fields.show();
     });
+
+    $('input[type=radio][id=order_delivery_method_pickup]').change(function() {
+        var fields = $('#delivery_address_fields');
+        fields.hide();
+    });
+
 });

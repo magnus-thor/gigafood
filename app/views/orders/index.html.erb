@@ -37,10 +37,10 @@
     <h4><%= t('order.delivery_info_header') %>:</h4>
     <%= f.datetime_field :delivery_date, placeholder: t('delivery_date'), class: 'input-wide' %>
     <br>
-    <%= radio_button_tag(:delivery_method, 'pickup') %>
+    <%= f.radio_button(:delivery_method, 'pickup') %>
     <%= label_tag(:delivery_method_pickup, t('order.delivery_pickup').html_safe ) %>
     <br>
-    <%= radio_button_tag(:delivery_method, 'delivery') %>
+    <%= f.radio_button(:delivery_method, 'delivery', checked: true) %>
     <%= label_tag(:delivery_method_delivery, t('order.delivery_deliver').html_safe ) %>
   </div>
 

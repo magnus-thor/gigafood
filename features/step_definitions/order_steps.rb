@@ -35,6 +35,13 @@ Then /^the subtotal for the cart should be "([^"]*)"$/ do |subtotal|
   expect(@order.subtotal).to eq Money.new(subtotal.to_f * 100)
 end
 
+
+And(/^the order should have delivery method set to "([^"]*)"$/) do |delivery_method|
+  @order = @order || Order.last
+  @order.reload
+  expect(@order.delivery_method).to eq delivery_method
+end
+
 Then(/^the tax for the order should be "([^"]*)"$/) do |tax|
   @order = @order || Order.last
   @order.reload
