@@ -20,12 +20,13 @@
                     onkeyup="validateNumber(this)" onclick="validateNumber(this)" onchange="validateNumber(this)" >
              <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= dish.id %>')"> - </button>
              <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= dish.id %>')"> + </button>
+            <p class="min-order"><%= t('menu.dish_min_quantity', min_count: dish.min_quantity) %></p>
             <br>
             </div>
             <div class="menu-item-title"><%= dish.name %></div>
             <div>
               <p><%= dish.description %></p>
-              <p><%= t('menu.dish_min_quantity', min_count: dish.min_quantity) %></p>
+
             </div>
           </div>
       <% end %>
