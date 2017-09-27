@@ -13,6 +13,16 @@
 <%= I18n.t('email.order_header') %>
 <%= I18n.t('email.order_text') %>
 
+<% @order.shopping_cart_items.each do |order_item| %>
+  <%= I18n.t('lable.dish') %> <%= order_item.item.name %>
+  <%= I18n.t('lable.quantity') %> <%= order_item.quantity %>
+  <%= I18n.t('lable.price') %> <%= humanized_money_with_symbol(order_item.quantity * order_item.price) %>
+<% end %>
+
+<%= I18n.t('order.subtotal') %> <%= humanized_money_with_symbol @order.subtotal %>
+<%= I18n.t('order.tax') %> <%= humanized_money_with_symbol @order.taxes %>
+<%= I18n.t('order.total') %> <%= humanized_money_with_symbol @order.total %>
+
 <%= I18n.t('email.allergies_header') %>
 <%= I18n.t('email.allergies_text') %>
 <%= @order.allergies %>
@@ -43,7 +53,6 @@
 <%= @order.billing_city %>
 <%= @order.billing_phone %>
 <%= @order.billing_email %>
-
 
 <%= I18n.t('email.acceptance_header') %>
 <%= I18n.t('gigafood.policy') %>
