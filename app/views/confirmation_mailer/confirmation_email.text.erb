@@ -1,7 +1,7 @@
 <%= I18n.t('email.confirm_main_header') %>
 <%= I18n.t('email.confirm_main_text', order_id: @order.id) %>
 
-<%= if @order.delivery_method == 'pickup' %>
+<% if @order.delivery_method == 'pickup' %>
     <%= I18n.t('email.confirm_pickup_date_text', delivery_date: @order.delivery_date) %>
 <% else %>
     <%= I18n.t('email.confirm_delivery_date_text', delivery_date: @order.delivery_date) %>
@@ -29,7 +29,7 @@
 
 <%= I18n.t('email.delivery_header') %>
 <%= I18n.t('email.delivery_text') %>
-<%= if @order.delivery_method == 'pickup' %>
+<% if @order.delivery_method == 'pickup' %>
   <%= I18n.t('email.delivery_text_pickup') %>
 <% else %>
   <%= I18n.t('email.delivery_text_delivery') %>

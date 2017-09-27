@@ -91,6 +91,6 @@ en:
     acceptance_header: 'Acceptance'
     acceptance_text: 'I accept Gigafood’s booking policy (see below).'
     cancel_main_header: 'Thanks for ordering from Gigafood!'
-    cancel_main_text: 'Regretfully, your order (id: %{order_id}) has been canceled!
+    cancel_main_text: 'Regretfully, your order has been canceled! Order id: %{order_id}
                  Thanks for choosing Gigafood, and have a great day!
                  /The Gigafood-team'
