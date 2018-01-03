@@ -61,6 +61,9 @@ ActiveAdmin.register Order do
     actions
   end
 
+  filter :status, as: :select, collection: ->{['submitted', 'delivered']}
+  filter :delivery_date
+  filter :delivery_method, as: :select, collection: ->{['pick up', 'delivery']}
 
   show do
     h3 'Order Items'
