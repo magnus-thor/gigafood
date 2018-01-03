@@ -51,7 +51,6 @@ ActiveAdmin.register Order do
     column :id do |order|
       link_to 'Order: ' + order.id.to_s, admin_order_path(order)
     end
-    column :allergies
     column :delivery_date
     column :delivery_method
     column :billing_name
@@ -61,7 +60,7 @@ ActiveAdmin.register Order do
     actions
   end
 
-  filter :status, as: :select, collection: ->{['submitted', 'delivered']}
+  filter :status, as: :select, collection: ->{['submitted', 'approved', 'temporary']}
   filter :delivery_date
   filter :delivery_method, as: :select, collection: ->{['pick up', 'delivery']}
 
