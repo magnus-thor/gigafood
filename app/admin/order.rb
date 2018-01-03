@@ -5,17 +5,10 @@ ActiveAdmin.register Order do
                 :billing_company, :billing_org_nr, :billing_address, :billing_postal_code, :billing_city, :billing_phone,
                 :billing_email, :allergies, :boxes, :status, :shopping_cart_items, :order_item
 
-  scope :all
-  scope :non_temporary
-  scope :temporary
-
-  # controller do
-  #   # default_scope { where.not(:status => 'temporary') }
-  #   def scoped_collection
-  #     Order.where.not(status: 'temporary')
-  #   end
-  # end
-
+  scope 'All', :all
+  scope 'Approved / Submitted', :non_temporary
+  scope 'Temporary', :temporary
+  
   action_item :confirm_order, only: :show do
     link_to 'Confirm Order', confirm_admin_order_path(resource), method: :put
   end
