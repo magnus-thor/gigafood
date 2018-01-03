@@ -11,7 +11,9 @@ class Order < ApplicationRecord
   validates_presence_of *DEFAULT_ATTRIBUTES, if: :submitted?
   validates_presence_of *DELIVERY_ATTRIBUTES, if: :delivery?
 
-  default_scope { where.not(:status => 'temporary') }
+  # default_scope { where.not(:status => 'temporary') }
+  scope :non_temporary, -> { where.not(:status => 'temporary') }
+  scope :temporary, -> { where(:status => 'temporary') }
 
   has_many :attachments, dependent: :destroy
 
