@@ -32,6 +32,7 @@ Feature: Admin creates invoice
       | Dish 2    | 20       |
     And I click on "Orders"
     And I press "View" for order "Bob Schmob"
+    And I press "Confirm Order"
     And I press "Generate Invoice"
     Then an invoice for the order should be created
     And the pdf should contain "Buyer contact: Bob Schmob"
@@ -56,6 +57,7 @@ Feature: Admin creates invoice
     And I click on "Orders"
     And I press "View" for order "Bob Schmob"
     Then I should not see "View Invoice"
+    And I press "Confirm Order"
     And I press "Generate Invoice"
     Then I should see "The order contains no items. There's nothing to invoice..."
 

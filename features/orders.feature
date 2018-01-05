@@ -13,7 +13,7 @@ Feature: List orders
     | John Smith               | 2017-10-10 12:00 | john.smith@example.com |
     | Kari Lee                 | 2017-10-08 12:00 | kari.lee@example.com   |
 
-  Scenario: View a list of orders
+  Scenario: View a list of confirmed orders
     When I press "Orders"
     Then I should see "Bob Schmob"
     When I press "View" for order "Bob Schmob"
@@ -21,8 +21,17 @@ Feature: List orders
     And I should see "Cancel Order"
     When I press "Confirm Order"
     Then I should see "Confirmed!"
+    And I should not see "Cancel Order"
+
+  Scenario: View a list of orders
+    When I press "Orders"
+    Then I should see "Bob Schmob"
+    When I press "View" for order "Bob Schmob"
+    Then I should see "Confirm Order"
+    And I should see "Cancel Order"
     When I press "Cancel Order"
     Then I should see "Canceled!"
+    And I should not see "Confirm Order"
 
   Scenario: Send order confirmation
     When I press "Orders"
