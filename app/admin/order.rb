@@ -5,6 +5,22 @@ ActiveAdmin.register Order do
                 :billing_company, :billing_org_nr, :billing_address, :billing_postal_code, :billing_city, :billing_phone,
                 :billing_email, :allergies, :boxes, :status, :shopping_cart_items, :order_item, :due_date
 
+  controller do
+    def update
+      @order = Order.find(params[:id])
+
+      params[:dishes].each do |dish_key, dish_value|
+        dish_id = dish_key[5, dish_key.length].to_i
+        dish = Dish.find(dish_id)
+        if dish_value.to_i > 0
+          @order.add(dish, dish.price, dish_value.to_i)
+        end
+      end
+      @order.save
+      redirect_to admin_order_path(resource)
+    end
+  end
+
   action_item :confirm_order, only: :show do
     link_to 'Confirm Order', confirm_admin_order_path(resource), method: :put
   end
