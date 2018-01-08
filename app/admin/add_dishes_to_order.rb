@@ -3,7 +3,9 @@ ActiveAdmin.register_page "Add Dishes" do
 
   controller do
     layout 'active_admin'
+
     def index
+      @page_title = 'Add Dishes to order'
       @categories = Category.order(:sort_key).all
       @order = Order.find(params[:id])
     end

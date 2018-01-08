@@ -1,22 +1,15 @@
-<h1> Order nr: <%= @order.id %> </h1>
-<h2> Customer name: <%= @order.billing_name %> </h2>
-<p>Order info:</p>
-<% @order.shopping_cart_items.each do |item| %>
-  <% # binding.pry %>
-  <%= item.item.name %>
-  <br>
-<% end %>
-<hr>
-<p>Available dishes:</p>
+<h1 class="center"> Order nr: <%= @order.id %> </h1>
+<h2 class="center"> Customer name: <%= @order.billing_name %> </h2>
+<div class="order-info">
+  <p>Order info:</p>
+  <% @order.shopping_cart_items.each do |item| %>
+    <p><%= item.item.name %>,  Price: <%= item.price %>, Quantity: <%= item.quantity %></p>
+  <% end %>
+</div>
 <%= form_tag admin_order_path(@order), method: :put do %>
-  <% # binding.pry %>
   <% @categories.each do |category| %>
     <div class="clear"></div>
-    <h2><%= category.name.upcase %></h2>
-    <% if category.description != nil %>
-      <p class='center'> <%= category.description %> </p>
-    <% end %>
-
+    <h2 class="center"><%= category.name.upcase %></h2>
     <% category.dish.order(:sort_key).all.each do |dish| %>
       <div class="clear">
         <div class="menu-item-form" id="dish_item_<%= dish.id %>">
@@ -33,14 +26,15 @@
           <br>
         </div>
         <div class="menu-item-title"><%= dish.name %></div>
-        <p><%= dish.description %></p>
       </div>
     <% end %>
   <% end %>
 
   <br>
+  <br>
+  <br>
 
-  <div><%= submit_tag t('menu.proceed_button'), class: 'button float-right' %></div>
+  <div><%= submit_tag 'Update Order', class: 'button float-right' %></div>
 
 <% end %>
 
