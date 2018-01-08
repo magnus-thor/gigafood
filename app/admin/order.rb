@@ -29,6 +29,10 @@ ActiveAdmin.register Order do
     link_to 'View Menu', resource.attachments.where(file_type: 'menu').first.file.url, target: '_blank', rel: 'nofollow', style: 'background-color: green !Important;'
   end
 
+  action_item :view_menu, only: :edit do
+    link_to 'Add Dishes', admin_add_dishes_path(id: resource.id)
+  end
+
   member_action :confirm, method: :put do
     @order = Order.find(params[:id])
     @order.status = 'approved'
@@ -104,10 +108,6 @@ ActiveAdmin.register Order do
 
   form do |f|
     f.inputs do
-      # f.input :shopping_cart_items, as: :select, collection: Dish.all
-      # f.input :shopping_cart_items, Dish.all do |dish|
-      #    dish.name
-      # end
       f.input :delivery_date
       f.input :allergies
       f.input :boxes
