@@ -14,7 +14,7 @@
       <div class="clear">
         <div class="menu-item-form" id="dish_item_<%= dish.id %>">
           <%= dish.price %> SEK <br>
-          <input class="q_text" type="text" name="dishes[dish_<%= dish.id %>]" value="" id="dish_<%= dish.id %>"
+          <input class="q_text" type="text" name="dishes[<%= dish.id %>]" value="" id="dish_<%= dish.id %>"
                  placeholder="0" size="5" maxlength="4" data-minquantity="<%= dish.min_quantity %>"
                  onblur="validateNumberOnBlur(this)"
                  onkeyup="validateNumber(this)"

@@ -8,10 +8,8 @@ ActiveAdmin.register Order do
   controller do
     def update
       @order = Order.find(params[:id])
-
       if params[:dishes]
-        params[:dishes].each do |dish_key, dish_value|
-          dish_id = dish_key[5, dish_key.length].to_i
+        params[:dishes].each do |dish_id, dish_value|
           dish = Dish.find(dish_id)
           if dish_value.to_i > 0
             @order.add(dish, dish.price, dish_value.to_i)
