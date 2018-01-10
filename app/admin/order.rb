@@ -24,20 +24,20 @@ ActiveAdmin.register Order do
   scope 'All', :all
   scope 'Approved / Submitted', :non_temporary
   scope 'Temporary', :temporary
-  
-  action_item :confirm_order, only: :show do
+
+  action_item :confirm_order, only: :show, if: proc { resource.status != 'canceled' and resource.status != 'approved' } do
     link_to 'Confirm Order', confirm_admin_order_path(resource), method: :put
   end
 
-  action_item :cancel_order, only: :show do
+  action_item :cancel_order, only: :show, if: proc { resource.status != 'canceled' and resource.status != 'approved' } do
     link_to 'Cancel Order', cancel_admin_order_path(resource), method: :put
   end
 
-  action_item :generate_invoice, only: :show, if: proc { !resource.has_invoice? } do
+  action_item :generate_invoice, only: :show, if: proc { !resource.has_invoice? and resource.status == 'approved' } do
     link_to 'Generate Invoice', generate_invoice_order_path, method: :put
   end
 
-  action_item :generate_menu, only: :show, if: proc { !resource.has_menu? } do
+  action_item :generate_menu, only: :show, if: proc { !resource.has_menu? and resource.status == 'approved' } do
     link_to 'Generate Menu', generate_menu_order_path, method: :put
   end
 

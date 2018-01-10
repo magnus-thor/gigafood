@@ -22,6 +22,7 @@ Given(/^an Invoice has been generated for "([^"]*)"'s order$/) do |billing_email
         | Dish 2    | 20       |
       And I click on "Orders"
       And I press "View" for order "Bob Schmob"
+      And I press "Confirm Order"
       And I press "Generate Invoice"
       }
 end

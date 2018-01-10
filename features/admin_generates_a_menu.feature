@@ -36,6 +36,7 @@ Feature: Admin generates a menu for a specific order
     And I go to the dashboard
     And I click on "Orders"
     And I press "View" for order "Bob Schmob"
+    And I press "Confirm Order"
 
   Scenario: Admin generates order specific menu
     Given I press "Generate Menu"
