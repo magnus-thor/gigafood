@@ -1,9 +1,25 @@
 ActiveAdmin.register Order do
   menu priority: 6
-  permit_params :delivery_date, :delivery_method, :delivery_name, :delivery_address, :delivery_postal_code, :delivery_city,
+  permit_params :email, :delivery_date, :delivery_method, :delivery_name, :delivery_address, :delivery_postal_code, :delivery_city,
                 :delivery_floor, :delivery_door_code, :delivery_contact_name, :delivery_contact_phone_number, :billing_name,
                 :billing_company, :billing_org_nr, :billing_address, :billing_postal_code, :billing_city, :billing_phone,
-                :billing_email, :allergies, :boxes, :status, :shopping_cart_items, :order_item
+                :billing_email, :allergies, :boxes, :status, :shopping_cart_items, :order_item, :due_date
+
+  controller do
+    def update
+      @order = Order.find(params[:id])
+      if params[:dishes]
+        params[:dishes].each do |dish_id, dish_value|
+          dish = Dish.find(dish_id)
+          if dish_value.to_i > 0
+            @order.add(dish, dish.price, dish_value.to_i)
+          end
+        end
+      end
+      @order.save
+      redirect_to admin_order_path(resource), notice: "Order was successfully updated"
+    end
+  end
 
   scope 'All', :all
   scope 'Approved / Submitted', :non_temporary
@@ -31,6 +47,10 @@ ActiveAdmin.register Order do
 
   action_item :view_menu, only: :show, if: proc { resource.has_menu? } do
     link_to 'View Menu', resource.attachments.where(file_type: 'menu').first.file.url, target: '_blank', rel: 'nofollow', style: 'background-color: green !Important;'
+  end
+
+  action_item :view_menu, only: :edit do
+    link_to 'Add Dishes', admin_add_dishes_path(id: resource.id)
   end
 
   member_action :confirm, method: :put do
@@ -106,5 +126,33 @@ ActiveAdmin.register Order do
       row :boxes
       row :status
     end
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :delivery_date
+      f.input :allergies
+      f.input :boxes
+      f.input :status, as: :select, collection: ['submitted', 'approved', 'temporary']
+      f.input :email
+      f.input :delivery_method
+      f.input :delivery_name
+      f.input :delivery_address
+      f.input :delivery_postal_code
+      f.input :delivery_city
+      f.input :delivery_door_code
+      f.input :delivery_contact_name
+      f.input :delivery_contact_phone_number
+      f.input :billing_name
+      f.input :billing_company
+      f.input :billing_org_nr
+      f.input :billing_address
+      f.input :billing_postal_code
+      f.input :billing_city
+      f.input :billing_phone
+      f.input :billing_email
+      f.input :due_date
+    end
+    f.actions
   end
 end

@@ -5,6 +5,11 @@ $skinlogo:none;
 @import "responsive_active_admin";
 @import "font-awesome";
 
+@font-face {
+  font-family: futura-pt;
+  src:font-url('FuturaPTBook.otf') format("opentype");
+}
+
 .flashes {
   width: 84.1%;
   float: right;
@@ -25,4 +30,61 @@ body.logged_in .flashes .flash {
   &.flash_alert {
     background: #BDB446;
   }
+}
+
+.clear {
+  clear: both;
+}
+
+.q_text {
+  outline: none;
+  margin-top: 7px;
+  width: 55px;
+  text-align: right;
+}
+
+.menu-item-form {
+  float: right;
+  margin-left: 20px;
+  font-size: 28px;
+  font-family: futura-pt,Arial,Helvetica,sans-serif;
+  text-align: right;
+}
+
+.menu-item-title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2em;
+  font-weight: 700;
+}
+
+.min-order {
+  margin: 0px;
+  font-size: 13px;
+}
+
+.float-right {
+  float: right;
+}
+
+.button {
+  border: 1px solid black;
+  background-color: white;
+  padding: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-family: futura-pt,Arial,Helvetica,sans-serif;
+  font-size: 20px;
+}
+
+.order-info {
+  border: 1px solid black;
+  background-color: white;
+  font-family: futura-pt,Arial,Helvetica,sans-serif;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.center {
+  text-align: center;
 }
