@@ -4,6 +4,14 @@ en:
     email: 'hello@gigafood.se'
     phone_number: '+46 (0) 8 120 543 76'
     web_address: 'www.gigafood.com'
+    policy: "Booking Policy
+            We recommend that you send your request five days ahead. However, we always try to make it work so if
+            you're having a last minute request please call us:  +46 (0) 8 120 543 76
+            Cancellation
+            Cancellation can be done until 7 days before delivery.
+            Changing your order
+            We will make every effort to accommodate last minute changes. Please contact our booking at
+            hello@gigafood.se as soon as possible and we'll do our best."
 
   lable:
     dish: 'Dish'
@@ -60,3 +68,29 @@ en:
   invoice:
     header: 'Invoice'
     error: "The order contains no items. There\'s nothing to invoice..."
+
+  email:
+    confirm_main_header: 'Thanks for ordering from Gigafood!'
+    confirm_main_text: 'Your order (id: %{order_id}) is now confirmed and we look forward delivering to you!
+                 Please check your booking below and contact us if you have any further questions.
+                 Wish you a lovely day!
+                 /The Gigafood-team'
+    confirm_delivery_date_text: 'Your selected delivery date: %{delivery_date} is now confirmed'
+    confirm_pickup_date_text: 'Your selected pickup date: %{delivery_date} is now confirmed'
+    order_header: 'Order'
+    order_text: 'Some text about the order before the list of ordered dishes.'
+    allergies_header: 'Allergies'
+    allergies_text: 'Please specify any allergies.'
+    delivery_header: 'Delivery'
+    delivery_text: 'Some text about delivery method.'
+    delivery_text_pickup: 'You have selected pick-up.'
+    delivery_text_delivery: 'You have selected delivery'
+    payment_header: 'Payment'
+    payment_text: 'Please specify your billing details. An invoice from Gigafood will be sent to you shortly
+                   after your delivery is fulfilled.'
+    acceptance_header: 'Acceptance'
+    acceptance_text: 'I accept Gigafood’s booking policy (see below).'
+    cancel_main_header: 'Thanks for ordering from Gigafood!'
+    cancel_main_text: 'Regretfully, your order has been canceled! Order id: %{order_id}
+                 Thanks for choosing Gigafood, and have a great day!
+                 /The Gigafood-team'

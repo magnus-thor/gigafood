@@ -1,10 +1,5 @@
+<%= I18n.t('email.cancel_main_header') %>
+<%= I18n.t('email.cancel_main_text', order_id: @order.id) %>
 
-Thank you for choosing Gigafood.se, <%= @order.billing_name %>
-===============================================
-
-Regretfully, your order has been canceled!
-
-Please call Ida :078364659
-or email us at Gigafood@gigafood.se for further questions or to rebook.
-
-Thanks for choosing Gigafood, and have a great day!
+<%= I18n.t('gigafood.email') %>
+<%= I18n.t('gigafood.phone_number') %>

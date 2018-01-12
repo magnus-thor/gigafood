@@ -39,7 +39,29 @@ Feature: List orders
     And I press "Confirm Order"
     Then "bob.schmob@example.com" should receive an email
     And "bob.schmob@example.com" should see "Confirmation from Gigafood" in the subject
-    And "bob.schmob@example.com" should see "Thank you for choosing Gigafood.se, Bob Schmob" in the email
+    And "bob.schmob@example.com" should see "Thanks for ordering from Gigafood!" in the email
+    And "bob.schmob@example.com" should see "Your selected pickup" in the email
+    And "bob.schmob@example.com" should see "hello@gigafood.se" in the email
+    And "bob.schmob@example.com" should see "8 120 543 76" in the email
+    And "bob.schmob@example.com" should see "Total: 0 kr" in the email
+    And "bob.schmob@example.com" should see "VAT 12%: 0 kr" in the email
+    And "bob.schmob@example.com" should see "Total price inc. VAT: 0 kr" in the email
+    And "bob.schmob@example.com" should see "Allergies" in the email
+    And "bob.schmob@example.com" should see "peanuts" in the email
+    And "bob.schmob@example.com" should see "Delivery" in the email
+    And "bob.schmob@example.com" should see "Some text about delivery method." in the email
+    And "bob.schmob@example.com" should see "You have selected pick-up." in the email
+    And "bob.schmob@example.com" should see "Payment" in the email
+    And "bob.schmob@example.com" should see "Please specify your billing details. An invoice from Gigafood will be sent to you shortly after your delivery is fulfilled." in the email
+    And "bob.schmob@example.com" should see "Bob Schmob" in the email
+    And "bob.schmob@example.com" should see "Big corp 222" in the email
+    And "bob.schmob@example.com" should see "19900101-1234" in the email
+    And "bob.schmob@example.com" should see "Street 42" in the email
+    And "bob.schmob@example.com" should see "123 45" in the email
+    And "bob.schmob@example.com" should see "555 123 45 66" in the email
+    And "bob.schmob@example.com" should see "bob.schmob@example.com" in the email
+    And "bob.schmob@example.com" should see "Acceptance" in the email
+    And "bob.schmob@example.com" should see "Booking Policy We recommend that you send your request five days ahead." in the email
 
   Scenario: Send order cancelation
     When I press "Orders"
@@ -48,4 +70,4 @@ Feature: List orders
     Then "kari.lee@example.com" should receive an email
     And "kari.lee@example.com" should see "Cancelation from Gigafood" in the subject
     And "kari.lee@example.com" should see "Regretfully, your order has been canceled!" in the email
-
+    
