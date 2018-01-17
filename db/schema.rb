@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170916065934) do
+ActiveRecord::Schema.define(version: 20180117083536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,18 +66,6 @@ ActiveRecord::Schema.define(version: 20170916065934) do
     t.integer "sort_key"
   end
 
-  create_table "dishes", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "min_quantity", default: 10
-    t.bigint "category_id"
-    t.integer "sort_key"
-    t.index ["category_id"], name: "index_dishes_on_category_id"
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.integer "owner_id"
     t.string "owner_type"
@@ -118,6 +106,18 @@ ActiveRecord::Schema.define(version: 20170916065934) do
     t.datetime "due_date"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "min_quantity", default: 10
+    t.bigint "category_id"
+    t.integer "sort_key"
+    t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
   create_table "translations", force: :cascade do |t|
     t.string "locale"
     t.string "key"
@@ -129,5 +129,5 @@ ActiveRecord::Schema.define(version: 20170916065934) do
   end
 
   add_foreign_key "attachments", "orders"
-  add_foreign_key "dishes", "categories"
+  add_foreign_key "products", "categories"
 end

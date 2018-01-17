@@ -19,7 +19,7 @@ end
 Given(/^"([^"]*)"'s order contains:$/) do |billing_name, table|
   @order = Order.find_by(billing_name: billing_name)
   table.hashes.each do |item|
-    dish = Dish.find_by(name: item[:dish_name])
+    dish = Product.find_by(name: item[:dish_name])
     @order.add(dish, dish.price, item[:quantity].to_i)
   end
 end
@@ -79,6 +79,6 @@ And(/^I fill in all relevant fields and submit the order$/) do
 end
 
 And(/^I fill in "([^"]*)" with "([^"]*)" to buy 10 dishes$/) do |dish_name, value|
-  dish_id = Dish.find_by(name: dish_name).id
+  dish_id = Product.find_by(name: dish_name).id
   fill_in("dish_#{dish_id}", with: value)
 end

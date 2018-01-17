@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
 
     params[:dishes].each do |dish_key, dish_value|
       dish_id = dish_key[5, dish_key.length].to_i
-      dish = Dish.find(dish_id)
+      dish = Product.find(dish_id)
       if dish_value.to_i > 0
         @order.add(dish, dish.price, dish_value.to_i)
       end

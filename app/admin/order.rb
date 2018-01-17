@@ -10,7 +10,7 @@ ActiveAdmin.register Order do
       @order = Order.find(params[:id])
       if params[:dishes]
         params[:dishes].each do |dish_id, dish_value|
-          dish = Dish.find(dish_id)
+          dish = Product.find(dish_id)
           if dish_value.to_i > 0
             @order.add(dish, dish.price, dish_value.to_i)
           end

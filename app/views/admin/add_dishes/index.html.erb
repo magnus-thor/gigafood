@@ -10,7 +10,7 @@
   <% @categories.each do |category| %>
     <div class="clear"></div>
     <h2 class="center"><%= category.name.upcase %></h2>
-    <% category.dish.order(:sort_key).all.each do |dish| %>
+    <% category.products.order(:sort_key).all.each do |dish| %>
       <div class="clear">
         <div class="menu-item-form" id="dish_item_<%= dish.id %>">
           <%= dish.price %> SEK <br>

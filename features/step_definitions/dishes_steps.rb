@@ -3,22 +3,22 @@ Given(/^the following dishes exist:$/) do |table|
     if dish[:category]
       category = Category.find_by(name: dish[:category])
       hash = dish.except!(dish[:category]).merge(category: category)
-      FactoryGirl.create(:dish, hash)
+      FactoryGirl.create(:product, hash)
     else
-      FactoryGirl.create(:dish, dish)
+      FactoryGirl.create(:product, dish)
     end
   end
 end
 
 When(/^I press "([^"]*)" for dish "([^"]*)"$/) do |link, dish_name|
-  dish = Dish.find_by(name: dish_name)
-  within("#dish_#{dish.id}") do
+  dish = Product.find_by(name: dish_name)
+  within("#product_#{dish.id}") do
     click_link_or_button link
   end
 end
 
 When(/^I click on \+ for "([^"]*)"$/) do |dish_name|
-  dish_id = Dish.find_by(name: dish_name).id
+  dish_id = Product.find_by(name: dish_name).id
 
   within "#dish_item_#{dish_id}" do
     click_link_or_button '+'
@@ -26,7 +26,7 @@ When(/^I click on \+ for "([^"]*)"$/) do |dish_name|
 end
 
 Then(/^"([^"]*)" quantity should be "([^"]*)"$/) do |dish_name, dish_quantity|
-  dish_id = Dish.find_by(name: dish_name).id
+  dish_id = Product.find_by(name: dish_name).id
   expect(page).to have_field("dish_#{dish_id}", with: dish_quantity)
 end
 

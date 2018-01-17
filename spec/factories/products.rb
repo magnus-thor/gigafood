@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :dish do
+  factory :product do
     name "dish name"
     description "dish features"
     price 1

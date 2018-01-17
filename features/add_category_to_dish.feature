@@ -20,12 +20,12 @@ Background:
 
 
     Scenario: Add category to dish
-      When I press "Dishes"
-      When I press "New Dish"
+      When I press "Products"
+      When I press "New Product"
       And I fill in "Name" with "Dish 4"
       And I fill in "Description" with "Description for Dish 4"
       And I fill in "Price" with "400"
       And I fill in "Min quantity" with "10"
       And I select "Starter" from "Category"
-      And I press "Create Dish"
-      Then I should see "Dish was successfully created."
+      And I press "Create Product"
+      Then I should see "Product was successfully created."

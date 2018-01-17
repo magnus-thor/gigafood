@@ -72,7 +72,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#has_invoice?' do
-    let(:item) { create(:dish) }
+    let(:item) { create(:product) }
 
     before do
       subject.add(item, item.price, 1)
@@ -86,7 +86,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe '#has_menu?' do
-    let(:item) { create(:dish) }
+    let(:item) { create(:product) }
 
     before do
       subject.add(item, item.price, 1)
@@ -106,7 +106,7 @@ RSpec.describe Order, type: :model do
     end
 
     describe 'order is submitted' do
-      let(:item) { create(:dish) }
+      let(:item) { create(:product) }
 
       before do
         subject.add(item, item.price, 1)

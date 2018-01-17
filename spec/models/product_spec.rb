@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Dish, type: :model do
+RSpec.describe Product, type: :model do
   it 'should have valid Factory' do
-    expect(FactoryGirl.create(:dish)).to be_valid
+    expect(FactoryGirl.create(:product)).to be_valid
   end
 
   it { is_expected.to have_db_column :id }
