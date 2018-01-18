@@ -22,9 +22,24 @@
     <div><strong><%= t('order.total') %> <%= humanized_money_with_symbol @order.total %></strong></div>
   </span>
 </div>
+
 <br>
 
+
 <div class="clear">&nbsp;</div>
+<hr>
+<% if @cutlery != [] %>
+  <%= form_for @order do |f| %>
+    <%= label_tag(:cutlery_quantity, 'Do you need cutlery?') %>
+    <%= number_field_tag :cutlery_quantity %>
+    <%= f.hidden_field :status, placeholder: 'Status', value: 'submitted' %>
+    <% if @order.shopping_cart_items.find_by(item_id: @cutlery.id) %>
+      <%= f.submit t('order.submit_remove_cutlery_order_button'), class: 'button float-right', id: 'remove_cutlery' %>
+    <% end %>
+    <%= f.submit t('order.submit_add_cutlery_order_button'), class: 'button float-right', id: 'add_cutlery' %>
+    <%= @cutlery.description %>
+  <% end %>
+<% end %>
 
 <%= form_for @order do |f| %>
   <div class="float-left order-container">
@@ -35,46 +50,46 @@
 
   <div class="float-left order-container">
     <h4><%= t('order.delivery_info_header') %>:</h4>
-    <%= f.datetime_field :delivery_date, placeholder: t('delivery_date'), class: 'input-wide' %>
+    <%= f.datetime_field :delivery_date, placeholder: t('delivery_date'), class: 'input-wide', required: true %>
     <br>
     <%= f.radio_button(:delivery_method, 'pickup') %>
-    <%= label_tag(:delivery_method_pickup, t('order.delivery_pickup').html_safe ) %>
+    <%= label_tag(:delivery_method_pickup, t('order.delivery_pickup').html_safe) %>
     <br>
-    <%= f.radio_button(:delivery_method, 'delivery', checked: true) %>
-    <%= label_tag(:delivery_method_delivery, t('order.delivery_deliver').html_safe ) %>
+    <%= f.radio_button(:delivery_method, 'delivery') %>
+    <%= label_tag(:delivery_method_delivery, t('order.delivery_deliver').html_safe) %>
   </div>
 
   <div class="clear">&nbsp;</div>
 
   <div class="float-left order-container">
     <h4><%= t('order.delivery_info_header') %>:</h4>
-    <%= f.text_field :billing_name, placeholder: t('order.billing_name'), class: 'input-wide' %>
-    <%= f.text_field :billing_company, placeholder: t('order.billing_company'), class: 'input-wide' %>
-    <%= f.text_field :billing_org_nr, placeholder: t('order.billing_org_number'), class: 'input-wide' %>
-    <%= f.text_field :billing_address, placeholder: t('order.billing_address'), class: 'input-wide' %>
-    <%= f.text_field :billing_postal_code, id: t('order.billing_postal_code'), placeholder: 'Postal Code', class: 'input-small' %>
-    <%= f.text_field :billing_city, placeholder: t('order.billing_city'), class: 'input-medium' %>
-    <%= f.text_field :billing_phone, placeholder: t('order.billing_contact_phone'), class: 'input-wide' %>
-    <%= f.text_field :billing_email, placeholder: t('order.billing_email'), class: 'input-wide' %>
+    <%= f.text_field :billing_name, placeholder: t('order.billing_name'), class: 'input-wide', required: true %>
+    <%= f.text_field :billing_company, placeholder: t('order.billing_company'), class: 'input-wide', required: true %>
+    <%= f.text_field :billing_org_nr, placeholder: t('order.billing_org_number'), class: 'input-wide', required: true %>
+    <%= f.text_field :billing_address, placeholder: t('order.billing_address'), class: 'input-wide', required: true %>
+    <%= f.text_field :billing_postal_code, placeholder: t('order.billing_postal_code'), class: 'input-small', required: true %>
+    <%= f.text_field :billing_city, placeholder: t('order.billing_city'), class: 'input-medium', required: true %>
+    <%= f.text_field :billing_phone, placeholder: t('order.billing_contact_phone'), class: 'input-wide', required: true %>
+    <%= f.text_field :billing_email, placeholder: t('order.billing_email'), type: :email, class: 'input-wide', required: true %>
   </div>
 
   <div id="delivery_address_fields" class="float-left order-container">
     <h4><%= t('delivery_header') %>:</h4>
-    <%= f.text_field :delivery_name, placeholder: t('order.delivery_name'), class: 'input-wide' %>
-    <%= f.text_field :delivery_address, placeholder: t('order.delivery_address'), class: 'input-wide' %>
-    <%= f.text_field :delivery_postal_code, id: t('order.delivery_postal_code'), placeholder: 'Postal Code', class: 'input-small' %>
-    <%= f.text_field :delivery_city, placeholder: t('order.delivery_city'), class: 'input-medium' %>
-    <%= f.text_field :delivery_floor, placeholder: t('order.delivery_floor'), class: 'input-wide' %>
-    <%= f.text_field :delivery_door_code, placeholder: t('order.delivery_door_code'), class: 'input-wide' %>
-    <%= f.text_field :delivery_contact_name, placeholder: t('order.delivery_contact_name'), class: 'input-wide' %>
-    <%= f.text_field :delivery_contact_phone_number, placeholder: t('order.delivery_contact_phone'), class: 'input-wide' %>
+    <%= f.text_field :delivery_name, placeholder: t('order.delivery_name'), class: 'input-wide', required: true %>
+    <%= f.text_field :delivery_address, placeholder: t('order.delivery_address'), class: 'input-wide', required: true %>
+    <%= f.text_field :delivery_postal_code, placeholder: t('order.delivery_postal_code'), class: 'input-small', required: true %>
+    <%= f.text_field :delivery_city, placeholder: t('order.delivery_city'), class: 'input-medium', required: true %>
+    <%= f.text_field :delivery_floor, placeholder: t('order.delivery_floor'), class: 'input-wide', required: true %>
+    <%= f.text_field :delivery_door_code, placeholder: t('order.delivery_door_code'), class: 'input-wide', required: true %>
+    <%= f.text_field :delivery_contact_name, placeholder: t('order.delivery_contact_name'), class: 'input-wide', required: true %>
+    <%= f.text_field :delivery_contact_phone_number, placeholder: t('order.delivery_contact_phone'), class: 'input-wide', required: true %>
   </div>
 
   <div class="clear">&nbsp;</div>
 
   <div class="float-right order-container">
     <%= f.hidden_field :status, placeholder: 'Status', value: 'submitted' %>
-    <%= f.submit t('order.submit_order_button'), class: 'button float-right' %>
+    <%= f.submit t('order.submit_order_button'), class: 'button float-right', id: 'submit_order' %>
   </div>
 
 <% end %>

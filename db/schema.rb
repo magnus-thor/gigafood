@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117083536) do
+ActiveRecord::Schema.define(version: 20180117104713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20180117083536) do
     t.integer "min_quantity", default: 10
     t.bigint "category_id"
     t.integer "sort_key"
+    t.string "of_type", default: "dish"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 

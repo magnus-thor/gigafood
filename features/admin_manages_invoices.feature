@@ -8,12 +8,14 @@ Feature: Admin creates invoice
     Given the following categories exist:
       | name    | description                |
       | Starter | Description for category 1 |
+      | Cutlery | Description for cutlery    |
 
     And the following dishes exist:
-      | name   | description            | price | min_quantity | category |
-      | Dish 1 | Description for Dish 1 | 100   | 10           | Starter  |
-      | Dish 2 | Description for Dish 2 | 200   | 10           | Starter  |
-      | Dish 3 | Description for Dish 3 | 300   | 10           | Starter  |
+      | name    | description            | price | min_quantity | category |
+      | Dish 1  | Description for Dish 1 | 100   | 10           | Starter  |
+      | Dish 2  | Description for Dish 2 | 200   | 10           | Starter  |
+      | Dish 3  | Description for Dish 3 | 300   | 10           | Starter  |
+      | Cutlery | Knife, fork and spoon  | 2     | 1            | Cutlery  |
 
     And the following orders exist:
       | billing_name | delivery_date    | billing_email          |
@@ -45,7 +47,7 @@ Feature: Admin creates invoice
     Given an Invoice has been generated for "Bob Schmob"'s order
     And I press "View Invoice"
     Then I should see a pdf in a new window
-  
+
   Scenario: Admin can't click on View Invoice if the invoice has not been generated
     Given I click on "Orders"
     And I press "View" for order "Bob Schmob"

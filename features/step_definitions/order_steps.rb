@@ -53,6 +53,9 @@ Given(/^"([^"]*)"'s order contains no items$/) do |billing_name|
   @order.clear if @order.shopping_cart_items
 end
 
+Then(/^I select "([^"]*)" and fill in quantity with "([^"]*)"$/) do |option, quantity|
+  fill_in "#{option}_quantity", with: quantity
+end
 
 And(/^I fill in all relevant fields and submit the order$/) do
   steps %q{

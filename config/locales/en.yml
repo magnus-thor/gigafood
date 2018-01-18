@@ -58,6 +58,8 @@ en:
     delivery_contact_name: 'Delivery Contact Name'
     delivery_contact_phone: 'Delivery Contact Phone'
     submit_order_button: 'Submit Order'
+    submit_add_cutlery_order_button: 'Add Cutlery'
+    submit_remove_cutlery_order_button: 'Remove Cutlery'
 
   confirm:
     main_header: 'Thanks for ordering from Gigafood!'

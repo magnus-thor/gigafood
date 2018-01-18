@@ -5,8 +5,9 @@ Feature: Allow end user to commit order
 
   Background:
     Given the following dishes exist:
-      | name   | description            | price | min_quantity |
-      | Dish 1 | Description for Dish 1 | 100   | 10           |
+      | name    | description            | price | min_quantity | of_type |
+      | Dish 1  | Description for Dish 1 | 100   | 10           | dish    |
+      | Cutlery | Knife, fork and spoon  | 2     | 1            | cutlery |
     And there are no custom translations
 
   Scenario: User get an error if Billing address is missing.

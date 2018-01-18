@@ -12,17 +12,5 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+// = require_tree .
 
-$(document).ready(function() {
-    $('input[type=radio][id=order_delivery_method_delivery]').change(function() {
-        var fields = $('#delivery_address_fields');
-        fields.show();
-    });
-
-    $('input[type=radio][id=order_delivery_method_pickup]').change(function() {
-        var fields = $('#delivery_address_fields');
-        fields.hide();
-    });
-
-});

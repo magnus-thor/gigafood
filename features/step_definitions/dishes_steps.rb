@@ -19,7 +19,6 @@ end
 
 When(/^I click on \+ for "([^"]*)"$/) do |dish_name|
   dish_id = Product.find_by(name: dish_name).id
-
   within "#dish_item_#{dish_id}" do
     click_link_or_button '+'
   end
