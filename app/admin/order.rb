@@ -22,8 +22,8 @@ ActiveAdmin.register Order do
   end
 
   scope 'All', :all
-  scope 'Approved / Submitted', :non_temporary
-  scope 'Temporary', :temporary
+  scope 'Approved / Submitted', :non_pending
+  scope 'Pending', :pending
 
   action_item :confirm_order, only: :show, if: proc { resource.status != 'canceled' and resource.status != 'approved' } do
     link_to 'Confirm Order', confirm_admin_order_path(resource), method: :put
@@ -80,11 +80,10 @@ ActiveAdmin.register Order do
     column :billing_name
     column :allergies
     column :boxes
-    column :status
     actions
   end
 
-  filter :status, as: :select, collection: ->{['submitted', 'approved', 'temporary']}
+  filter :status, as: :select, collection: ->{['submitted', 'approved', 'pending']}
   filter :delivery_date
   filter :delivery_method, as: :select, collection: ->{['pick up', 'delivery']}
 
@@ -133,7 +132,7 @@ ActiveAdmin.register Order do
       f.input :delivery_date
       f.input :allergies
       f.input :boxes
-      f.input :status, as: :select, collection: ['submitted', 'approved', 'temporary']
+      f.input :status, as: :select, collection: ['submitted', 'approved', 'pending']
       f.input :email
       f.input :delivery_method
       f.input :delivery_name

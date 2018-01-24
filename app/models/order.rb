@@ -11,8 +11,8 @@ class Order < ApplicationRecord
   validates_presence_of *DEFAULT_ATTRIBUTES, if: :submitted?
   validates_presence_of *DELIVERY_ATTRIBUTES, if: :delivery?
 
-  scope :non_temporary, -> { where.not(:status => 'temporary') }
-  scope :temporary, -> { where(:status => 'temporary') }
+  scope :non_pending, -> { where.not(:status => 'pending') }
+  scope :pending, -> { where(:status => 'pending') }
 
   has_many :attachments, dependent: :destroy
 

@@ -21,12 +21,20 @@ RSpec.describe Product, type: :model do
       create(:product, of_type: 'cutlery')
     end
 
-    it "should have a dishes named scope that returns dishes" do
+    it 'should have a dishes named scope that returns dishes' do
       expect(Product.dishes.count).to be(5)
     end
 
-    it "should have a cutlery named scope that returns cutlery" do
+    it 'dishes scope does not contain cutlery' do
+      expect(Product.dishes.any? {|dish| dish.of_type == 'cutlery' }).to be(false)
+    end
+
+    it 'should have a cutlery named scope that returns cutlery' do
       expect(Product.cutlery.count).to be(1)
+    end
+
+    it 'cutlery scope does not contain dish' do
+      expect(Product.cutlery.any? {|cutlery| cutlery.of_type == 'dish' }).to be(false)
     end
   end
 end

@@ -1,3 +1,4 @@
+@javascript
 Feature: List orders
   As Giga-Food
   In order update customers order
