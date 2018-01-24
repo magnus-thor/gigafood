@@ -3,29 +3,51 @@
 <div class="order-info">
   <p>Order info:</p>
   <% @order.shopping_cart_items.each do |item| %>
-    <p><%= item.item.name %>,  Price: <%= item.price %>, Quantity: <%= item.quantity %></p>
+    <p><%= item.item.name %>, Price: <%= item.price %>, Quantity: <%= item.quantity %></p>
   <% end %>
 </div>
 <%= form_tag admin_order_path(@order), method: :put do %>
+  <% if @cutlery %>
+    <div class="clear">
+      <div class="menu-item-form" id="dish_item_<%= @cutlery.id %>">
+        <%= @cutlery.price %> SEK <br>
+        <input class="q_text" type="text" name="dishes[<%= @cutlery.id %>]" value="" id="dish_<%= @cutlery.id %>"
+               placeholder="0" size="5" maxlength="4" data-minquantity="<%= @cutlery.min_quantity %>"
+               onblur="validateNumberOnBlur(this)"
+               onkeyup="validateNumber(this)"
+               onclick="validateNumber(this)"
+               onchange="validateNumber(this)">
+        <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= @cutlery.id %>')"> -
+        </button>
+        <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= @cutlery.id %>')"> +
+        </button>
+        <p class="min-order"><%= t('menu.dish_min_quantity', min_count: @cutlery.min_quantity) %></p>
+      </div>
+      <div class="menu-item-title"><%= @cutlery.name %></div>
+    </div>
+  <% end %>
+
   <% @categories.each do |category| %>
     <div class="clear"></div>
     <h2 class="center"><%= category.name.upcase %></h2>
-    <% category.products.order(:sort_key).all.each do |dish| %>
+    <% category.products.order(:sort_key).all.each do |product| %>
       <div class="clear">
-        <div class="menu-item-form" id="dish_item_<%= dish.id %>">
-          <%= dish.price %> SEK <br>
-          <input class="q_text" type="text" name="dishes[<%= dish.id %>]" value="" id="dish_<%= dish.id %>"
-                 placeholder="0" size="5" maxlength="4" data-minquantity="<%= dish.min_quantity %>"
+        <div class="menu-item-form" id="dish_item_<%= product.id %>">
+          <%= product.price %> SEK <br>
+          <input class="q_text" type="text" name="dishes[<%= product.id %>]" value="" id="dish_<%= product.id %>"
+                 placeholder="0" size="5" maxlength="4" data-minquantity="<%= product.min_quantity %>"
                  onblur="validateNumberOnBlur(this)"
                  onkeyup="validateNumber(this)"
                  onclick="validateNumber(this)"
-                 onchange="validateNumber(this)" >
-          <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= dish.id %>')"> - </button>
-          <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= dish.id %>')"> + </button>
-          <p class="min-order"><%= t('menu.dish_min_quantity', min_count: dish.min_quantity) %></p>
+                 onchange="validateNumber(this)">
+          <button class="q_button" type="button" name="button" onclick="decreaseNumber('dish_<%= product.id %>')"> -
+          </button>
+          <button class="q_button" type="button" name="button" onclick="increaseNumber('dish_<%= product.id %>')"> +
+          </button>
+          <p class="min-order"><%= t('menu.dish_min_quantity', min_count: product.min_quantity) %></p>
           <br>
         </div>
-        <div class="menu-item-title"><%= dish.name %></div>
+        <div class="menu-item-title"><%= product.name %></div>
       </div>
     <% end %>
   <% end %>

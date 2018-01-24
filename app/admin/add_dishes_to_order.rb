@@ -7,6 +7,7 @@ ActiveAdmin.register_page "Add Dishes" do
     def index
       @page_title = 'Add Dishes to order'
       @categories = Category.order(:sort_key).all
+      @cutlery = Product.cutlery.first
       @order = Order.find(params[:id])
     end
   end
