@@ -1,6 +1,11 @@
 class ConfirmationMailer < ApplicationMailer
   default from: 'noreply@gigafood.se'
 
+  def review_email(order)
+    @order = order
+    mail(to: @order.billing_email, subject: 'Gigafood Order')
+  end
+
   def confirmation_email(order)
     @order = order
     @url = 'http://example.com/confirmation'

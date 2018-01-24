@@ -57,8 +57,8 @@ ActiveAdmin.register Order do
     @order = Order.find(params[:id])
     @order.status = 'approved'
     @order.save
-    ConfirmationMailer.confirmation_email(@order).deliver
-    ConfirmationMailer.move_by_bike_email('boka@movebybike.se', @order).deliver
+    ConfirmationMailer.confirmation_email(@order).deliver_now
+    ConfirmationMailer.move_by_bike_email('boka@movebybike.se', @order).deliver_now
     redirect_to resource_path, notice: 'Confirmed!'
   end
 
@@ -66,7 +66,7 @@ ActiveAdmin.register Order do
     @order = Order.find(params[:id])
     @order.status = 'canceled'
     @order.save
-    ConfirmationMailer.cancelation_email(@order).deliver
+    ConfirmationMailer.cancelation_email(@order).deliver_now
     redirect_to resource_path, notice: 'Canceled!'
   end
 
