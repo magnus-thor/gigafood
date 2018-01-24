@@ -34,9 +34,10 @@
     <%= number_field_tag :cutlery_quantity %>
     <%= f.hidden_field :status, placeholder: 'Status', value: 'submitted' %>
     <% if @order.shopping_cart_items.find_by(item_id: @cutlery.id) %>
-      <%= f.submit t('order.submit_remove_cutlery_order_button'), class: 'button float-right', id: 'remove_cutlery' %>
+      <%= f.submit t('order.submit_remove_cutlery_order_button'), class: 'button', id: 'remove_cutlery' %>
     <% end %>
-    <%= f.submit t('order.submit_add_cutlery_order_button'), class: 'button float-right', id: 'add_cutlery' %>
+    <%= f.submit t('order.submit_add_cutlery_order_button'), class: 'button', id: 'add_cutlery' %>
+    <br>
     <%= @cutlery.description %>
   <% end %>
 <% end %>

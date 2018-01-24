@@ -22,7 +22,7 @@ Feature: User wants cutlery
 
   Scenario: User adds/removes cutlery
     Given I select "cutlery" and fill in quantity with "5"
-    When I press "Add Cutlery"
+    When I press "Add"
     Then I should see "Cutlery Added"
-    When I press "Remove Cutlery"
+    When I press "Remove"
     Then I should see "Cutlery Removed"

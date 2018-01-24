@@ -24,12 +24,12 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if params[:commit] == 'Add Cutlery'
+    if params[:commit] == 'Add'
       quantity = params[:cutlery_quantity].to_i
       @order.add(@cutlery, 2, quantity)
       flash[:success] = 'Cutlery Added'
       redirect_to orders_path
-    elsif params[:commit] == 'Remove Cutlery'
+    elsif params[:commit] == 'Remove'
       @order.remove(@cutlery, @order.shopping_cart_items.last.quantity) # TODO refactor
       flash[:success] = 'Cutlery Removed'
       redirect_to orders_path
