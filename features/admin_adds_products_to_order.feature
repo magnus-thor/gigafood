@@ -26,10 +26,10 @@ Feature: List orders
       | Kari Lee     | 2017-10-08 12:00 | kari.lee@example.com   |
 
 
-  Scenario: Add dishes to order
+  Scenario: Add products to order
     When I press "Orders"
     And I press "Edit" for order "Bob Schmob"
-    And I press "Add Dishes"
+    And I press "Add Products"
     And I click on + for "Dish 1"
     And I click on + for "Dish 2"
     And I click on + for "Dish 2"

@@ -50,7 +50,7 @@ ActiveAdmin.register Order do
   end
 
   action_item :view_menu, only: :edit do
-    link_to 'Add Dishes', admin_add_dishes_path(id: resource.id)
+    link_to 'Add Products', admin_add_products_path(id: resource.id)
   end
 
   member_action :confirm, method: :put do

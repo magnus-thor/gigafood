@@ -1,11 +1,11 @@
-ActiveAdmin.register_page "Add Dishes" do
+ActiveAdmin.register_page "Add Products" do
   menu false
 
   controller do
     layout 'active_admin'
 
     def index
-      @page_title = 'Add Dishes to order'
+      @page_title = 'Add Products to order'
       @categories = Category.order(:sort_key).all
       @cutlery = Product.cutlery.first
       @order = Order.find(params[:id])
