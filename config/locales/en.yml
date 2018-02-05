@@ -60,6 +60,8 @@ en:
     submit_order_button: 'Submit Order'
     submit_add_cutlery_order_button: 'Add'
     submit_remove_cutlery_order_button: 'Remove'
+    cutlery_quantity: 'Do you need cutlery?'
+    cutlery_placeholder: 'Add number of people'
 
   confirm:
     main_header: 'Thanks for ordering from Gigafood!'
