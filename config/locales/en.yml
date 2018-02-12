@@ -12,6 +12,14 @@ en:
             Changing your order
             We will make every effort to accommodate last minute changes. Please contact our booking at
             hello@gigafood.se as soon as possible and we'll do our best."
+    policy_html: "Booking Policy: <br>
+            We recommend that you send your request five days ahead. However, we always try to make it work so if
+            you're having a last minute request please call us:  +46 (0) 8 120 543 76 <br>
+            Cancellation: <br>
+            Cancellation can be done until 7 days before delivery. <br>
+            Changing your order: <br>
+            We will make every effort to accommodate last minute changes. Please contact our booking at
+            hello@gigafood.se as soon as possible and we'll do our best."
 
   lable:
     dish: 'Dish'
