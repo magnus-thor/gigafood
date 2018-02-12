@@ -62,8 +62,8 @@ Feature: Allow end user to commit order
     And I click on "Submit Order"
     Then I should see "Thanks for ordering from Gigafood!"
     And I should see "A confirmation email will be sent to you as soon as your booking is confirmed. Please contact us if you have any questions. We’d love to hear from you!"
-    And the tax for the order should be "120"
-    And the total for the order should be "1120"
+    And the tax for the order should be "285.6"
+    And the total for the order should be "2665.6"
     And the order should have delivery method set to "delivery"
     When I go to the landing page
     And I click on "Next"
