@@ -1,0 +1,46 @@
+<% if @order.delivery_method == 'pickup' %>
+  <%= I18n.t('email.review_pickup_date_text', delivery_date: @order.delivery_date) %><br>
+<% else %>
+  <%= I18n.t('email.review_delivery_date_text', delivery_date: @order.delivery_date) %><br>
+<% end %>
+<br>
+<%= I18n.t('email.order_header') + ":" %><br>
+<% @order.shopping_cart_items.each do |order_item| %>
+  <%= I18n.t('lable.dish') + ":  " + order_item.item.name %>
+  <%= I18n.t('lable.quantity') + ":  " + order_item.quantity.to_s + ".  " + I18n.t('lable.price') + ":  " + humanized_money_with_symbol(order_item.quantity * order_item.price) %>
+  <%= %><br>
+<% end %>
+<br>
+<%= I18n.t('order.subtotal') + " " + humanized_money_with_symbol(@order.subtotal) + "  " + I18n.t('order.tax') + " " +
+        humanized_money_with_symbol(@order.subtotal) + " " + I18n.t('order.total') + " " + humanized_money_with_symbol(@order.total) %><br>
+<br>
+<% if @order.allergies != "" %>
+  <%= I18n.t('email.allergies_header') + ":" %><br>
+  <%= @order.allergies %><br>
+<% end %>
+<br>
+<%= I18n.t('email.delivery_header') %><br>
+<% if @order.delivery_method == 'pickup' %>
+  <%= I18n.t('email.delivery_text_pickup') %><br>
+<% else %>
+  <%= I18n.t('email.delivery_text_delivery') %><br>
+  <%= @order.delivery_name + "  " +
+          @order.delivery_address + "  " +
+          @order.delivery_postal_code + "  " +
+          @order.delivery_city + "  " +
+          @order.delivery_floor + "  " +
+          @order.delivery_door_code + "  " +
+          @order.delivery_contact_name + "  " +
+          @order.delivery_contact_phone_number %><br>
+<% end %>
+<br>
+<%= I18n.t('email.payment_header') %><br>
+<%= @order.billing_name + "  " +
+        @order.billing_company + "  " +
+        @order.billing_org_nr + "  " +
+        @order.billing_address + "  " +
+        @order.billing_postal_code + "  " +
+        @order.billing_city + "  " +
+        @order.billing_phone + "  " +
+        @order.billing_email %><br>
+<br>
