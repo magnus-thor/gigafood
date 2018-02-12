@@ -1,5 +1,6 @@
 <div class="center">
-  <img src="" alt="">
+  <!--<img src="app/assets/images/gigafood_logo.png">-->
+  <%= image_tag('gigafood_logo.png', alt: 'gigafood_logo') %>
   <h1 class=""><%= I18n.t('email.confirm_main_header') %></h1>
   <%= I18n.t('email.review_main_text', order_id: @order.id) %><br>
   <br>
