@@ -12,7 +12,8 @@
 <% end %>
 <br>
 <%= I18n.t('order.subtotal') + " " + humanized_money_with_symbol(@order.subtotal) + "  " + I18n.t('order.tax') + " " +
-        humanized_money_with_symbol(@order.subtotal) + " " + I18n.t('order.total') + " " + humanized_money_with_symbol(@order.total) %><br>
+        humanized_money_with_symbol(@order.subtotal) + " " + I18n.t('order.total') + " " + humanized_money_with_symbol(@order.total) %>
+<br>
 <br>
 <% if @order.allergies != "" %>
   <%= I18n.t('email.allergies_header') + ":" %><br>
@@ -35,6 +36,9 @@
 <% end %>
 <br>
 <%= I18n.t('email.payment_header') %><br>
+<% if @url == 'http://example.com/confirmation' %>
+  <%= I18n.t('email.payment_text') %>
+<% end %>
 <%= @order.billing_name + "  " +
         @order.billing_company + "  " +
         @order.billing_org_nr + "  " +
@@ -44,3 +48,6 @@
         @order.billing_phone + "  " +
         @order.billing_email %><br>
 <br>
+<% if @url == 'http://example.com/confirmation' %>
+  <%= I18n.t('email.acceptance_header') %>
+<% end %>

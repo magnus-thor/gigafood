@@ -10,7 +10,7 @@ class ConfirmationMailer < ApplicationMailer
     @order = order
     @url = 'http://example.com/confirmation'
     @order.status = 'approved'
-      mail(to: @order.billing_email, subject: 'Confirmation from Gigafood')
+    mail(to: @order.billing_email, subject: 'Confirmation from Gigafood')
   end
 
   def cancelation_email(order)
