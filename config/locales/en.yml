@@ -83,10 +83,10 @@ en:
 
   email:
     confirm_main_header: 'Thanks for ordering from Gigafood!'
-    confirm_main_text: 'Your order (id: %{order_id}) is now confirmed and we look forward delivering to you!
-                 Please check your booking below and contact us if you have any further questions.
-                 Wish you a lovely day!
-                 /The Gigafood-team'
+    confirm_main_text: 'Your order is now confirmed and we look forward delivering to you! <br>
+                 Please check your booking below and contact us if you have any further questions. <br>
+                 Wish you a lovely day! <br>
+                 /The Gigafood-team <br>'
     confirm_delivery_date_text: 'Your selected delivery date: %{delivery_date} is now confirmed'
     confirm_pickup_date_text: 'Your selected pickup date: %{delivery_date} is now confirmed'
     order_header: 'Order'

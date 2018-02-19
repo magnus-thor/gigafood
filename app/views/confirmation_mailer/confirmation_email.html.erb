@@ -1,6 +1,13 @@
 <div class="center">
-  <%= render 'shared/email_header' %>
-  <%= I18n.t('email.confirm_main_text', order_id: @order.id) %>
-  <%= render 'shared/email_main' %>
-  <%= render 'shared/email_footer' %>
+  <%= image_tag('gigafood_logo.png', alt: 'gigafood_logo') %>
+  <h1><%= I18n.t('email.confirm_main_header') %></h1>
+  <h3><%= I18n.t('email.confirm_main_text').html_safe %></h3>
+  <%= I18n.t('gigafood.email') %><br>
+  <%= I18n.t('gigafood.phone_number') %><br>
 </div>
+<%= I18n.t('email.order_header') + ":" %><br>
+<% @order.shopping_cart_items.each do |order_item| %>
+  <%= I18n.t('lable.dish') + ":  " + order_item.item.name %>
+  <%= I18n.t('lable.quantity') + ":  " + order_item.quantity.to_s + ".  " + I18n.t('lable.price') + ":  " + humanized_money_with_symbol(order_item.quantity * order_item.price) %>
+  <%= %><br>
+<% end %>
