@@ -5,9 +5,88 @@
   <%= I18n.t('gigafood.email') %><br>
   <%= I18n.t('gigafood.phone_number') %><br>
 </div>
-<%= I18n.t('email.order_header') + ":" %><br>
-<% @order.shopping_cart_items.each do |order_item| %>
-  <%= I18n.t('lable.dish') + ":  " + order_item.item.name %>
-  <%= I18n.t('lable.quantity') + ":  " + order_item.quantity.to_s + ".  " + I18n.t('lable.price') + ":  " + humanized_money_with_symbol(order_item.quantity * order_item.price) %>
-  <%= %><br>
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-11">
+      <h4><%= I18n.t('email.order_header') %></h4><br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5"></div>
+    <div class="col-sm-3 text-center"><h5>Quantity</h5></div>
+    <div class="col-sm-1 text-right"><h5>Price</h5></div>
+    <div class="col-sm-2"></div>
+  </div>
+  <% @order.shopping_cart_items.each do |order_item| %>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5"><%= order_item.item.name %></div>
+      <div class="col-sm-3 text-center"><%= order_item.quantity.to_s %></div>
+      <div class="col-sm-1 text-right"><%= humanized_money(order_item.quantity * order_item.price) %></div>
+      <div class="col-sm-2 text-left">SEK</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-4"><%= order_item.item.description %></div>
+    </div>
+    <br>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-8"><%= I18n.t('order.subtotal') %></div>
+    <div class="col-sm-1 text-right"><%= humanized_money(@order.subtotal) %></div>
+    <div class="col-sm-2 text-left">SEK</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-8"><%= I18n.t('order.tax') %></div>
+    <div class="col-sm-1 text-right"><%= humanized_money(@order.taxes) %></div>
+    <div class="col-sm-2 text-left">SEK</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-8"><%= I18n.t('order.total') %></div>
+    <div class="col-sm-1 text-right"><%= humanized_money(@order.total) %></div>
+    <div class="col-sm-2 text-left">SEK</div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-11">
+      <% if @order.allergies != "" %>
+        <h3><%= I18n.t('email.allergies_header') %></h3>
+        <h3><%= I18n.t('email.allergies_text') %></h3>
+        <br>
+        <%= @order.allergies %><br>
+      <% end %>
+    </div>
+    <br>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-11"><%= I18n.t('email.delivery_header') %></div>
+    <div class="col-sm-offset-1 col-sm-11"><%= I18n.t('email.delivery_text') %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Date:</div>
+    <div class="col-sm-6"><% @order.delivery_date.strftime("%Y/%m/%d") %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Time:</div>
+    <div class="col-sm-6"><% @order.delivery_date.strftime("%H:%M") %></div>
+  </div>
+ <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Name/Company of the receiver:</div>
+  </div>
+ <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Delivery address:</div>
+  </div>
+ <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Postal Code:</div>
+  </div>
+ <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Floor:</div>
+  </div>
+ <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Door Code:</div>
+  </div>
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Person to contact when delivery arrives (name and phone):</div>
+  </div>
+</div>
