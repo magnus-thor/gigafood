@@ -63,30 +63,108 @@
     <div class="col-sm-offset-1 col-sm-11"><%= I18n.t('email.delivery_header') %></div>
     <div class="col-sm-offset-1 col-sm-11"><%= I18n.t('email.delivery_text') %></div>
   </div>
+  <!--delivery or pickup-->
+  <% if @order.delivery_method == 'pickup' %>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-11">
+        <%= I18n.t('email.delivery_text_pickup') %><br>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-11">
+        <%= I18n.t('email.delivery_text_delivery') %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Date:</div>
+      <div class="col-sm-6">
+        <% @order.delivery_date.strftime("%Y/%m/%d") %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Time:</div>
+      <div class="col-sm-6">
+        <% @order.delivery_date.strftime("%H:%M") %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Name/Company of the receiver:</div>
+      <div class="col-sm-6"><%= @order.delivery_name %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Delivery address:</div>
+      <div class="col-sm-6"><%= @order.delivery_address %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Postal Code:</div>
+      <div class="col-sm-6"><%= @order.delivery_postal_code %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Floor:</div>
+      <div class="col-sm-6"><%= @order.delivery_floor %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Door Code:</div>
+      <div class="col-sm-6"><%= @order.delivery_door_code %></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-5">Person to contact when delivery arrives (name and phone):</div>
+      <div class="col-sm-6"><%= @order.delivery_name + '  ' + @order.delivery_contact_phone_number %></div>
+    </div>
+  <% end %>
+  <br>
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Date:</div>
-    <div class="col-sm-6"><% @order.delivery_date.strftime("%Y/%m/%d") %></div>
+    <div class="col-sm-offset-1 col-sm-5">
+      <%= I18n.t('email.payment_header') %>
+    </div>
   </div>
   <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Time:</div>
-    <div class="col-sm-6"><% @order.delivery_date.strftime("%H:%M") %></div>
+    <div class="col-sm-offset-1 col-sm-10">
+      <% if @url == 'http://example.com/confirmation' %>
+        <%= I18n.t('email.payment_text') %>
+      <% end %>
+    </div>
   </div>
- <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Name/Company of the receiver:</div>
+  <br>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Name:</div>
+    <div class="col-sm-6">
+      <%= @order.billing_name %></div>
   </div>
- <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Delivery address:</div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Company/Organisation:</div>
+    <div class="col-sm-6">
+      <%= @order.billing_company %></div>
   </div>
- <div class="row">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Organisation number:</div>
+    <div class="col-sm-6"><%= @order.billing_org_nr %></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Address:</div>
+    <div class="col-sm-6"><%= @order.billing_address %></div>
+  </div>
+  <div class="row">
     <div class="col-sm-offset-1 col-sm-5">Postal Code:</div>
+    <div class="col-sm-6"><%= @order.billing_postal_code %></div>
   </div>
- <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Floor:</div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Phone:</div>
+    <div class="col-sm-6"><%= @order.billing_phone %></div>
   </div>
- <div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Door Code:</div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">Email to send invoice to:</div>
+    <div class="col-sm-6"><%= @order.billing_email %></div>
   </div>
-<div class="row">
-    <div class="col-sm-offset-1 col-sm-5">Person to contact when delivery arrives (name and phone):</div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-5">
+      <% if @url == 'http://example.com/confirmation' %>
+        <%= I18n.t('email.acceptance_header') %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-6">
+      <%= I18n.t('gigafood.policy_html').html_safe %><br>
+    </div>
   </div>
 </div>

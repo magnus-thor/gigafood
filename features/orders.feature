@@ -14,12 +14,12 @@ Feature: List orders
       | Desserts | Description for dessertss... | 3        |
 
     And the following dishes exist:
-      | name                 | description                                                                                                                                                                                                                                                                                                                            | price | min_quantity | category |
-      | Starter dish         | Really really long description for this dish explaining how awesome it tastes and looks. We need this multi line description to test what happends if the table is overlaping the footer.                                                                                                                                              | 100   | 10           | Starters |
-      | Another Starter dish | Really really long description for this dish explaining how awesome it tastes and looks. We need this multi line description to test what happends if the table is overlaping the footer.                                                                                                                                              | 100   | 10           | Starters |
-      | Dessert dish         | Our dessert dish is simply fucking awespme                                                                                                                                                                                                                                                                                             | 200   | 10           | Desserts |
-      | Main dish            | Our main dish is simply fucking awesome. It would take a really really long description for this dish explaining how awesome it actually is                                                                                                                                                                                            | 200   | 10           | Mains    |
-      | Another Main dish    | Our main dish is simply fucking awesome. It would take a really really long description for this dish explaining how awesome it actually is. Really really long description for this dish explaining how awesome it tastes and looks. We need this multi line description to test what happends if the table is overlaping the footer. | 200   | 10           | Mains    |
+      | name                 | description | price | min_quantity | category |
+      | Starter dish         | description | 100   | 10           | Starters |
+      | Another Starter dish | description | 100   | 10           | Starters |
+      | Dessert dish         | description | 200   | 10           | Desserts |
+      | Main dish            | description | 200   | 10           | Mains    |
+      | Another Main dish    | description | 200   | 10           | Mains    |
 
     And the following orders exist:
       | billing_name | delivery_date    | billing_email          |
@@ -63,12 +63,12 @@ Feature: List orders
     Then "bob.schmob@example.com" should receive an email
     And "bob.schmob@example.com" should see "Confirmation from Gigafood" in the subject
     And "bob.schmob@example.com" should see "Thanks for ordering from Gigafood!" in the email
-    And "bob.schmob@example.com" should see "Your selected pickup" in the email
     And "bob.schmob@example.com" should see "hello@gigafood.se" in the email
     And "bob.schmob@example.com" should see "8 120 543 76" in the email
-    And "bob.schmob@example.com" should see "Total: 0 kr" in the email
-    And "bob.schmob@example.com" should see "VAT 12%: 0 kr" in the email
-    And "bob.schmob@example.com" should see "Total price inc. VAT: 0 kr" in the email
+    And "bob.schmob@example.com" should see "Total:" in the email
+    And "bob.schmob@example.com" should see "VAT 12%:" in the email
+    And "bob.schmob@example.com" should see "Total price inc. VAT:" in the email
+    And "bob.schmob@example.com" should see "15,680" in the email
     And "bob.schmob@example.com" should see "Allergies" in the email
     And "bob.schmob@example.com" should see "peanuts" in the email
     And "bob.schmob@example.com" should see "Delivery" in the email
