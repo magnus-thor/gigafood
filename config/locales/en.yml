@@ -38,6 +38,7 @@ en:
   order:
     main_header: 'ORDER'
     error: 'The order contains no items. No reason to generate an empty menu'
+    delivery_cost: 'Delivery Cost:'
     subtotal: 'Total:'
     tax: 'VAT 12%:'
     total: 'Total price inc. VAT:'

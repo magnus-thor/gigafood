@@ -2,13 +2,13 @@
   <%= image_tag('gigafood_logo.png', alt: 'gigafood_logo') %>
   <h1><%= I18n.t('email.confirm_main_header') %></h1>
   <h3><%= I18n.t('email.confirm_main_text').html_safe %></h3>
-  <%= I18n.t('gigafood.email') %><br>
-  <%= I18n.t('gigafood.phone_number') %><br>
+  <h6><%= I18n.t('gigafood.email') %></h6>
+  <h6><%= I18n.t('gigafood.phone_number') %></h6>
 </div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-offset-1 col-sm-11">
-      <h4><%= I18n.t('email.order_header') %></h4><br>
+      <h4><%= I18n.t('email.order_header') %></h4>
     </div>
   </div>
   <div class="row">
@@ -29,6 +29,11 @@
     </div>
     <br>
   <% end %>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-8 col-xs-7"><%= I18n.t('order.delivery_cost') %></div>
+    <div class="col-sm-1 col-xs-2 text-right"><% %></div>
+    <div class="col-sm-2 col-xs-2 text-left">SEK</div>
+  </div>
   <div class="row">
     <div class="col-sm-offset-1 col-sm-8 col-xs-7"><%= I18n.t('order.subtotal') %></div>
     <div class="col-sm-1 col-xs-2 text-right"><%= humanized_money(@order.subtotal) %></div>
@@ -51,7 +56,6 @@
       <% if @order.allergies != "" %>
         <h3><%= I18n.t('email.allergies_header') %></h3>
         <h3><%= I18n.t('email.allergies_text') %></h3>
-        <br>
         <%= @order.allergies %><br>
       <% end %>
     </div>
@@ -79,12 +83,12 @@
     <div class="row">
       <div class="col-sm-offset-1 col-sm-5 col-xs-6">Date:</div>
       <div class="col-sm-6 col-xs-6">
-        <% @order.delivery_date.strftime("%Y/%m/%d") %></div>
+        <%= @order.delivery_date.strftime("%Y/%m/%d") %></div>
     </div>
     <div class="row">
       <div class="col-sm-offset-1 col-sm-5 col-xs-6">Time:</div>
       <div class="col-sm-6 col-xs-6">
-        <% @order.delivery_date.strftime("%H:%M") %></div>
+        <%= @order.delivery_date.strftime("%H:%M") %></div>
     </div>
     <div class="row">
       <div class="col-sm-offset-1 col-sm-5 col-xs-6">Name/Company of the receiver:</div>
@@ -155,6 +159,7 @@
     <div class="col-sm-offset-1 col-sm-5 col-xs-6">Email to send invoice:</div>
     <div class="col-sm-6 col-xs-6"><%= @order.billing_email %></div>
   </div>
+  <br>
   <div class="row">
     <div class="col-sm-offset-1 col-sm-5">
       <% if @url == 'http://example.com/confirmation' %>
