@@ -2,22 +2,27 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="http://localhost:3000/bootstrap.qcss">
+    <%= stylesheet_link_tag 'bootstrap' %>
     <style>
 
       @font-face {
         font-family: 'gigafood';
-        src: url("http://localhost:3000/FuturaPTBook.woff");
+        src: url("http://localhost:3000/FuturaPTMedium.woff");
       }
 
       body {
         color: #121212;
-        font-family: 'gigafood', sans-serif;
+        font-family: 'gigafood',"Comic Sans MS",Arial,Helvetica,sans-serif;
         text-rendering: optimizeLegibility;
       }
 
       h1, h2, h3, h4, h5, h6 {
+        font-family: 'gigafood';
         text: bold;
+      }
+
+      .container-fluid {
+        font-family: 'gigafood';
       }
 
       .center {

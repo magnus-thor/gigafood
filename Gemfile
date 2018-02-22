@@ -21,6 +21,7 @@ gem 'acts_as_shopping_cart', github: 'dabit/acts_as_shopping_cart', branch: 'rai
 gem 'responsive_active_admin'
 gem 'active_admin_datetimepicker'
 gem 'rack-cors'
+gem 'premailer-rails'
 
 # Attachments
 gem 'paperclip', '~> 5.0.0'
