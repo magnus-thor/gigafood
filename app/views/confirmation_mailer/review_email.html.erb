@@ -1,6 +1,4 @@
-<div class="center">
-  <%= render 'shared/email_header' %>
-</div>
+<%= render 'shared/email_header' %>
 <%= I18n.t('email.review_main_text', order_id: @order.id) %><br>
 <br>
 <%= render 'shared/email_main' %>
