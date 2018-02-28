@@ -165,7 +165,7 @@ class PdfGeneratorService
   private
 
   def create_and_configure_pdf
-    pdf = Prawn::Document.new()
+    pdf = Prawn::Document.new(:page_size => 'A4')
 
     pdf.font_families.update('Futura' => {
         bold: Rails.root.join('app/assets/fonts/futura-medium-bt.ttf'),
