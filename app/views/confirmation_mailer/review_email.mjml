@@ -1,0 +1,25 @@
+<mjml>
+	<mj-body>
+		<mj-container>
+          <mj-section>
+            <% @order.shopping_cart_items.each do |order_item| %>
+                <mj-column width="34%">
+                  <mj-text>
+                        <%= order_item.item.name %>!
+                  </mj-text>
+                </mj-column>
+                <mj-column width="33%">
+                    <mj-text>
+                        <%= order_item.quantity.to_s %>
+                    </mj-text>
+                </mj-column>
+                <mj-column width="33%" color="#F45e46">
+                  <mj-text>
+                    <%= humanized_money(order_item.quantity * order_item.price) %> SEK
+                  </mj-text>
+                </mj-column>
+            <% end %>
+          </mj-section>
+	    </mj-container>
+	</mj-body>
+</mjml>

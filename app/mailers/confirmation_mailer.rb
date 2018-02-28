@@ -5,7 +5,10 @@ class ConfirmationMailer < ApplicationMailer
 
   def review_email(order)
     @order = order
-    mail(to: @order.billing_email, subject: 'Gigafood Order')
+    # mail(to: @order.billing_email, subject: 'Gigafood Order')
+    mail(to: @order.billing_email, subject: 'Gigafood Order') do |format|
+      format.mjml
+    end
   end
 
   def confirmation_email(order)
@@ -25,7 +28,7 @@ class ConfirmationMailer < ApplicationMailer
 
   def move_by_bike_email(email, order)
     @order = order
-    mail(to: email, subject: 'Request for delivery from Gigafood')
+    #mail(to: email, subject: 'Request for delivery from Gigafood')
   end
 
     def attach_image

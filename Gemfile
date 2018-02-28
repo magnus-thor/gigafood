@@ -22,6 +22,7 @@ gem 'responsive_active_admin'
 gem 'active_admin_datetimepicker'
 gem 'rack-cors'
 gem 'premailer-rails'
+gem 'mjml-rails'
 
 # Attachments
 gem 'paperclip', '~> 5.0.0'
