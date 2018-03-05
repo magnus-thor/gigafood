@@ -2,33 +2,199 @@
 	<mj-body>
 		<mj-container>
              <!-- Header -->
-             <mj-section>
-                 <mj-text font-size="32" align="center">
-                   <%= I18n.t('email.confirm_main_header') %>
-                 </mj-text>
-             </mj-section>
-             <!-- Main Test -->
-             <mj-section>
-                <mj-column>
-                  <mj-table>
-                    <tr style="text-align:right;padding:15px 0;">
-                        <%= I18n.t('email.order_header') %>
-                    </tr>
-                    <tr style="text-align:left;padding:15px 0;">
-                      <th style="padding: 0 15px 0 0;"></th>
-                      <th style="padding: 0 15px;">Quantity</th>
-                      <th style="padding: 0 0 0 15px;">Price</th>
-                    </tr>
-                    <% @order.shopping_cart_items.each do |order_item| %>
-                        <tr>
-                          <td style="padding: 0 15px 0 0;"><%= order_item.item.name %></td>
-                          <td style="padding: 0 15px;"><%= order_item.quantity.to_s %></td>
-                          <td style="padding: 0 0 0 15px;"><%= humanized_money(order_item.quantity * order_item.price) %> SEK</td>
-                        </tr>
-                    <% end %>
-                  </mj-table>
-                </mj-column>
-             </mj-section>
-	    </mj-container>
+      <mj-section>
+                 <!-- logo goes here -->
+			  <mj-column>
+				 <mj-image src="../assets/images/gigafood_logo.png" />
+				</mj-column>
+			</mj-section>
+			<mj-section>
+				<mj-column>
+	        <mj-text font-size="32" align="center">
+	          <%= I18n.t('email.confirm_main_header') %>
+	        </mj-text>
+          <mj-spacer height="10px" />
+          <mj-text font-size="22" align="center">
+           <%= I18n.t('email.confirm_main_text').html_safe %>
+          </mj-text>
+	        <mj-spacer height="5px" />
+	        <mj-text font-size="14" align="center">
+	          <%= I18n.t('gigafood.email') %>
+	        </mj-text>
+	        <mj-text font-size="14" align="center">
+	          <%= I18n.t('gigafood.phone_number') %>
+	        </mj-text>
+	        <mj-spacer height="10px" />
+	        <mj-text>
+	           <%= I18n.t('email.review_main_text', order_id: @order.id) %><br>
+	        </mj-text>
+				</mj-column>
+	  	</mj-section>
+      <!-- Main Text -->
+	   <mj-section>
+	      <mj-column>
+	        <mj-table>
+	          <tr style="text-align:left;padding:15px 0;">
+	            <th style="padding: 0 15px 0 0;"><%= I18n.t('email.order_header') %></th>
+	            <th style="padding: 0 15px;" align="right">Quantity</th>
+	            <th style="padding: 0 0 0 15px;" align="right">Price</th>
+	          </tr>
+	          <% @order.shopping_cart_items.each do |order_item| %>
+	              <tr>
+	                <td style="padding: 0 15px 0 0;"><%= order_item.item.name %></td>
+	                <td style="padding: 0 15px;" align="right"><%= order_item.quantity.to_s %></td>
+	                <td style="padding: 0 0 0 15px;"  align="right"><%= humanized_money(order_item.quantity * order_item.price) %> SEK</td>
+	              </tr>
+	              <tr>
+	                <td style="padding: 0 15px 0 0;"><%= order_item.item.description %></td>
+	              </tr>
+	          <% end %>
+	        </mj-table>
+	        <mj-table>
+	          <tr>
+	            <td style="padding: 0 15px 0 0;"><%= I18n.t('order.delivery_cost') %></td>
+	            <td style="padding: 0 15px;"></td>
+	            <td style="padding: 0 0 0 15px;"  align="right"></td>
+	          </tr>
+	          <tr>
+	            <td style="padding: 0 15px 0 0;"><%= I18n.t('order.subtotal') %></td>
+	            <td style="padding: 0 15px;"></td>
+	            <td style="padding: 0 0 0 15px;" align="right"><%= humanized_money(@order.subtotal) %> SEK</td>
+	          </tr>
+	          <tr>
+	            <td style="padding: 0 15px 0 0;"><%= I18n.t('order.tax') %></td>
+	            <td style="padding: 0 15px;"></td>
+	            <td style="padding: 0 0 0 15px;" align="right"><%= humanized_money(@order.taxes) %> SEK</td>
+	          </tr>
+	          <tr>
+	            <td style="padding: 0 15px 0 0;"><%= I18n.t('order.total') %></td>
+	            <td style="padding: 0 15px;"></td>
+	            <td style="padding: 0 0 0 15px;" align="right"><%= humanized_money(@order.total) %> SEK</td>
+	          </tr>
+	        </mj-table>
+	      </mj-column>
+	    </mj-section>
+	    <mj-section>
+		    <mj-column>
+	        <% if @order.allergies != "" %>
+	          <mj-text font-size="22" align="left"><%= I18n.t('email.allergies_header') %></mj-text>
+	          <mj-text font-size="22" align="left"><%= I18n.t('email.allergies_text')   %></mj-text>
+	          <mj-text><%= @order.allergies %><mj-text>
+	        <% end %>
+	        <mj-spacer height="5px" />
+				</mj-column>
+			</mj-section>
+			<mj-section>
+				<mj-column>
+					<% if @order.delivery_method == 'pickup' %>
+						<mj-text align="left"><%= I18n.t('email.delivery_text_pickup') %></mj-text>
+					<% else %>
+						<mj-text align="left"><%= I18n.t('email.delivery_text_delivery') %></mj-text>
+						<mj-table>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Date:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_date.strftime("%Y/%m/%d") %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Time:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;"align="right"> <%=@order.delivery_date.strftime("%H:%M") %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Name/Company of the receiver:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_name %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Delivery address:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_address %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Postal Code:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_postal_code %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Floor:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_floor %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Door Code:</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_door_code %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">Person to contact when delivery arrives</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_name %></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 15px 0 0;" align="left">(name and phone):</td>
+								<td style="padding: 0 15px;"></td>
+								<td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_contact_phone_number %></td>
+							</tr>
+						</mj-table>
+					<% end %>
+				</mj-column>
+	    </mj-section>
+			<mj-section>
+				<mj-column>
+					<mj-text><%= I18n.t('email.payment_header') %></mj-text>
+					<% if @url == 'http://example.com/confirmation' %>
+						<mj-text><%= I18n.t('email.payment_text') %></mj-text>
+					<% end %>
+					<mj-spacer height="5px" />
+					<mj-table>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Name:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_name %></td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Company/Organisation:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_company %></td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Organisation number:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_org_nr %></td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Address:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_address %></td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Postal Code:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_postal_code %></td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Phone:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_phone %></td>
+						</tr>
+						<tr>
+							<td style="padding: 0 15px 0 0;" align="left">Email to send invoice:</td>
+							<td style="padding: 0 15px;"></td>
+							<td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_email %></td>
+						</tr>
+					</mj-table>
+				</mj-column>
+				<% if @url == 'http://example.com/confirmation' %>
+					<mj-text><%= I18n.t('email.acceptance_header') %></mj-text>
+				<% end %>
+			</mj-section>
+			<!-- Footer -->
+			<mj-section>
+				<mj-column>
+					<mj-text><%= I18n.t('gigafood.policy_html').html_safe %></mj-text>
+				</mj-column>
+			</mj-section>
+		</mj-container>
 	</mj-body>
 </mjml>

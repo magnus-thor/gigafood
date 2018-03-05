@@ -1,7 +1,7 @@
 class ConfirmationMailer < ApplicationMailer
   default from: 'noreply@gigafood.se'
 
-  before_action :attach_image
+  # before_action :attach_image
 
   def review_email(order)
     @order = order
