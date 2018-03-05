@@ -34,7 +34,7 @@ class ConfirmationMailer < ApplicationMailer
 
   def move_by_bike_email(email, order)
     @order = order
-    #mail(to: email, subject: 'Request for delivery from Gigafood')
+    mail(to: email, subject: 'Request for delivery from Gigafood')
   end
 
     def attach_image

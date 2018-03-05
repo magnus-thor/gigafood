@@ -1,10 +1,10 @@
- <mj-section>
+<mj-section>
   <mj-column>
     <mj-table>
       <tr style="text-align:left;padding:15px 0;">
-        <th style="padding: 0 15px 0 0;"><%= I18n.t('email.order_header') %></th>
-        <th style="padding: 0 15px;" align="right">Quantity</th>
-        <th style="padding: 0 0 0 15px;" align="right">Price</th>
+        <th><%= I18n.t('email.order_header') %></th>
+        <th align="right">Quantity</th>
+        <th align="right">Price</th>
       </tr>
       <% @order.shopping_cart_items.each do |order_item| %>
         <tr>
@@ -41,10 +41,6 @@
         <td align="right"><%= humanized_money(@order.total) %> SEK</td>
       </tr>
     </mj-table>
-  </mj-column>
-</mj-section>
-<mj-section>
-  <mj-column>
     <% if @order.allergies != "" %>
       <mj-text font-size="22" align="left">
         <%= I18n.t('email.allergies_header') %>
@@ -54,10 +50,6 @@
       </mj-text>
       <mj-text><%= @order.allergies %><mj-text>
     <% end %>
-  </mj-column>
-</mj-section>
-<mj-section>
-  <mj-column>
     <mj-text></mj-text>
     <% if @order.delivery_method == 'pickup' %>
       <mj-text align="left"><%= I18n.t('email.delivery_text_pickup') %></mj-text>
@@ -111,18 +103,10 @@
         </tr>
       </mj-table>
     <% end %>
-  </mj-column>
-</mj-section>
-<mj-section>
-  <mj-column>
     <mj-text><%= I18n.t('email.payment_header') %></mj-text>
     <% if @url == 'http://example.com/confirmation' %>
         <mj-text><%= I18n.t('email.payment_text') %></mj-text>
     <% end %>
-  </mj-column>
-</mj-section>
-<mj-section>
-  <mj-column>
     <mj-table>
       <tr>
         <td align="left">Name:</td>
@@ -160,10 +144,6 @@
         <td align="right"><%= @order.billing_email %></td>
       </tr>
     </mj-table>
-  </mj-column>
-</mj-section>
-<mj-section>
-  <mj-column>
     <% if @url == 'http://example.com/confirmation' %>
       <mj-text><%= I18n.t('email.acceptance_header') %></mj-text>
     <% end %>

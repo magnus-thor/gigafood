@@ -4,10 +4,6 @@
       <mj-section>
         <mj-column>
           <mj-image src="http://localhost:3000/gigafood_logo.png" width="300%" height="auto" />
-        </mj-column>
-      </mj-section>
-      <mj-section>
-        <mj-column>
           <mj-text font-size="32" align="center">
             <%= I18n.t('email.confirm_main_header') %>
           </mj-text>
@@ -20,10 +16,6 @@
           <mj-text font-size="14" align="center">
             <%= I18n.t('gigafood.phone_number') %>
           </mj-text>
-        </mj-column>
-      </mj-section>
-      <mj-section>
-        <mj-column>
           <% if @order.delivery_method == 'pickup' %>
             <mj-text><%= I18n.t('email.review_pickup_date_text', delivery_date: @order.delivery_date.strftime("%Y/%m/%d"))  %>
             </mj-text>
@@ -31,10 +23,6 @@
             <mj-text><%= I18n.t('email.review_delivery_date_text', delivery_date: @order.delivery_date.strftime("%Y/%m/%d"))  %>
             </mj-text>
           <% end %>
-        </mj-column>
-      </mj-section>
-      <mj-section>
-        <mj-column>
           <mj-text>
             <%= I18n.t('email.review_main_text', order_id: @order.id) %><br>
           </mj-text>

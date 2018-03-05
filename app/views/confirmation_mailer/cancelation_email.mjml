@@ -4,10 +4,6 @@
       <mj-section>
         <mj-column>
           <mj-image src="http://localhost:3000/gigafood_logo.png" width="300%" height="auto" />
-        </mj-column>
-      </mj-section>
-      <mj-section>
-        <mj-column>
           <mj-text font-size="14"><%= I18n.t('email.cancel_main_header') %></mj-text>
           <mj-text font-sice="14"><%= I18n.t('email.cancel_main_text', order_id: @order.id) %></mj-text>
           <mj-text font-size="14" align="center">
