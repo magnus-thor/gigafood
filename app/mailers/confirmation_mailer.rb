@@ -16,14 +16,20 @@ class ConfirmationMailer < ApplicationMailer
     @order = order
     @url = 'http://example.com/confirmation'
     @order.status = 'approved'
-    mail(to: @order.billing_email, subject: 'Confirmation from Gigafood')
+    # mail(to: @order.billing_email, subject: 'Confirmation from Gigafood')
+    mail(to: @order.billing_email, subject: 'Confirmation from Gigafood') do |format|
+      format.mjml
+    end
   end
 
   def cancelation_email(order)
     @order = order
     @url = "http://example.com/cancelation"
     @order.status = 'canceled'
-    mail(to: @order.billing_email, subject: 'Cancelation from Gigafood')
+    # mail(to: @order.billing_email, subject: 'Cancelation from Gigafood')
+    mail(to: @order.billing_email, subject: 'Cancelation from Gigafood') do |format|
+      format.mjml
+    end
   end
 
   def move_by_bike_email(email, order)

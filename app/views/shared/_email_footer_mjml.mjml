@@ -1,0 +1,6 @@
+<!-- Footer -->
+<mj-section>
+  <mj-column>
+    <mj-text><%= I18n.t('gigafood.policy_html').html_safe %></mj-text>
+  </mj-column>
+</mj-section>
