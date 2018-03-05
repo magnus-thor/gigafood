@@ -8,35 +8,37 @@
       </tr>
       <% @order.shopping_cart_items.each do |order_item| %>
         <tr>
-          <td style="padding: 0 15px 0 0;"><%= order_item.item.name %></td>
-          <td style="padding: 0 15px;" align="right"><%= order_item.quantity.to_s %></td>
-          <td style="padding: 0 0 0 15px;"  align="right"><%= humanized_money(order_item.quantity * order_item.price) %> SEK</td>
+          <td style="font-weight:bold;"><%= order_item.item.name %></td>
+          <td align="right"><%= order_item.quantity.to_s %></td>
+          <td align="right"><%= humanized_money(order_item.quantity * order_item.price) %> SEK</td>
         </tr>
+        <mj-spacer height="5px" />
         <tr>
-          <td style="padding: 0 15px 0 0;"><%= order_item.item.description %></td>
+          <td width="300px"><%= order_item.item.description %></td>
         </tr>
+        <mj-spacer height="5px" />
       <% end %>
     </mj-table>
     <mj-table>
       <tr>
-        <td style="padding: 0 15px 0 0;"><%= I18n.t('order.delivery_cost') %></td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;"  align="right"></td>
+        <td><%= I18n.t('order.delivery_cost') %></td>
+        <td></td>
+        <td align="right"></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;"><%= I18n.t('order.subtotal') %></td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= humanized_money(@order.subtotal) %> SEK</td>
+        <td><%= I18n.t('order.subtotal') %></td>
+        <td></td>
+        <td align="right"><%= humanized_money(@order.subtotal) %> SEK</td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;"><%= I18n.t('order.tax') %></td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= humanized_money(@order.taxes) %> SEK</td>
+        <td><%= I18n.t('order.tax') %></td>
+        <td></td>
+        <td align="right"><%= humanized_money(@order.taxes) %> SEK</td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;"><%= I18n.t('order.total') %></td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= humanized_money(@order.total) %> SEK</td>
+        <td><%= I18n.t('order.total') %></td>
+        <td></td>
+        <td align="right"><%= humanized_money(@order.total) %> SEK</td>
       </tr>
     </mj-table>
   </mj-column>
@@ -63,49 +65,49 @@
       <mj-text align="left"><%= I18n.t('email.delivery_text_delivery') %></mj-text>
       <mj-table>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Date:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_date.strftime("%Y/%m/%d") %></td>
+          <td align="left">Date:</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_date.strftime("%Y/%m/%d") %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Time:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;"align="right"> <%=@order.delivery_date.strftime("%H:%M") %></td>
+          <td align="left">Time:</td>
+          <td></td>
+          <td align="right"> <%=@order.delivery_date.strftime("%H:%M") %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Name/Company of the receiver:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_name %></td>
+          <td align="left">Name/Company of the receiver:</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_name %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Delivery address:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_address %></td>
+          <td align="left">Delivery address:</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_address %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Postal Code:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_postal_code %></td>
+          <td align="left">Postal Code:</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_postal_code %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Floor:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_floor %></td>
+          <td align="left">Floor:</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_floor %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Door Code:</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_door_code %></td>
+          <td align="left">Door Code:</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_door_code %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">Person to contact when delivery arrives</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_name %></td>
+          <td align="left">Person to contact when delivery arrives</td>
+          <td></td>
+          <td align="right"><%= @order.delivery_name %></td>
         </tr>
         <tr>
-          <td style="padding: 0 15px 0 0;" align="left">(name and phone):</td>
-          <td style="padding: 0 15px;"></td>
-          <td style="padding: 0 0 0 15px;" align="right"><%= @order.delivery_contact_phone_number %></td>
+          <td align="left">(name and phone):</td>
+          <td></td>
+          <td delivery_contact_phone_number %></td>
         </tr>
       </mj-table>
     <% end %>
@@ -123,39 +125,39 @@
   <mj-column>
     <mj-table>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Name:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_name %></td>
+        <td align="left">Name:</td>
+        <td></td>
+        <td align="right"><%= @order.billing_name %></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Company/Organisation:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_company %></td>
+        <td align="left">Company/Organisation:</td>
+        <td></td>
+        <td align="right"><%= @order.billing_company %></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Organisation number:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_org_nr %></td>
+        <td align="left">Organisation number:</td>
+        <td></td>
+        <td align="right"><%= @order.billing_org_nr %></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Address:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_address %></td>
+        <td align="left">Address:</td>
+        <td ></td>
+        <td align="right"><%= @order.billing_address %></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Postal Code:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_postal_code %></td>
+        <td align="left">Postal Code:</td>
+        <td></td>
+        <td align="right"><%= @order.billing_postal_code %></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Phone:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_phone %></td>
+        <td align="left">Phone:</td>
+        <td></td>
+        <td align="right"><%= @order.billing_phone %></td>
       </tr>
       <tr>
-        <td style="padding: 0 15px 0 0;" align="left">Email to send invoice:</td>
-        <td style="padding: 0 15px;"></td>
-        <td style="padding: 0 0 0 15px;" align="right"><%= @order.billing_email %></td>
+        <td align="left">Email to send invoice:</td>
+        <td></td>
+        <td align="right"><%= @order.billing_email %></td>
       </tr>
     </mj-table>
   </mj-column>

@@ -19,9 +19,6 @@
           <mj-spacer height="10px" />
         </mj-column>
       </mj-section>
-      <mj-section>
-
-      </mj-section>
     </mj-container>
   </mj-body>
 </mjml>
