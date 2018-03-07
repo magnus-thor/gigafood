@@ -42,19 +42,19 @@
       </tr>
     </mj-table>
     <% if @order.allergies != "" %>
-      <mj-text font-size="22" align="left">
+      <mj-text align="left">
         <%= I18n.t('email.allergies_header') %>
       </mj-text>
-      <mj-text font-size="22" align="left">
+      <mj-text align="left">
         <%= I18n.t('email.allergies_text') %>
       </mj-text>
       <mj-text><%= @order.allergies %><mj-text>
     <% end %>
     <mj-text></mj-text>
     <% if @order.delivery_method == 'pickup' %>
-      <mj-text align="left"><%= I18n.t('email.delivery_text_pickup') %></mj-text>
+      <mj-text style="font-weight:bold;" align="left"><%= I18n.t('email.delivery_text_pickup') %></mj-text>
     <% else %>
-      <mj-text align="left"><%= I18n.t('email.delivery_text_delivery') %></mj-text>
+      <mj-text style="font-weight:bold;" align="left"><%= I18n.t('email.delivery_text_delivery') %></mj-text>
       <mj-table>
         <tr>
           <td align="left">Date:</td>
@@ -103,7 +103,7 @@
         </tr>
       </mj-table>
     <% end %>
-    <mj-text><%= I18n.t('email.payment_header') %></mj-text>
+    <mj-text style="font-weight:bold;"><%= I18n.t('email.payment_header') %></mj-text>
     <% if @url == 'http://example.com/confirmation' %>
         <mj-text><%= I18n.t('email.payment_text') %></mj-text>
     <% end %>
