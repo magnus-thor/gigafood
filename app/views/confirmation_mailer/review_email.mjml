@@ -3,7 +3,7 @@
     <mj-container>
       <mj-section>
         <mj-column>
-          <mj-image src="http://localhost:3000/gigafood_logo.png" width="300%" height="auto" />
+          <mj-image src="http://gdurl.com/IFOa" width="300%" height="auto" />
           <mj-text font-size="32" align="center">
             <%= I18n.t('email.confirm_main_header') %>
           </mj-text>
@@ -23,9 +23,6 @@
             <mj-text><%= I18n.t('email.review_delivery_date_text', delivery_date: @order.delivery_date.strftime("%Y/%m/%d"))  %>
             </mj-text>
           <% end %>
-          <mj-text>
-            <%= I18n.t('email.review_main_text', order_id: @order.id) %><br>
-          </mj-text>
         </mj-column>
       </mj-section>
       <%= render partial: 'shared/email_main_mjml', formats: :html %>
