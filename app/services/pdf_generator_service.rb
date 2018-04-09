@@ -114,52 +114,59 @@ class PdfGeneratorService
     # Initial setup of the document
     pdf = create_and_configure_pdf
     pdf.font_size 14
-    # Display logo on center
-    logo_path = File.expand_path(Rails.root.join('app', 'assets', 'images', 'gigafood_logo.png'))
 
-    pdf.image logo_path, height: 60, position: :center
-    pdf.move_down 20
-    pdf.text I18n.t('menu.main_header'), size: 24, align: :center, style: :bold
-    pdf.move_down 40
-    # TABLE
-    data = []
-    # Add order items
-    collection = @order.shopping_cart_items
-                     .group_by { |i| i.item.category }
-                     .sort_by { |k, _| k.sort_key }
+    # footer
+    pdf.repeat :all do
+      pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 60], width: pdf.bounds.width do
+        pdf.text I18n.t('menu.main_intro_text'), align: :center, size: 10
+        pdf.move_down 10
 
-    collection.each do |category, items|
-      items.each do |item|
-        data << ["<strong>#{item.item.name}</strong>"]
-        data << [item.item.description]
+        pdf.text 'www.gigafood.se', align: :center, size: 8, style: :bold
       end
     end
 
+    pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], width: pdf.bounds.width, height: pdf.bounds.height - 60 do
 
-    pdf.table(data, width: 520) do |table|
+      # Display logo on center
+      logo_path = File.expand_path(Rails.root.join('app', 'assets', 'images', 'gigafood_logo.png'))
 
-      table.row(0).font_style = :bold
+      pdf.image logo_path, height: 60, position: :center
+      pdf.move_down 20
+      pdf.text I18n.t('menu.main_header'), size: 24, align: :center, style: :bold
+      pdf.move_down 40
+      # TABLE
+      data = []
+      # Add order items
+      collection = @order.shopping_cart_items
+                       .group_by {|i| i.item.category}
+                       .sort_by {|k, _| k.sort_key}
 
-
-      table.before_rendering_page do |page|
-
-        # The menu details have no borders at all
-        page.rows(0..-1).borders = []
-        # But be centered
-        page.rows(0..-1).align = :center
-        page.rows(0..-1).inline_format = true
+      collection.each do |category, items|
+        items.each do |item|
+          data << ["<strong>#{item.item.name}</strong>"]
+          data << [item.item.description]
+        end
       end
+
+
+      pdf.table(data, width: 520) do |table|
+
+        table.row(0).font_style = :bold
+
+
+        table.before_rendering_page do |page|
+
+          # The menu details have no borders at all
+          page.rows(0..-1).borders = []
+          # But be centered
+          page.rows(0..-1).align = :center
+          page.rows(0..-1).inline_format = true
+        end
+      end
+
+      pdf.render_file filename
+      add_attachment(filename, :menu)
     end
-
-    pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 60], width: pdf.bounds.width do
-      pdf.text I18n.t('menu.main_intro_text'), align: :center, size: 10
-      pdf.move_down 10
-
-      pdf.text 'www.gigafood.se', align: :center, size: 8, style: :bold
-    end
-
-    pdf.render_file filename
-    add_attachment(filename, :menu)
   end
 
   private
