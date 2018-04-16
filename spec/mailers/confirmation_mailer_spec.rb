@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ConfirmationMailer, type: :mailer do
   let(:order) {FactoryGirl.create(:order, billing_name: 'Volvo AB', status: 'approved', billing_email: 'customer@test.com')}
-  describe 'confirmation' do
+  xdescribe 'confirmation' do
     let(:mail) {ConfirmationMailer.confirmation_email(order)}
 
     it 'renders the subject' do
@@ -22,7 +22,7 @@ RSpec.describe ConfirmationMailer, type: :mailer do
     end
   end
 
-  describe 'review order' do
+  xdescribe 'review order' do
     let(:mail) {ConfirmationMailer.review_email(order)}
 
     it 'renders the subject' do
