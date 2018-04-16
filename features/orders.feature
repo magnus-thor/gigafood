@@ -43,9 +43,9 @@ Feature: List orders
     And "bob.schmob@example.com" should see "Your selected pickup" in the email
     And "bob.schmob@example.com" should see "hello@gigafood.se" in the email
     And "bob.schmob@example.com" should see "8 120 543 76" in the email
-    And "bob.schmob@example.com" should see "Total: 0 kr" in the email
-    And "bob.schmob@example.com" should see "VAT 12%: 0 kr" in the email
-    And "bob.schmob@example.com" should see "Total price inc. VAT: 0 kr" in the email
+    And "bob.schmob@example.com" should see "Total: 0 SEK" in the email
+    And "bob.schmob@example.com" should see "VAT 12%: 0 SEK" in the email
+    And "bob.schmob@example.com" should see "Total price inc. VAT: 0 SEK" in the email
     And "bob.schmob@example.com" should see "Allergies" in the email
     And "bob.schmob@example.com" should see "peanuts" in the email
     And "bob.schmob@example.com" should see "Delivery" in the email
