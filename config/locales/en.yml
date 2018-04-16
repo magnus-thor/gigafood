@@ -96,9 +96,9 @@ en:
     allergies_text: 'Please specify any allergies.'
     delivery_header: 'Delivery'
     delivery_text: 'Please specify details for delivery or pickup.'
-    delivery_text_pickup: "<h4>You have selected pick-up.</h4>"
-    delivery_text_delivery: "<h4>You have selected delivery.</h4>"
-    payment_header: "<h4>Payment</h4>"
+    delivery_text_pickup: "You have selected pick-up."
+    delivery_text_delivery: "You have selected delivery."
+    payment_header: "Payment>"
     payment_text: 'Please specify your billing details. An invoice from Gigafood will be sent to you shortly
                    after your delivery is fulfilled.'
     acceptance_header: 'Acceptance'

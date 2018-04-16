@@ -8,13 +8,13 @@
       </tr>
       <% @order.shopping_cart_items.each do |order_item| %>
         <tr>
-          <td style="font-weight:bold;"><%= order_item.item.name %></td>
+          <td style="font-weight:bold;" class="query"><%= order_item.item.name %></td>
           <td align="right"><%= order_item.quantity.to_s %></td>
           <td align="right"><%= humanized_money(order_item.quantity * order_item.price) %> SEK</td>
         </tr>
         <mj-spacer height="5px" />
         <tr>
-          <td width="300px"><%= order_item.item.description %></td>
+          <td class="query"><%= order_item.item.description %></td>
         </tr>
         <mj-spacer height="5px" />
       <% end %>
