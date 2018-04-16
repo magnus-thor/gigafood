@@ -25,27 +25,27 @@ ActiveAdmin.register Order do
   scope 'Approved / Submitted', :non_pending
   scope 'Pending', :pending
 
-  action_item :confirm_order, only: :show, if: proc { resource.status != 'canceled' and resource.status != 'approved' } do
+  action_item :confirm_order, only: :show, if: proc {resource.status != 'canceled' and resource.status != 'approved'} do
     link_to 'Confirm Order', confirm_admin_order_path(resource), method: :put
   end
 
-  action_item :cancel_order, only: :show, if: proc { resource.status != 'canceled' and resource.status != 'approved' } do
+  action_item :cancel_order, only: :show, if: proc {resource.status != 'canceled' and resource.status != 'approved'} do
     link_to 'Cancel Order', cancel_admin_order_path(resource), method: :put
   end
 
-  action_item :generate_invoice, only: :show, if: proc { !resource.has_invoice? and resource.status == 'approved' } do
+  action_item :generate_invoice, only: :show, if: proc {!resource.has_invoice? and resource.status == 'approved'} do
     link_to 'Generate Invoice', generate_invoice_order_path, method: :put
   end
 
-  action_item :generate_menu, only: :show, if: proc { !resource.has_menu? and resource.status == 'approved' } do
+  action_item :generate_menu, only: :show, if: proc {!resource.has_menu? and resource.status == 'approved'} do
     link_to 'Generate Menu', generate_menu_order_path, method: :put
   end
 
-  action_item :view_invoice, only: :show, if: proc { resource.has_invoice? } do
+  action_item :view_invoice, only: :show, if: proc {resource.has_invoice?} do
     link_to 'View Invoice', resource.attachments.where(file_type: 'invoice').first.file.url, target: '_blank', rel: 'nofollow', style: 'background-color: green !Important;'
   end
 
-  action_item :view_menu, only: :show, if: proc { resource.has_menu? } do
+  action_item :view_menu, only: :show, if: proc {resource.has_menu?} do
     link_to 'View Menu', resource.attachments.where(file_type: 'menu').first.file.url, target: '_blank', rel: 'nofollow', style: 'background-color: green !Important;'
   end
 
@@ -58,9 +58,7 @@ ActiveAdmin.register Order do
     @order.status = 'approved'
     @order.save
     ConfirmationMailer.confirmation_email(@order).deliver_now
-    if @order.delivery_method == "delivery"
-      ConfirmationMailer.move_by_bike_email('boka@movebybike.se', @order).deliver_now
-    end
+    ConfirmationMailer.move_by_bike_email('boka@movebybike.se', @order).deliver_now
     redirect_to resource_path, notice: 'Confirmed!'
   end
 
@@ -85,9 +83,9 @@ ActiveAdmin.register Order do
     actions
   end
 
-  filter :status, as: :select, collection: ->{['submitted', 'approved', 'pending']}
+  filter :status, as: :select, collection: -> {['submitted', 'approved', 'pending']}
   filter :delivery_date
-  filter :delivery_method, as: :select, collection: ->{['pick up', 'delivery']}
+  filter :delivery_method, as: :select, collection: -> {['pick up', 'delivery']}
 
   show do
     h3 'Order Items'
