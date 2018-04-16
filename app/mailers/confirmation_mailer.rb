@@ -37,7 +37,7 @@ class ConfirmationMailer < ApplicationMailer
     mail(to: email, subject: 'Request for delivery from Gigafood')
   end
 
-    def attach_image
-      attachments.inline['gigafood_logo.png'] = File.read('app/assets/images/gigafood_logo.png')
-    end
+  def attach_image
+    attachments.inline['gigafood_logo.png'] = File.read('app/assets/images/gigafood_logo.png')
+  end
 end

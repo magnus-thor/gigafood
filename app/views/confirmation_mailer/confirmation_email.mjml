@@ -3,7 +3,7 @@
     <mj-container>
       <mj-section>
         <mj-column>
-          <mj-image src="http://localhost:3000/gigafood_logo.png" width="300%" height="auto" />
+          <mj-image src="http://gigafood2.herokuapp.com/gigafood_logo.png" width="300%" height="auto" />
           <mj-text font-size="32" align="center">
             <%= I18n.t('email.confirm_main_header') %>
           </mj-text>

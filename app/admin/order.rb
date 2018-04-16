@@ -58,7 +58,9 @@ ActiveAdmin.register Order do
     @order.status = 'approved'
     @order.save
     ConfirmationMailer.confirmation_email(@order).deliver_now
-    ConfirmationMailer.move_by_bike_email('boka@movebybike.se', @order).deliver_now
+    if @order.delivery_method == "delivery"
+      ConfirmationMailer.move_by_bike_email('boka@movebybike.se', @order).deliver_now
+    end
     redirect_to resource_path, notice: 'Confirmed!'
   end
 

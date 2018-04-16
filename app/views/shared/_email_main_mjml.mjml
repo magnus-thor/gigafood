@@ -99,7 +99,7 @@
         <tr>
           <td align="left">(name and phone):</td>
           <td></td>
-          <td delivery_contact_phone_number %></td>
+          <td align="right"><%= @order.delivery_contact_phone_number %></td>
         </tr>
       </mj-table>
     <% end %>
