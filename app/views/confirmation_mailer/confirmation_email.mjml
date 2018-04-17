@@ -1,4 +1,23 @@
 <mjml>
+  <mj-head>
+    <mj-style>
+
+      @font-face {
+        font-family: 'gigafood';
+        src: url("http://localhost:3000/FuturaPTBook.woff");
+      }
+
+      .query {
+        max-width: 140px;
+      }
+      @media all and (min-width: 768px) {
+        .query {
+        max-width: 300px;
+      }
+
+      font-family: gigafood,Arial,Helvetica,sans-serif;
+    </mj-style>
+  </mj-head>
   <mj-body>
     <mj-container>
       <mj-section>

@@ -3,8 +3,8 @@
     <mj-table>
       <tr style="text-align:left;padding:15px 0;">
         <th><%= I18n.t('email.order_header') %></th>
-        <th align="right">Quantity</th>
-        <th align="right">Price</th>
+        <th align="right"><%= I18n.t('email.column_quantity') %></th>
+        <th align="right"><%= I18n.t('email.column_price') %></th>
       </tr>
       <% @order.shopping_cart_items.each do |order_item| %>
         <tr>
@@ -57,47 +57,47 @@
       <mj-text style="font-weight:bold;" align="left"><%= I18n.t('email.delivery_text_delivery') %></mj-text>
       <mj-table>
         <tr>
-          <td align="left">Date:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_date') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_date.strftime("%Y/%m/%d") %></td>
         </tr>
         <tr>
-          <td align="left">Time:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_time') %></td>
           <td></td>
           <td align="right"> <%=@order.delivery_date.strftime("%H:%M") %></td>
         </tr>
         <tr>
-          <td align="left">Name/Company of the receiver:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_name') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_name %></td>
         </tr>
         <tr>
-          <td align="left">Delivery address:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_address') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_address %></td>
         </tr>
         <tr>
-          <td align="left">Postal Code:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_postal_code') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_postal_code %></td>
         </tr>
         <tr>
-          <td align="left">Floor:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_floor') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_floor %></td>
         </tr>
         <tr>
-          <td align="left">Door Code:</td>
+          <td align="left"><%= I18n.t('email.column_delivery_door_code') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_door_code %></td>
         </tr>
         <tr>
-          <td align="left">Person to contact when delivery arrives</td>
+          <td align="left"><%= I18n.t('email.column_delivery_contact_name') %>/td>
           <td></td>
-          <td align="right"><%= @order.delivery_name %></td>
+          <td align="right"><%= @order.delivery_contact_name %></td>
         </tr>
         <tr>
-          <td align="left">(name and phone):</td>
+          <td align="left"><%= I18n.t('email.column_delivery_contact_name_and_phone') %></td>
           <td></td>
           <td align="right"><%= @order.delivery_contact_phone_number %></td>
         </tr>
@@ -109,37 +109,37 @@
     <% end %>
     <mj-table>
       <tr>
-        <td align="left">Name:</td>
+        <td align="left"><%= I18n.t('email.billing_name') %></td>
         <td></td>
         <td align="right"><%= @order.billing_name %></td>
       </tr>
       <tr>
-        <td align="left">Company/Organisation:</td>
+        <td align="left"><%= I18n.t('email.billing_company') %></td>
         <td></td>
         <td align="right"><%= @order.billing_company %></td>
       </tr>
       <tr>
-        <td align="left">Organisation number:</td>
+        <td align="left"><%= I18n.t('email.billing_organization_number') %></td>
         <td></td>
         <td align="right"><%= @order.billing_org_nr %></td>
       </tr>
       <tr>
-        <td align="left">Address:</td>
+        <td align="left"><%= I18n.t('email.billing_address') %></td>
         <td ></td>
         <td align="right"><%= @order.billing_address %></td>
       </tr>
       <tr>
-        <td align="left">Postal Code:</td>
+        <td align="left"><%= I18n.t('email.billing_postal_code') %></td>
         <td></td>
         <td align="right"><%= @order.billing_postal_code %></td>
       </tr>
       <tr>
-        <td align="left">Phone:</td>
+        <td align="left"><%= I18n.t('email.billing_phone_') %></td>
         <td></td>
         <td align="right"><%= @order.billing_phone %></td>
       </tr>
       <tr>
-        <td align="left">Email to send invoice:</td>
+        <td align="left"><%= I18n.t('email.billing_email') %></td>
         <td></td>
         <td align="right"><%= @order.billing_email %></td>
       </tr>
