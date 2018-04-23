@@ -1,5 +1,5 @@
 require 'i18n/backend/active_record'
-LANGUAGES = [['English', 'en']]
+LANGUAGES = [['English', 'en'], ['Swedish', 'sw']]
 
 if Translation.table_exists?
   I18n.backend = I18n::Backend::ActiveRecord.new

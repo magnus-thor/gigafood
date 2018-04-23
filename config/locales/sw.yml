@@ -1,0 +1,106 @@
+sw:
+
+  gigafood:
+    email: 'hello@gigafood.se'
+    phone_number: '+46 (0) 8 120 543 76'
+    web_address: 'www.gigafood.com'
+    policy: "Booking Policy
+            We recommend that you send your request five days ahead. However, we always try to make it work so if
+            you're having a last minute request please call us:  +46 (0) 8 120 543 76
+            Cancellation
+            Cancellation can be done until 7 days before delivery.
+            Changing your order
+            We will make every effort to accommodate last minute changes. Please contact our booking at
+            hello@gigafood.se as soon as possible and we'll do our best."
+
+  lable:
+    dish: 'Dish'
+    quantity: 'Quantity'
+    price: 'Price'
+
+  menu:
+    main_header: 'MENU'
+    main_intro_text: 'Our menu is 100% plant-based and vegan. We’re committed to always
+      use organic ingredients as far as possibly possible. Our packaging is 100% compostable
+      and our delivery service is made by cargo bike. All our food and desserts are made without
+      white refined sugar and no added gluten.'
+    dish_min_quantity: 'Minimum order of %{min_count} portions.'
+    proceed_button: 'Next'
+
+  order:
+    main_header: 'ORDER'
+    error: 'The order contains no items. No reason to generate an empty menu'
+    subtotal: 'Total:'
+    tax: 'VAT 12%:'
+    total: 'Total price inc. VAT:'
+    allergy_header: 'Allergies – No Problem!'
+    allergy_body: 'Please specify any allergies:'
+    delivery_info_header: 'Delivery Information'
+    delivery_date: 'Delivery Date'
+    delivery_pickup: "We'd like to pick up the order ourselves at Tegelbacken 4A"
+    delivery_deliver: "We'd like the order to be delivered directly to us by cargo bike."
+    billing_header: 'Billing address'
+    billing_name: 'Billing Name'
+    billing_company: 'Billing Company'
+    billing_org_number: 'Billing Organisation Number'
+    billing_address: 'Billing Address'
+    billing_postal_code: 'Billing_Postal_Code'
+    billing_city: 'Billing City'
+    billing_contact_phone: 'Billing Contact Phone'
+    billing_email: 'Billing email'
+    delivery_header: 'Delivery address'
+    delivery_name: 'Delivery Name'
+    delivery_address: 'Delivery Address'
+    delivery_postal_code: 'Delivery_Postal_Code'
+    delivery_city: 'Delivery City'
+    delivery_door_code: 'Delivery Door Code'
+    delivery_floor: 'Delivery Floor'
+    delivery_contact_name: 'Delivery Contact Name'
+    delivery_contact_phone: 'Delivery Contact Phone'
+    submit_order_button: 'Submit Order'
+    submit_add_cutlery_order_button: 'Add'
+    submit_remove_cutlery_order_button: 'Remove'
+    cutlery_quantity: 'Do you need cutlery?'
+    cutlery_placeholder: 'Add number of people'
+
+  confirm:
+    main_header: 'Thanks for ordering from Gigafood!'
+    message_body: 'A confirmation email will be sent to you as soon as your
+      booking is confirmed. Please contact us if you have any questions.
+      We’d love to hear from you! /The Gigafood-team'
+
+  invoice:
+    header: 'Invoice'
+    error: "The order contains no items. There\'s nothing to invoice..."
+
+  email:
+    confirm_main_header: 'Thanks for ordering from Gigafood!'
+    confirm_main_text: 'Your order (id: %{order_id}) is now confirmed and we look forward delivering to you!
+                 Please check your booking below and contact us if you have any further questions.
+                 Wish you a lovely day!
+                 /The Gigafood-team'
+    confirm_delivery_date_text: 'Your selected delivery date: %{delivery_date} is now confirmed'
+    confirm_pickup_date_text: 'Your selected pickup date: %{delivery_date} is now confirmed'
+    order_header: 'Order'
+    order_text: 'Some text about the order before the list of ordered dishes.'
+    allergies_header: 'Allergies'
+    allergies_text: 'Please specify any allergies.'
+    delivery_header: 'Delivery'
+    delivery_text: 'Some text about delivery method.'
+    delivery_text_pickup: 'You have selected pick-up.'
+    delivery_text_delivery: 'You have selected delivery'
+    payment_header: 'Payment'
+    payment_text: 'Please specify your billing details. An invoice from Gigafood will be sent to you shortly
+                   after your delivery is fulfilled.'
+    acceptance_header: 'Acceptance'
+    acceptance_text: 'I accept Gigafood’s booking policy (see below).'
+    cancel_main_header: 'Thanks for ordering from Gigafood!'
+    cancel_main_text: 'Regretfully, your order has been canceled! Order id: %{order_id}
+                 Thanks for choosing Gigafood, and have a great day!
+                 /The Gigafood-team'
+    review_main_text: 'We have received your order (id: %{order_id}) and we will get back to you once we have reviewed the order.
+                                        Please check your booking below and contact us if you have any further questions.
+                                        Wish you a lovely day!
+                                        /The Gigafood-team'
+    review_delivery_date_text: 'Your selected delivery date: %{delivery_date} is unconfirmed'
+    review_pickup_date_text: 'Your selected pickup date: %{delivery_date} is unconfirmed'
