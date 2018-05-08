@@ -11,15 +11,15 @@
       <tr id="<%= "order_row_#{order_item.item.id}" %>">
         <td><%= order_item.item.name %></td>
         <td style="width: 130px; text-align: center;"><%= order_item.quantity %></td>
-        <td style="white-space: nowrap; width: 130px; text-align: right;"><%= humanized_money_with_symbol(order_item.quantity * order_item.price) %></td>
+        <td style="white-space: nowrap; width: 130px; text-align: right;"><%= humanized_money(order_item.quantity * order_item.price) + " SEK" %></td>
       </tr>
     <% end %>
   </table>
   <br>
   <span class="float-right">
-    <div><%= t('order.subtotal') %> <%= humanized_money_with_symbol @order.subtotal %></div>
-    <div><%= t('order.tax') %> <%= humanized_money_with_symbol @order.taxes %></div>
-    <div><strong><%= t('order.total') %> <%= humanized_money_with_symbol @order.total %></strong></div>
+    <div><%= t('order.subtotal') %> <%= humanized_money(@order.subtotal)  + " SEK" %></div>
+    <div><%= t('order.tax') %> <%= humanized_money(@order.taxes)  + " SEK"%></div>
+    <div><strong><%= t('order.total') %> <%= humanized_money(@order.total)  + " SEK"%></strong></div>
   </span>
 </div>
 

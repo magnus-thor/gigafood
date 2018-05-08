@@ -54,13 +54,13 @@ class PdfGeneratorService
     data = [['', '', '', ''], %w(Product Price Qty Subtotal)]
     # Add order items
     @order.shopping_cart_items.each do |item|
-      data << [item.item.name, helpers.humanized_money_with_symbol(item.item.price), item.quantity, helpers.humanized_money_with_symbol(item.subtotal)]
+      data << [item.item.name, helpers.humanized_money(item.item.price) + ' SEK', item.quantity, helpers.humanized_money(item.subtotal) + ' SEK']
     end
 
     # Add VAT + Total
-    subtotal = [I18n.t('order.subtotal'), ' ', helpers.humanized_money_with_symbol(@order.subtotal)].join
-    tax = [I18n.t('order.tax'), ' ', helpers.humanized_money_with_symbol(@order.taxes)].join
-    total = [I18n.t('order.total'), ' ', helpers.humanized_money_with_symbol(@order.total)].join
+    subtotal = [I18n.t('order.subtotal'), ' ', helpers.humanized_money(@order.subtotal), ' SEK'].join
+    tax = [I18n.t('order.tax'), ' ', helpers.humanized_money(@order.taxes), ' SEK'].join
+    total = [I18n.t('order.total'), ' ', helpers.humanized_money(@order.total), ' SEK'].join
 
     data << ['', '', '', subtotal]
     data << ['', '', '', tax]

@@ -12,11 +12,11 @@
 <%= I18n.t('email.order_header') + ":" %>
 <% @order.shopping_cart_items.each do |order_item| %>
   <%= I18n.t('lable.dish') + ":  " + order_item.item.name %>
-  <%= I18n.t('lable.quantity') + ":  " + order_item.quantity.to_s + ".  " + I18n.t('lable.price') + ":  " + humanized_money_with_symbol(order_item.quantity * order_item.price) %>
+  <%= I18n.t('lable.quantity') + ":  " + order_item.quantity.to_s + ".  " + I18n.t('lable.price') + ":  " + humanized_money(order_item.quantity * order_item.price) + ' SEK' %>
   <%= %>
 <% end %>
-<%= I18n.t('order.subtotal') + " " + humanized_money_with_symbol(@order.subtotal) + "  " + I18n.t('order.tax') + " " +
-        humanized_money_with_symbol(@order.subtotal) + " " + I18n.t('order.total') + " " + humanized_money_with_symbol(@order.total) %>
+<%= I18n.t('order.subtotal') + " " + humanized_money(@order.subtotal) + " SEK  " + I18n.t('order.tax') + " " +
+        humanized_money(@order.subtotal) + " SEK  " + I18n.t('order.total') + " " + humanized_money(@order.total) + ' SEK' %>
 
 <% if @order.allergies != "" %>
   <%= I18n.t('email.allergies_header') + ":" %>
