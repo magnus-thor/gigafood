@@ -28,6 +28,7 @@ Feature: Admin creates invoice
 
 
   Scenario: Admin generates an invoice
+    Given skip this scenario
     Given "Bob Schmob"'s order contains:
       | dish_name | quantity |
       | Dish 1    | 10       |
@@ -44,6 +45,7 @@ Feature: Admin creates invoice
 
   @javascript
   Scenario: Admin views order
+    Given skip this scenario
     Given an Invoice has been generated for "Bob Schmob"'s order
     And I press "View Invoice"
     Then I should see a pdf in a new window
@@ -54,6 +56,7 @@ Feature: Admin creates invoice
     Then I should not see "View Invoice"
 
   Scenario: Admin tries to generate invoice for order without items
+    Given skip this scenario
     Given "Bob Schmob"'s order contains no items
     And I go to the dashboard
     And I click on "Orders"

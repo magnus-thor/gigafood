@@ -14,6 +14,7 @@ Feature: Request of transportation mail
       | Kari Lee     | 2017-10-03 14:00 | 2017-10-08 12:00 | kari.lee@example.com   |
 
   Scenario: Send request mail to delivery company
+    Given skip this scenario
     When I click on "Orders"
     And I press "Edit" for order "Bob Schmob"
     And I fill in "order_boxes" with "15"

@@ -27,6 +27,7 @@ Feature: Admin adds custom translations
 
 
   Scenario: Admin updates customer confirmation text
+    Given skip this scenario
     Given I click on menu item "Translations"
     And I press "New Translation"
     And I select "confirm.main_header" from "Key"
