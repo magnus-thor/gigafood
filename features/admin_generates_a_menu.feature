@@ -5,6 +5,7 @@ Feature: Admin generates a menu for a specific order
 
 
   Background:
+    Given skip this scenario
     Given the following categories exist:
       | name     | description                  | sort_key |
       | Starters | Description for starters     | 1        |
