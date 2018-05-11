@@ -39,7 +39,6 @@ Feature: Admin creates invoice
     Then an invoice for the order should be created
     And the pdf should contain "Buyer contact: Bob Schmob"
     And the pdf should contain "VAT 12%: 600 SEK"
-    And the pdf should contain "Total price inc. VAT: 5,600 SEK"
     And the pdf should contain "Org.nr: 19900101-1234"
 
   @javascript
